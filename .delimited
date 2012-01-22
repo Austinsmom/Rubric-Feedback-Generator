@@ -1,0 +1,5 @@
+title	Jenn's Form									
+plaintext	Here is my form. It's awesome and <b>HTML</b> friendly!									
+question	radio	Question 1 answers are correct	Yes, they are correct.	5	No, they are not correct.	0		
+question	checklist	Question 2 was...	Awesome	5	Correct	5	Incorrect	0	Good effort	2
+question	textarea	Extra credit								
