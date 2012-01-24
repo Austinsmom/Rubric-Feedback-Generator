@@ -14,9 +14,14 @@
 	<!-- global scripts -->
 	<script type="text/javascript" src="js/scripts.js"></script> 
 	
-	<!-- include all files in /function directory -->
-	<?php foreach (glob("functions/*.php") as $filename) { 
+	<?php 
+		/* include all files in /function directory */
+		foreach (glob("functions/*.php") as $filename) { 
 			include $filename;
 		}
+		
+		/* connect to the database */
+		rubricCreatorConnect();
+		
 	?>
 </head>

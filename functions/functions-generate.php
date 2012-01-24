@@ -1,7 +1,7 @@
 <?php 
 /**
-*	Rubric Creator - Functions
-*	All the form-generating functions, primarily used in submit-form.php
+*	Rubric Creator - Functions: Generate Rubric
+*	All the rubric-generating functions, primarily used in rubric-submit.php
 *
 *	@author Jenn Schiffer
 *	@version 0.1
