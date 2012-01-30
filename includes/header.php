@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
 	<title>RUBRIC CREATOR 9000XL Premium</title>
@@ -22,6 +23,5 @@
 		
 		/* connect to the database */
 		rubricCreatorConnect();
-		
 	?>
 </head>

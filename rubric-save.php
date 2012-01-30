@@ -8,10 +8,13 @@
 *	@version 0.1
 *	@package Rubric Creator
 */
+if(!isset($_COOKIE["user"])){
+	header("Location: index.php");
+} else { $username = $_COOKIE["user"]; }
 
 require('includes/header.php'); 
 
-$rubricAuthor = "jennschiffer";
+$rubricAuthor = $username;
 $rubricTitle = "My Rubric";
 $rubricContent = stripslashes($_POST['finalDelimitedText']);
 
@@ -19,7 +22,9 @@ saveRubricToDatabase($rubricAuthor,$rubricTitle,$rubricContent);
 
 ?>
 
-Saved, y'all! Soon there will be a link to continue!
+<body id="save">
+
+Your rubric was saved. <a href="user-admin.php">Go to admin to view it.</a>
 
 
 <?php require('includes/footer.php'); ?>
