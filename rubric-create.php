@@ -20,7 +20,7 @@ require('includes/header.php'); ?>
 
 <form id="form-delimited" name="form-delimited" action="rubric-submit.php" method="post">
 	<label for="deliminited-text">Enter your tab-delimited content here:</label>
-	<textarea name="delimitedtext"></textarea>
+	<textarea name="delimited-text"></textarea>
 	<input type="submit" value="submit" />
 </form>
 

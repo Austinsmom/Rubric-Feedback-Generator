@@ -9,7 +9,7 @@
 */
 
 $hostname = "localhost";
-$databaseName = "site_masters";
+$databaseName = "rubric_creator";
 $databaseUser = "root";
 $databasePassword = "root";
 

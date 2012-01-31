@@ -15,10 +15,16 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php'); 
 
 $rubricAuthor = $username;
-$rubricTitle = "My Rubric";
+$rubricTitle = $_POST['form-title'];
+$rubricDescription = $_POST['form-description'];
 $rubricContent = stripslashes($_POST['finalDelimitedText']);
 
-saveRubricToDatabase($rubricAuthor,$rubricTitle,$rubricContent);
+/* if there is no rubric title, set default title */
+if ($rubricTitle == null) {
+	$rubricTitle = "Untitled Rubric";
+}
+
+saveRubricToDatabase($rubricAuthor,$rubricTitle,$rubricDescription,$rubricContent);
 
 ?>
 

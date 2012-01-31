@@ -37,9 +37,10 @@ require('includes/header.php'); ?>
 					/* go through each rubric record and print a list to choose from */
 					$id = $row['rubric_id'];
 					$title = $row['rubric_title'];
+					$description = $row['rubric_description'];
 				
-					echo '<p><input type="radio" name="rubric-choice" id="rubric-'. 
-							$id . '" value="' .$id. '"> ' . $title .'</p>';
+					echo '<input type="radio" name="rubric-choice" id="rubric-'. 
+							$id . '" value="' .$id. '"> ' . $title .'<p class="rubric-description">'. $description .'</p>';
 					}
 				?>
 			 </fieldset>	

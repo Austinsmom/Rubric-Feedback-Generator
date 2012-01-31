@@ -1,0 +1,23 @@
+title	CMPT109 Project 1
+plaintext	<h2>For the report</h2>
+criteria	radio	a. Clearly defined research question	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	b. summary statistics paragraph (includes mean, median, mode, maximum, standard deviation, and count for all dependent variables involved in research question)	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	c. figure 1 observation paragraph using GEE style	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	d. figure 1 is readable, clearly referred to in the text, & supports/illustrates observations made in report	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	e. figure 2 observation paragraph using GEE style	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	f. figure 2 is readable, clearly referred to in the text, & supports/illustrates observations made in report	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	g. conclusion paragraph	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	h. at least one figure observation paragraph uses a new variable generated in spreadsheet (derived from 2+ other columns of data handed out)	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+plaintext	<h2>For the spreadsheet</h2>
+criteria	radio	i. Must be xls, xlsx, or ods spreadsheet document and NOT a csv file	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	j. Includes data from at least 2 CSV files (Choose any two from: SNOW, SNWD, PRCP, TMAX, & TMIN)	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	k. Includes data from at least 25 year-stationid combinations	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	l. column headings are boldface & frozen	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	m. data is sorted by some column other than the stationid	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	n. added at least one new column derived from some combination of other columns ('new variable')	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+plaintext	<h2>Should include 4 figures, 2 of which are in the final report. Each figure should convey meaningful information about the data, and be clearly labelled (axes & title/description)</h2>
+criteria	radio	o. Figure 1	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	p. Figure 2	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	q. Figure 3	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	r. Figure 4	Excellent	10	Good	9	Average	7	Poor	3	Zero	0
+criteria	radio	s. At least one of the figures plots composite data from the new variable	Excellent	10	Good	9	Average	7	Poor	3	Zero	0

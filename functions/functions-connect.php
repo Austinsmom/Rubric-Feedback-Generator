@@ -18,7 +18,7 @@ function rubricCreatorConnect() {
 		die('Could not connect to mysql: ' . mysql_error());
 	}
 	
-	$rubricDatabase = mysql_select_db("site_masters", $link);
+	$rubricDatabase = mysql_select_db("rubric_creator", $link);
 	if (!$rubricDatabase) {
 		die('Could not reach database: ' . mysql_error());
 	}
