@@ -9,7 +9,7 @@
 html { font-family: Monaco, 'Courier New', Courier, monospace; font-size: 14px; }
 body { width: 75%; margin: 20px auto; }
 label { display: block; }
-fieldset { border: 2px solid #000; background: #fffff3; margin: 10px 0; }
+fieldset { border: 2px solid #999; background: #fffff3; margin: 10px 0; }
 
 /* ----- Delimited Form Submission ----- */
 #delimited form { padding: 20px 40px; background: #99cccc; }
@@ -19,5 +19,12 @@ fieldset { border: 2px solid #000; background: #fffff3; margin: 10px 0; }
 #process form { padding: 20px 40px; background: #cc6666; margin: 20px auto 40px; }
 #process textarea { width: 100%; height: 300px; margin: 10px 0; }
 
+/* ----- View Delimited Form -------- */
+#rubric form { padding: 20px 40px; background: #cc6666; margin: 20px auto 40px; }
+#rubric textarea { width: 100%; height: 300px; margin: 10px 0; }
+
 /* ----- Form Output ------------------- */
 #form-output label { font-size: 1.2em; padding-bottom: 5px; }
+
+/* ----- Grade Output ------------------ */
+.grade { background: #efefef; border: 1px solid #ccc; padding: 10px; margin: 20px auto; }

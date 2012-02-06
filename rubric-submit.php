@@ -10,7 +10,13 @@
 *	@package Rubric Creator
 */
 
-require('includes/header.php'); ?>
+require('includes/header.php'); 
+
+$delimitedText = stripslashes($_POST['delimited-text']);
+$delimitedTextItems = explode( '
+', $delimitedText );
+
+?>
 
 <body id="process">
 

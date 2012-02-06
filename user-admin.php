@@ -25,7 +25,7 @@ require('includes/header.php'); ?>
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-rubric-list" name="form-rubric-list" action="rubric-view.php">
+			<form id="form-rubric-list" name="form-rubric-list" action="rubric-view.php" method="post">
 			 <fieldset>
 				<legend>Select a rubric to complete, or <a href="rubric-create.php">create a new one.</a></legend>
 				
@@ -53,6 +53,33 @@ require('includes/header.php'); ?>
 			<p>You have no rubrics yet. <a href="rubric-create.php">Create one!</a></p>
 	
 			<?php } ?>
+			
+			
+	<?php
+		$sql = "SELECT * FROM rubric_grade";
+		$result = mysql_query($sql);
+		$count = mysql_num_rows($result);
+			
+		if ($count != 0) { 
+		
+		echo '<h3>Here are your saved grade records:</h3>';
+		
+			while ( $row = mysql_fetch_array($result)) {
+			
+			echo '<div class="grade">';
+			
+			/* go through each grade record and print them */
+			$student = $row['grade_student'];
+			$assignment = $row['grade_assignment'];
+			$content = $row['grade_content'];
+			$points = $row['grade_points'];
+			
+			echo '<h5>',$student,'</h5><em>',$assignment,'</em><div class="grade-content">',$content,'</div><p><strong>Points:</strong> ',$points,'</p>';
+			
+			echo '</div>';
+			}
+	 } ?>
+
 	
 	<p><a href="user-logout.php">Click here to log out.</a></p>
 
