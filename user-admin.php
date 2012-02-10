@@ -16,7 +16,7 @@ require('includes/header.php'); ?>
 
 <body id="admin">
 	
-	<p>Welcome to the admin page, <?php echo $_COOKIE["user"]; ?>!</p>
+	<h1>User Admin: <em>Welcome, <?php echo $_COOKIE["user"]; ?>!</em></h1>
 	
 	<?php
 		$sql = "SELECT * FROM rubric_form WHERE rubric_author='$username'";
@@ -25,9 +25,9 @@ require('includes/header.php'); ?>
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-rubric-list" name="form-rubric-list" action="rubric-view.php" method="post">
+			<form id="form-rubric-list" name="form-rubric-list" action="rubric-complete.php" method="post">
 			 <fieldset>
-				<legend>Select a rubric to complete, or <a href="rubric-create.php">create a new one.</a></legend>
+				<legend>Select a rubric to complete, or <a href="rubric-new.php">create a new one.</a></legend>
 				
 				<?php 
 					$sql = "SELECT * FROM rubric_form WHERE rubric_author='$username'";
@@ -50,7 +50,7 @@ require('includes/header.php'); ?>
 			</form>		
 	<?php } else { ?>
 	
-			<p>You have no rubrics yet. <a href="rubric-create.php">Create one!</a></p>
+			<p>You have no rubrics yet. <a href="rubric-new.php">Create one!</a></p>
 	
 			<?php } ?>
 			
@@ -71,7 +71,7 @@ require('includes/header.php'); ?>
 			/* go through each grade record and print them */
 			$student = $row['grade_student'];
 			$assignment = $row['grade_assignment'];
-			$content = $row['grade_content'];
+			$content = htmlspecialchars($row['grade_content']);
 			$points = $row['grade_points'];
 			
 			echo '<h5>',$student,'</h5><em>',$assignment,'</em><div class="grade-content">',$content,'</div><p><strong>Points:</strong> ',$points,'</p>';

@@ -1,7 +1,7 @@
 <?php 
 /**
-*	Rubric Creator - Grade Save
-*	 1. Saves grade to database
+*	Rubric Creator - Grade Edit
+*	 1. Repopulates Rubric to 
 *	 2. Links user back to admin
 *
 *	@author Jenn Schiffer
@@ -15,13 +15,12 @@ if(!isset($_COOKIE["user"])){
 
 require('includes/header.php'); 
 
-$rubricID = $_POST['grade-rubric-id'];
 $student = $_POST['grade-student'];
 $assignment = $_POST['grade-assignment'];
 $content = $_POST['grade-content'];
 $points = $_POST['grade-points'];
 
-saveGradeToDatabase($student, $rubricID, $assignment, $content, $points);
+saveGradeToDatabase($student, $assignment, $content, $points);
 
 ?>
 

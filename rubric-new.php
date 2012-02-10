@@ -18,7 +18,7 @@ require('includes/header.php'); ?>
 
 <p>In the following form, paste the tab-delimited content needed to generate your rubric content.</p>
 
-<form id="form-delimited" name="form-delimited" action="rubric-submit.php" method="post">
+<form id="form-delimited" name="form-delimited" action="rubric-new-verify.php" method="post">
 	<label for="deliminited-text">Enter your tab-delimited content here:</label>
 	<textarea name="delimited-text"></textarea>
 	<input type="submit" value="submit" />

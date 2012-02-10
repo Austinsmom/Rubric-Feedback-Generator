@@ -33,24 +33,24 @@ while ( $row = mysql_fetch_array($result)) {
 
 ?>
 		
+		<h1>Rubric Completion: <em><?php echo $title; ?></em></h1>
 
 		<form id="form-output-fill" name="form-output-fill" action="grade-submit.php" method="post">
+			
+			<fieldset>
+				<label for="user-email">
+					Student's email address: 
+					<input type="text" name="student" />
+				</label>
+				<input type="hidden" name="rubric-id" value="<?php echo $rubricID; ?>" />
+			</fieldset>
 			
 			<div id="form-output">
 			<?php processCriteria($delimitedTextItems); ?>
 			</div>
 			
-			<fieldset>
-			
-				<label for="user-email">
-					Student's email address: 
-					<input type="text" name="student" />
-				</label>
-			
-			</fieldset>
-			
 			<div id="form-save">
-				<input class="save button" type="submit" value="save to database" />
+				<input class="save button" type="submit" value="view results before saving to database" />
 			</div>
 		
 		</form>

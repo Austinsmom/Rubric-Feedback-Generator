@@ -48,10 +48,10 @@ function processCriteria( $arrayToProcess ) {
 						generateCriteriaRadio($criteriaItem, $count);
 						$count++;
 					}
-					else if ($criteriaInputType == 'checklist') {
+					/*else if ($criteriaInputType == 'checklist') {
 							generateCriteriaChecklist($criteriaItem, $count);
 							$count++;
-						 }
+						 }*/
 						 else if ($criteriaInputType == 'textarea') {
 						 		 generateCriteriaTextarea($criteriaItem, $count);
 						 		 $count++;
@@ -92,8 +92,9 @@ function generatePlaintext( $itemArray, $itemCount ) {
 */
 function generateCriteriaRadio( $itemArray, $itemCount ) {
 	echo '<fieldset class="radio fieldset-', $itemCount, '">';
-	echo '<label for="', $itemArray[2],'">', $itemArray[2], '</label>';
-	
+	echo '<label for="item-', $itemCount,'">', $itemArray[2], '</label>';
+	echo '<input type="radio" name="item-',$itemCount,'" value="0" checked style="display:none;" />';
+
 	$responseCount = 1;
 	$responseStart = 3;
 	$responseLength = count($itemArray) - $responseStart - 1;
@@ -103,7 +104,7 @@ function generateCriteriaRadio( $itemArray, $itemCount ) {
 			
 			# odd number count => response. even # count => point value.
 			if ( $responseCount % 2 ) {
-				echo '<input type="radio" name="',$itemArray[2],'" value="',$itemArray[$i + 1],'" />', $itemArray[$i], ' (',$itemArray[$i + 1],' points)<br />';
+				echo '<input type="radio" name="item-',$itemCount,'" value="',$itemArray[$i + 1],'" />', $itemArray[$i], ' (',$itemArray[$i + 1],' points)<br />';
 			}
 			$responseCount++;
 		}
@@ -118,10 +119,13 @@ function generateCriteriaRadio( $itemArray, $itemCount ) {
 * Outputs a <fieldset> container for a checklist input
 * @param $itemArray
 * @param $itemCount
-*/
+*
+
 function generateCriteriaChecklist( $itemArray, $itemCount ) {
 	echo '<fieldset class="checkbox fieldset-', $itemCount, '">';
 	echo '<label for="item-', $itemCount, '">', $itemArray[2], '</label>';
+	echo '<input type="checkbox" name="item-',$itemCount,'" value="0" checked style="display:none;" />';
+
 	
 	$responseCount = 1;
 	$responseStart = 3;
@@ -136,12 +140,13 @@ function generateCriteriaChecklist( $itemArray, $itemCount ) {
 			}
 			$responseCount++;
 		}
-		else { /* do nothing, because these are blank fields, most likely caused by a spreadsheet copy/paste job */ }
+		else { /* do nothing, because these are blank fields, most likely caused by a spreadsheet copy/paste job * }
 	}
 	echo '<label for="comment-', $itemCount, '">Comments:</label>';
 	echo '<textarea name="comment-',$itemCount,'"></textarea>';
 	echo '</fieldset>';
 }
+*/
 
 /**
 * Outputs a <fieldset> container for an open (textarea) input
