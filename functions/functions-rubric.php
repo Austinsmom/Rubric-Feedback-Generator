@@ -170,4 +170,18 @@ function saveRubricToDatabase($author, $title, $description, $content) {
 	mysql_query("INSERT INTO rubric_form (rubric_author, rubric_title, rubric_description, rubric_content) VALUES ('$author', '$title', '$description', '$content')") or die('There was an error saving: ' . mysql_error());
 }
 
+/**
+* Updates rubric in database
+* @param $id
+* @param $author
+* @param $title
+* @param $description
+* @param $content
+*/
+function editRubric($id, $author, $title, $description, $content) {
+	$content = mysql_real_escape_string($content);
+	mysql_query("UPDATE rubric_form SET rubric_title = '$title', rubric_description = '$description', rubric_content = '$content' WHERE rubric_id = '$id';") or die('There was an error saving: ' . mysql_error());
+}
+
+
 ?>

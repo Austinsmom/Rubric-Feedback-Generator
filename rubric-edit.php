@@ -16,17 +16,45 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php'); 
 
 $rubricAuthor = $username;
-$rubricTitle = $_POST['form-title'];
-$rubricDescription = $_POST['form-description'];
-$rubricContent = stripslashes($_POST['finalDelimitedText']);
-
-saveRubricToDatabase($rubricAuthor,$rubricTitle,$rubricDescription,$rubricContent);
-
 ?>
 
-<body id="save">
+<body>
 
-Your rubric was saved. <a href="user-admin.php">Go to admin to view it.</a>
+<h2>Edit Rubrics</h2>
+	 
+	 	<?php
+		$sqlRubric = "SELECT * FROM rubric_form WHERE rubric_author='$username'";
+		$resultRubric = mysql_query($sqlRubric);
+		$count = mysql_num_rows($resultRubric);
+			
+		if ($count != 0) { ?>
+			
+			<form id="form-rubric-edit" name="form-rubric-edit" action="rubric-edit-form.php" method="post">
+			 <fieldset>
+				<legend>Select a rubric to edit:</legend>
+				
+				<?php 
+				
+					while ( $row = mysql_fetch_array($resultRubric)) {
+					/* go through each rubric record and print a list to choose from */
+					$id = $row['rubric_id'];
+					$title = $row['rubric_title'];
+					$description = $row['rubric_description'];
+				
+					echo '<input type="radio" name="rubric-choice" id="rubric-'. 
+							$id . '" value="' .$id. '"> ' . $title .'<div class="description">'. $description .'</div>';
+					}
+				?>
+			 </fieldset>	
+			
+			 <input type="hidden" name="form-origin" value="rubric-edit" />
+			 <input type="submit" value="edit rubric" />
+			</form>		
+	<?php } else { ?>
+	
+			<p>You have no rubrics yet. <a href="rubric-new.php">Create one!</a></p>
+	
+		<?php } ?>
 
 
 <?php require('includes/footer.php'); ?>

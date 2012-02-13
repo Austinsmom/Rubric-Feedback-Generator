@@ -27,6 +27,6 @@ saveGradeToDatabase($student, $rubricID, $assignment, $content, $points);
 
 <body id="save">
 
-Your grade was saved. <a href="user-admin.php">Go to admin to view it.</a>
+Your grade was saved. <a href="user-admin.php">Go to admin.</a>
 
 <?php require('includes/footer.php'); ?>

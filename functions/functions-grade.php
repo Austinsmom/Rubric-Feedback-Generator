@@ -17,7 +17,7 @@
 * @param $points
 */
 function saveGradeToDatabase( $student, $rubricID, $assignment, $content, $points ) {
-	mysql_query("INSERT INTO rubric_grade (grade_student, grade_rubric_id, grade_assignment, grade_content, grade_points) VALUES ('$student', '$rubricID', '$assignment', '$content', '$points')") or die('There was an error saving: ' . mysql_error());
+	mysql_query("INSERT INTO rubric_grade (grade_student, grade_rubric_id, grade_assignment_id, grade_content, grade_points) VALUES ('$student', '$rubricID', '$assignment', '$content', '$points')") or die('There was an error saving: ' . mysql_error());
 }
 
 /**
@@ -25,7 +25,25 @@ function saveGradeToDatabase( $student, $rubricID, $assignment, $content, $point
 * @param $gradeContent
 */
 function gradeToPost( $gradeContent ) {
+
+	$inputsArray = explode('///', $gradeContent);
 	
+	$criteria = array();
+	$count = 1;
+	
+	foreach ($inputsArray as $lineItem) {
+		$criteria[$count] = explode( ':::', $lineItem );
+		$count++;
+	}
+	
+	for ( $i = 0; $i <= count($criteria) - 1; $i++ ) {
+	
+		while( list( $field, $value ) = each( $criteria[$i] )) {
+			echo '<p><strong>' . $field . ':</strong> ' . $value . '</p>';
+		}	
+		
+	}
+
 }
 
 

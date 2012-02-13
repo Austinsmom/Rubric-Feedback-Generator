@@ -27,9 +27,10 @@ require('includes/header.php');
 				$inputCount = 1; 
 				$gradeContent = "";
 				$gradeRubric = $_POST['rubric-id'];
+				$gradeAssignment = $_POST['rubric-assignment'];
 				
 				while( list( $field, $value ) = each( $_POST )) {
-					 $gradeContent .= '[ ' . $field . ' ::: ' . htmlspecialchars($value) . ' ]';
+					 $gradeContent .= $field . ' ::: ' . htmlspecialchars($value) . '///';
 					 
 					if ( ($field != 'student' || $field != '' || $field != '') && is_numeric($value) ) {
 					 	$gradeTotal += $value;
@@ -45,7 +46,7 @@ require('includes/header.php');
 			
 			<input type="hidden" value="<?php echo $gradeStudent; ?>" name="grade-student" />
 			<input type="hidden" value="<?php echo $gradeRubric; ?>" name="grade-rubric-id" />
-			<input type="hidden" value="Untitled Assignment" name="grade-assignment" />
+			<input type="hidden" value="<?php echo $gradeAssignment; ?>" name="grade-assignment" />
 			<input type="hidden" value="<?php echo $gradeContent; ?>" name="grade-content" />
 			<input type="hidden" value="<?php echo $gradeTotal; ?>" name="grade-points" />
 			

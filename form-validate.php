@@ -58,7 +58,7 @@ else if ($formOrigin == 'register') {
 		else {
 			/* add user to database & celebrate */
 			addUsertoDatabase($username, $password, $email, $nicename, $role);
-			header('Location: /success-register.php');
+			header('Location: /user-register-success.php');
 		}
 
 	}

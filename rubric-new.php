@@ -1,6 +1,6 @@
 <?php 
 /**
-*	Rubric Creator - Import Form
+*	Rubric Creator - Create New Rubric
 *	1. allows the user to paste their tab-delimited text and submit for form generation
 *	TO DO: help docs link
 *	TO DO: allow user to upload a csv file
@@ -14,7 +14,7 @@ require('includes/header.php'); ?>
 
 <body id="delimited">
 
-<h1>Rubric Creator - Import Form</h1>
+<h1>Rubric Creator - Create New Rubric</h1>
 
 <p>In the following form, paste the tab-delimited content needed to generate your rubric content.</p>
 

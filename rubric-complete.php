@@ -42,6 +42,37 @@ while ( $row = mysql_fetch_array($result)) {
 					Student's email address: 
 					<input type="text" name="student" />
 				</label>
+				
+				<p>
+				<label for="rubric-assignment">Assignment</label>
+				
+					<?php 
+						$sql = "SELECT * FROM rubric_assignment WHERE assignment_author='$username'";
+						$result = mysql_query($sql);
+						$count = mysql_num_rows($result);
+					
+						if ( $count == 0 ) {
+							echo '[<strong>You have not created any assignments. <a href="assignment-new.php">Click here to create one</a>.</strong>]';
+						}
+						
+						else {
+							echo '<select name="rubric-assignment">';
+							
+							while ( $row = mysql_fetch_array($result)) {
+								/* go through each class record and print a list to choose from */
+								$id = $row['assignment_id'];
+								$title = $row['assignment_title'];
+							
+								echo '<option value="' . $id . '">' . $title . '</option>';
+							}
+			
+							echo '</select>';
+						}
+					
+					
+					?>
+				</p>
+
 				<input type="hidden" name="rubric-id" value="<?php echo $rubricID; ?>" />
 			</fieldset>
 			
