@@ -28,18 +28,26 @@ function gradeToPost( $gradeContent ) {
 
 	$inputsArray = explode('///', $gradeContent);
 	
-	$criteria = array();
+	$inputsExploded = array();
 	$count = 1;
 	
 	foreach ($inputsArray as $lineItem) {
-		$criteria[$count] = explode( ':::', $lineItem );
+		$inputsExploded[$count] = explode( ' ::: ', $lineItem );
 		$count++;
 	}
 	
-	for ( $i = 0; $i <= count($criteria) - 1; $i++ ) {
+	$criteria = array(); 
 	
-		while( list( $field, $value ) = each( $criteria[$i] )) {
-			echo '<p><strong>' . $field . ':</strong> ' . $value . '</p>';
+	for ( $i = 0; $i <= count($inputsExploded) - 1; $i++ ) {
+	
+		while( list( $field, $value ) = each( $inputsExploded[$i] )) {
+		
+			list( $fieldNext, $valueNext ) = each( $inputsExploded[$i] ) ;
+			
+			if ( $field == 0 && $fieldNext == 1) {
+				$j = $i - 1;
+				echo 'array[' . $j . '] = (' . trim($value) . ', ' . htmlspecialchars(trim($valueNext)) . ')<br />';
+			}
 		}	
 		
 	}
