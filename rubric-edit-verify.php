@@ -26,8 +26,8 @@ $delimitedTextItems = explode( '
 
 <form id="form-output-save" name="form-output-save" action="rubric-edit-save.php" method="post">
 
-	<p>Rubric Title: <?php echo $_POST['form-title']; ?></p>
-	<p>Rubric Description: <?php echo $_POST['form-description']; ?></p>
+	<p>Rubric Title: <?php echo stripslashes($_POST['form-title']); ?></p>
+	<p>Rubric Description: <?php echo stripslashes($_POST['form-description']); ?></p>
 	
 	<div id="form-output">
 	<?php processCriteria($delimitedTextItems); ?>

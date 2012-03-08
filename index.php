@@ -23,7 +23,7 @@ require('includes/header.php');
 
 <p>Fill out the following form to log in. No login? <a href="user-register.php">Register for an account here.</a></p>
 
-<form id="form-login" name="form-login" action="form-validate.php" method="post">
+<form id="form-login" name="form-login" action="user-validate.php" method="post">
 	<p>
 		<label for="username">Username: 
 		<input type="text" name="username" /></label>

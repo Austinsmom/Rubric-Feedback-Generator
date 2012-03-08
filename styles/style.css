@@ -7,7 +7,7 @@
 
 /* ----- Global ------------------------ */
 html { font-family: Monaco, 'Courier New', Courier, monospace; font-size: 14px; }
-body { width: 75%; margin: 20px auto; }
+body { width: 75%; max-width: 800px; margin: 20px auto; }
 label { display: block; }
 fieldset { border: 2px solid #999; background: #fffff3; margin: 10px 0; }
 
@@ -32,4 +32,4 @@ fieldset { border: 2px solid #999; background: #fffff3; margin: 10px 0; }
 #form-output label { font-size: 1.2em; padding-bottom: 5px; }
 
 /* ----- Grade Output ------------------ */
-.grade { background: #efefef; border: 1px solid #ccc; padding: 10px; margin: 20px auto; }
+.thead { font-weight: bold; }

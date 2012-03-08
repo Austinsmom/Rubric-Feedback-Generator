@@ -162,9 +162,100 @@ require('includes/header.php'); ?>
 					$assignment = $row['grade_assignment_id'];
 					$content = $row['grade_content'];
 					$points = $row['grade_points'];
+					
+					$assignmentQuery = mysql_query("SELECT assignment_title FROM rubric_assignment WHERE assignment_id = '$assignment'");
+					$assignmentCount = mysql_num_rows($assignmentQuery);
+					
+					if ($assignmentCount != 0 ) {
+						
+						while ($assignmentRow = mysql_fetch_array($assignmentQuery)) {
+							$assignment = $assignmentRow['assignment_title'];
+							$possiblePoints = $assignmentRow['assignment_points'];
+						}
+						
+					}
+					
 				
-					echo '<p><input type="radio" name="grade-choice" id="grade-'. 
-							$id . '" value="' .$id. '">Student:' . $student .'<br />Rubric ID: ' . $rubric . '<br />Assignment ID: ' . $assignment . '<br />Points: '. $points .'<br />Content: ' . htmlspecialchars($content) . '</p>';
+					echo '<input type="radio" name="grade-choice" id="grade-'. 
+							$id . '" value="' .$id. '">
+							
+							<table cellpadding="5px" cellspacing="5px" border="1px" class="table-grade">
+							
+								<tr>
+									<td class="thead">Grade ID:</td><td>' . $id . '</td>
+								</tr>
+								
+								<tr>
+									<td class="thead">Assignment:</td><td>' . $assignment . '</td>
+								</tr>
+								
+								<tr>
+									<td class="thead">Student:</td><td>' . $student . '</td>
+								</tr>
+								
+								<tr>
+									<td class="thead">Total Possible Points:</td><td>' . $possiblePoints . '</td>
+								</tr>
+							
+							</table>
+							
+							<p>Feedback:</p>
+							
+							<table cellpadding="5px" cellspacing="5px" border="1px" class="table-feedback">';
+							
+							$criteriaQuery = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_grade_id = '$id'");
+							$criteriaCount = mysql_num_rows($criteriaQuery);
+					
+							if ($criteriaCount != 0 ) {
+								
+								$countCriteria = 1;
+								
+								while ($criteriaRow = mysql_fetch_array($criteriaQuery)) {
+									$criteriaID = $criteriaRow['answer_criteria_id'];
+									$criteriaValue = $criteriaRow['answer_value'];
+									$isComment = $criteriaRow['is_comment'];
+									
+									if ($isComment == 1) {
+										// criteria comment
+										$label = "Comment:";
+										$value = stripslashes($criteriaValue);	
+																			
+										echo '<tr>
+												<td class="thead">' . $label . '</td><td>' . $value . '</td>
+											  </tr>';								
+									}
+									else { 
+										// actual criteria
+										
+										$labelQuery = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_id = '$criteriaID'");
+										$labelCount = mysql_num_rows($labelQuery);
+										if ($labelCount != 0 ) {
+											while ($labelRow = mysql_fetch_array($labelQuery)) {
+												$labelText = $labelRow['criteria_content'];
+											}
+											$label = $countCriteria . '. ' . $labelText;
+										}
+										
+										$valueQuery = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_id = '$criteriaValue'");
+										$valueCount = mysql_num_rows($valueQuery);
+										if ($valueCount != 0 ) {
+											while ($valueRow = mysql_fetch_array($valueQuery)) {
+												$valueText = $valueRow['value_content'];
+												$valuePoints = $valueRow['value_points'];
+											}
+											$value = $valueText;
+										}
+																			
+										echo '<tr>
+												<td class="thead">' . $label . '</td><td>' . $value . '</td><td>' . $valuePoints . ' points</td>
+											  </tr>';	
+											  
+										$countCriteria++;						
+									}
+								}
+							}
+						
+							echo '</table>';
 					}
 				?>
 			 </fieldset>	

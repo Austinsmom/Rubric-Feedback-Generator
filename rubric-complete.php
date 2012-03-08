@@ -27,9 +27,6 @@ require('includes/header.php');
 	
 while ( $row = mysql_fetch_array($result)) {
 		$title = $row['rubric_title'];
-		$content = $row['rubric_content'];
-		$delimitedTextItems = explode( '
-', $content );
 
 ?>
 		
@@ -38,11 +35,6 @@ while ( $row = mysql_fetch_array($result)) {
 		<form id="form-output-fill" name="form-output-fill" action="grade-submit.php" method="post">
 			
 			<fieldset>
-				<label for="user-email">
-					Student's email address: 
-					<input type="text" name="student" />
-				</label>
-				
 				<p>
 				<label for="rubric-assignment">Assignment</label>
 				
@@ -72,16 +64,24 @@ while ( $row = mysql_fetch_array($result)) {
 					
 					?>
 				</p>
+				
+				<p>
+					<label for="user-email">
+						Student's email address: 
+						<input type="email" name="student" />
+					</label>
+				</p>
+				
 
 				<input type="hidden" name="rubric-id" value="<?php echo $rubricID; ?>" />
 			</fieldset>
 			
 			<div id="form-output">
-			<?php processCriteria($delimitedTextItems); ?>
+			<?php printRubric($rubricID, 0); ?>
 			</div>
 			
 			<div id="form-save">
-				<input class="save button" type="submit" value="view results before saving to database" />
+				<input class="save button" type="submit" value="Save Grade" />
 			</div>
 		
 		</form>

@@ -18,7 +18,7 @@ require('includes/header.php'); ?>
 
 <p>Fill out the following form to register for a Rubric Creator account.</p>
 
-<form id="form-register" name="form-register" action="form-validate.php" method="post">
+<form id="form-register" name="form-register" action="user-validate.php" method="post">
 	<p>
 		<label for="username">Username: 
 		<input type="text" name="username" /></label>
