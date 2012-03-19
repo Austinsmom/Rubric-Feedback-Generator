@@ -177,17 +177,17 @@ function saveCriteriaToDatabase($id) {
 					 }
 					 else if ($criteriaType == 'criteria' ) {
 			
-					 		# view 2nd item to figure out the type of criteria, and process accordingly
+					 		// view 2nd item to figure out the type of criteria, and process accordingly
 							$criteriaType = strtolower($criteriaItem[1]);
 							
 							if ($criteriaType == 'radio' ) {
 							
-								/* 1. save label of radio fieldset */
+								// 1. save label of radio fieldset
 								$content = $criteriaItem[2];
 								mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content) VALUES ('$id', '$criteriaType', '$count', '$content')") or die('There was an error saving: ' . mysql_error());
 								$criteriaID = mysql_insert_id();
 								
-								/* 2. save each value of radio fieldset */
+								// 2. save each value of radio fieldset
 								$responseCount = 1;
 								$responseStart = 3;
 								$responseLength = count($criteriaItem) - $responseStart - 1;
@@ -198,7 +198,7 @@ function saveCriteriaToDatabase($id) {
 										$valueContent = $criteriaItem[$i];
 										$valuePoints = $criteriaItem[$i + 1];
 										
-										# odd number count => response. even # count => point value.
+										// odd number count => response. even # count => point value.
 										if ( $responseCount % 2 ) {
 											mysql_query("INSERT INTO rubric_criteria_values (value_criteria_id, value_order, value_content, value_points) VALUES ('$criteriaID', '$valueOrder', '$valueContent', '$valuePoints')") or die('There was an error saving: ' . mysql_error());	
 											$valueOrder++;
@@ -209,11 +209,13 @@ function saveCriteriaToDatabase($id) {
 								
 								$count++;
 							}
-						 	else { /* do nothing because there is an error - say this in error log */
-							 	  			echo '*** error: "' . $criteriaInputType . '" is not a valid criteria input type. Use <em>radio</em>.<br />'; }
-					 	  }
-					 	  else { echo '*** error: "' . $criteriaType . '" is not a valid criteria type. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>.<br />'; }	
-			
+						 	else { 
+						 		echo '*** error: "' . $criteriaInputType . '" is not a valid criteria input type. Use <em>radio</em>.<br />'; 
+						 	}
+					 	}
+						else { 
+							echo '*** error: "' . $criteriaType . '" is not a valid criteria type. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>.<br />';
+					 	}	
 			}	
 		}
 	}
@@ -244,17 +246,20 @@ function editRubric($id, $author, $title, $description, $content) {
 
 /** 
 * Prints rubric for completion and editing
-* @param $id
+* @param $id - integer ID of rubric to print
+* @param $editGrade - integer ID of grade if editing a grade and "false" means otherwise
+* @param $editRubric - "true" means a rubric is being edited and "false" means otherwise
 */
 
 function printRubric($id, $editGrade) {
 	$rubricID = $id;
 	$criteriaSet = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_live = '1' ORDER BY criteria_order;")  or die('Error: Cannot get criteria from this rubric. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaSet);
+	$criteriaOrder = 1;
 	$radioOrder = 1;
 	
 	if ( $count != 0 ) {
-	
+		
 		while ( $row = mysql_fetch_array($criteriaSet)) {
 		
 			$criteriaID = $row['criteria_id'];
@@ -262,20 +267,21 @@ function printRubric($id, $editGrade) {
 			
 			if ( $criteriaType == 'title' ) {
 				printTitle($criteriaID);
+				$criteriaOrder++;
 			}
 			else if ( $criteriaType == 'plaintext' ) {
-					printPlaintext($criteriaID);		
+					printPlaintext($criteriaID, $criteriaOrder);	
+					$criteriaOrder++;	
 				}
 				else if ( $criteriaType == 'radio') {
-						
 						if ( $editGrade != 0 ) {
 							printGradedRadio($criteriaID, $radioOrder, $editGrade);
 						}
 						else {
 							printRadio($criteriaID, $radioOrder);
 						}
-						
 						$radioOrder++;
+						$criteriaOrder++;
 					}
 					else echo "Error: One of this rubric's criteria is invalid. Contact admin for help.";
 		}
@@ -299,7 +305,7 @@ function printTitle($id) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
 			$criteriaContent = $row['criteria_content'];
-			echo '<h1 class="rubric-title criteria-' . $id . '">' . $criteriaContent . '</h1>';
+			echo '<h1 class="rubric-title criteria-' . $criteriaID . '">' . $criteriaContent . '</h1>';
 
 		}
 	}
@@ -321,7 +327,7 @@ function printPlaintext($id) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
 			$criteriaContent = $row['criteria_content'];
-			echo '<div class="rubric-plaintext criteria-'. $id . '">' . $criteriaContent . '</div>';
+			echo '<div class="rubric-plaintext criteria-'. $criteriaID . '">' . $criteriaContent . '</div>';
 
 		}
 	}
@@ -346,12 +352,10 @@ function printRadio($id, $order) {
 		
 			$radioLabel = $row['criteria_content'];
 			
-			echo '<fieldset class="rubric-radio criteria-' . $id . '">';
-			echo '<label for="criteria-' . $id . '">' . $radioOrder . ". " . $radioLabel . '</label>';
-			echo '<input type="radio" name="criteria-' . $id . '" value="0" checked style="display:none;" />';
+			echo '<fieldset class="rubric-radio criteria-' . $criteriaID . '">';
+			echo '<label for="criteria-' . $criteriaID . '">' . $radioOrder . ". " . $radioLabel . '</label>';
+			echo '<input type="radio" name="criteria-' . $criteriaID . '" value="0" checked style="display:none;" />';
 
-			/* values loop here */
-			
 			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);
 			
@@ -366,20 +370,96 @@ function printRadio($id, $order) {
 					echo '<input type="radio" name="criteria-' . $criteriaID . '" value="' . $valueID . '" />' . $valueContent . ' (' . $valuePoints . ' points)<br />';
 				
 				}
-			
 			}
 			else echo "Error: No values for this radio-type criteria exist. Contact admin for help.";
 			
-			
-			/* end values loop */
-			
-			echo '<label for="comment-' . $id . '">Comments:</label>';
-			echo '<textarea name="comment-' . $id . '"></textarea>';
+			echo '<label for="comment-' . $criteriaID . '">Comments:</label>';
+			echo '<textarea name="comment-' . $criteriaID . '"></textarea>';
 			echo '</fieldset>';
 		}
 	}
 	else echo "Error: Multiple, or no, criteria with this ID exist. Contact admin for help.";
 }
+
+/** 
+* Prints rubric criteria of type "title" to be editable
+* @param $id
+* @param $order
+*/
+
+function printEditTitle($id) {
+	$criteriaID = $id;
+	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Title criteria wanted. Contact admin for help: ' . mysql_error());
+	$count = mysql_num_rows($criteriaRecord);
+	
+	if ( $count == 1 ) {
+	
+		while ( $row = mysql_fetch_array($criteriaRecord)) {
+			$criteriaOrder = $row['criteria_order'];
+			$criteriaContent = $row['criteria_content'];
+			$criteriaLove = $row['criteria_live'];
+			
+			echo 'Order: <input type="text" name="order-' . $id . '" class="order" value="' . $criteriaOrder . '" />';
+			echo '<br />';
+			echo 'Title Content: <input type="text" name="content-' . $id . '" class="content title" value="' . $criteriaContent . '" />';
+		}
+	}
+	else echo "Error: Multiple, or no, criteria with this ID exist. Contact admin for help.";
+}
+
+/** 
+* Prints rubric criteria of type "plaintext" to be editable
+* @param $id
+* @param $order
+*/
+
+function printEditPlaintext($id) {
+	$criteriaID = $id;
+	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Title criteria wanted. Contact admin for help: ' . mysql_error());
+	$count = mysql_num_rows($criteriaRecord);
+	
+	if ( $count == 1 ) {
+	
+		while ( $row = mysql_fetch_array($criteriaRecord)) {	
+			$criteriaOrder = $row['criteria_order'];
+			$criteriaContent = $row['criteria_content'];
+			$criteriaLove = $row['criteria_live'];
+			
+			echo 'Order: <input type="text" name="order-' . $id . '" class="order" value="' . $criteriaOrder . '" />';
+			echo '<br />';
+			echo 'Text Content: <input type="text" name="content-' . $id . '" class="content text" value="' . $criteriaContent . '" />';
+
+		}
+	}
+	else echo "Error: Multiple, or no, criteria with this ID exist. Contact admin for help.";
+}
+
+/** 
+* Prints rubric criteria of type "radio"
+* @param $id
+*/
+
+function printEditRadio($id) {
+	$criteriaID = $id;
+	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Title criteria wanted. Contact admin for help: ' . mysql_error());
+	$count = mysql_num_rows($criteriaRecord);
+	
+	if ( $count == 1 ) {
+	
+		while ( $row = mysql_fetch_array($criteriaRecord)) {	
+			$criteriaOrder = $row['criteria_order'];
+			$criteriaContent = $row['criteria_content'];
+			$criteriaLove = $row['criteria_live'];
+			
+			echo 'Order: <input type="text" name="order-' . $id . '" class="order" value="' . $criteriaOrder . '" />';
+			echo '<br />';
+			echo 'Radio Content: <input type="text" name="content-' . $id . '" class="content radio" value="' . $criteriaContent . '" />';
+
+		}
+	}
+	else echo "Error: Multiple, or no, criteria with this ID exist. Contact admin for help.";
+}
+
 
 /** 
 * Prints rubric criteria of type "radio"
@@ -401,9 +481,9 @@ function printGradedRadio($id, $order, $grade) {
 		
 			$radioLabel = $row['criteria_content'];
 			
-			echo '<fieldset class="rubric-radio criteria-' . $id . '">';
-			echo '<label for="criteria-' . $id . '">' . $radioOrder . ". " . $radioLabel . '</label>';
-			echo '<input type="radio" name="criteria-' . $id . '" value="0" checked style="display:none;" />';
+			echo '<fieldset class="rubric-radio criteria-' . $criteriaID . '">';
+			echo '<label for="criteria-' . $criteriaID . '">' . $radioOrder . ". " . $radioLabel . '</label>';
+			echo '<input type="radio" name="criteria-' . $criteriaID . '" value="0" checked style="display:none;" />';
 
 			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);
@@ -415,8 +495,6 @@ function printGradedRadio($id, $order, $grade) {
 					$valueID = $valueRow['value_id'];
 					$valueContent = $valueRow['value_content'];
 					$valuePoints = $valueRow['value_points'];
-					
-					/* grab value of this criteria's grade and compare to id and make checked if it matches */
 					
 					$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_comment = '0'");	
 					$gradeValueCount = mysql_num_rows($gradeValue);
@@ -441,8 +519,6 @@ function printGradedRadio($id, $order, $grade) {
 			}
 			else echo "Error: No values for this radio-type criteria exist. Contact admin for help.";
 			
-			/* grab value of this criteria's grade comment */
-					
 			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_comment = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
@@ -454,8 +530,8 @@ function printGradedRadio($id, $order, $grade) {
 					$commentContent = $gradeValueRow['answer_value'];
 				}
 			}
-			echo '<label for="comment-' . $id . '">Comments:</label>';
-			echo '<textarea name="comment-' . $id . '">'. $commentContent .'</textarea>';
+			echo '<label for="comment-' . $criteriaID . '">Comments:</label>';
+			echo '<textarea name="comment-' . $criteriaID . '">'. $commentContent .'</textarea>';
 			echo '</fieldset>';
 		}
 	}

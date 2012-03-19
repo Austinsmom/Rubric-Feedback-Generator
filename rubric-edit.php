@@ -39,7 +39,7 @@ $rubricAuthor = $username;
 					/* go through each rubric record and print a list to choose from */
 					$id = $row['rubric_id'];
 					$title = $row['rubric_title'];
-					$description = $row['rubric_description'];
+					$description = stripslashes($row['rubric_description']);
 				
 					echo '<input type="radio" name="rubric-choice" id="rubric-'. 
 							$id . '" value="' .$id. '"> ' . $title .'<div class="description">'. $description .'</div>';

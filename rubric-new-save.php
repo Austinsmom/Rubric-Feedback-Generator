@@ -16,8 +16,8 @@ require('includes/header.php');
 
 $rubricAuthor = $username;
 $rubricTitle = $_POST['form-title'];
-$rubricDescription = $_POST['form-description'];
-$rubricContent = stripslashes($_POST['finalDelimitedText']);
+$rubricDescription = addslashes($_POST['form-description']);
+$rubricContent = addslashes($_POST['finalDelimitedText']);
 
 /* if there is no rubric title, set default title */
 if ($rubricTitle == null) {

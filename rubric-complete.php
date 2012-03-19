@@ -77,7 +77,7 @@ while ( $row = mysql_fetch_array($result)) {
 			</fieldset>
 			
 			<div id="form-output">
-			<?php printRubric($rubricID, 0); ?>
+			<?php printRubric($rubricID, false); ?>
 			</div>
 			
 			<div id="form-save">

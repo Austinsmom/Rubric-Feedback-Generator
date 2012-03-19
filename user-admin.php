@@ -18,9 +18,7 @@ require('includes/header.php'); ?>
 	
 	<h1>User Admin: <em>Welcome, <?php echo $_COOKIE["user"]; ?>!</em></h1>
 	
-	<ol>
-		<li><a href="class-new.php">create a new class.</a></li>
-	
+	<ol>	
 		<li><a href="assignment-new.php">create a new assignment.</a></li>
 	
 		<li><a href="rubric-new.php">create a new rubric.</a></li>	
@@ -29,39 +27,10 @@ require('includes/header.php'); ?>
 
 	<h2>Your classes</h2>
 			
-	<?php
-		$sqlClass = "SELECT * FROM rubric_class WHERE class_author='$username'";
-		$resultClass = mysql_query($sqlClass);
-		$count = mysql_num_rows($resultClass);
-			
-		if ($count != 0) { ?>
-			
-			<form id="form-class-list" name="form-class-list" action="class-edit.php" method="post">
-			 <fieldset>
-				
-				<?php 
-					while ( $row = mysql_fetch_array($resultClass)) {
-					/* go through each rubric record and print a list to choose from */
-					$id = $row['class_id'];
-					$title = $row['class_title'];
-					$meeting = $row['class_meetingtime'];
-					$notes = $row['class_notes'];
-				
-					echo '<input type="radio" name="class-choice" id="class-'. 
-							$id . '" value="' .$id. '"> ' . $title .' <em>' . $meeting . '</em> <div class="description">'. $notes .'</div>';
-					}
-				?>
-			 </fieldset>	
-			
-			 <input type="hidden" name="form-origin" value="class-list" />
-			 <!-- <input type="submit" value="edit class" /> -->
-			</form>		
-	<?php } else { ?>
-	
-			<p>You have no classes yet. <a href="class-new.php">Create one!</a></p>
-	
-			<?php } ?>	 
-	 
+	<ol>
+		<li><a href="class-new.php">create a new class</a></li>
+		<li><a href="class-admin.php">view your existing classes</a> - you can view assignments and grades here</li> 
+	</ol>
 	 
 	 <h2>Your assignments</h2>
 	 
@@ -122,7 +91,7 @@ require('includes/header.php'); ?>
 					/* go through each rubric record and print a list to choose from */
 					$id = $row['rubric_id'];
 					$title = $row['rubric_title'];
-					$description = $row['rubric_description'];
+					$description = stripslashes($row['rubric_description']);
 				
 					echo '<input type="radio" name="rubric-choice" id="rubric-'. 
 							$id . '" value="' .$id. '"> ' . $title .'<div class="description">'. $description .'</div>';
@@ -160,8 +129,7 @@ require('includes/header.php'); ?>
 					$student = $row['grade_student'];
 					$rubric = $row['grade_rubric_id'];
 					$assignment = $row['grade_assignment_id'];
-					$content = $row['grade_content'];
-					$points = $row['grade_points'];
+					$points = 0;
 					
 					$assignmentQuery = mysql_query("SELECT assignment_title FROM rubric_assignment WHERE assignment_id = '$assignment'");
 					$assignmentCount = mysql_num_rows($assignmentQuery);

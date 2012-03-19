@@ -16,10 +16,8 @@
 * @param $content
 * @param $points
 */
-function saveGradeToDatabase( $student, $rubricID, $assignment, $content, $points ) {
-	
-	mysql_query("INSERT INTO rubric_grade (grade_student, grade_rubric_id, grade_assignment_id, grade_content, grade_points) VALUES ('$student', '$rubricID', '$assignment', '$content', '$points')") or die('There was an error saving: ' . mysql_error());
-	
+function saveGradeToDatabase( $student, $rubricID, $assignment ) {
+	mysql_query("INSERT INTO rubric_grade (grade_student, grade_rubric_id, grade_assignment_id) VALUES ('$student', '$rubricID', '$assignment')") or die('There was an error saving: ' . mysql_error());
 }
 
 ?>
