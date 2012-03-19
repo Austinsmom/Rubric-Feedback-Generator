@@ -15,52 +15,57 @@ if(!isset($_COOKIE["user"])){
 
 require('includes/header.php');
 
-$classID = $_POST['class-choice'];
+$assignmentID = $_POST['assignment-choice'];
+$assignmentTitle = $_POST['assignment-title'];
 
 ?>
 
 <body id="admin">
 	
-	<h1>Grades for Assignment: [title of assignment here] </h1>
+	<h1>Grades for Assignment:<br /> <?php echo stripSlashes($assignmentTitle); ?></h1>
 			
-	 	<?php
-		$sqlAssignment = "SELECT * FROM rubric_assignment WHERE assignment_class_id='$classID'";
-		$resultAssignment = mysql_query($sqlAssignment);
-		$count = mysql_num_rows($resultAssignment);
+	 <?php
+		$sqlGrade = "SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'";
+		$resultGrade = mysql_query($sqlGrade);
+		$count = mysql_num_rows($resultGrade);
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-assignment-list" name="form-assignment-list" action="assignment-edit.php" method="post">
+			<form id="form-grade" name="form-grade" action="grade-edit.php" method="post">
 			 <fieldset>
 				
 				<?php 
 				
-					while ( $row = mysql_fetch_array($resultAssignment)) {
-					/* go through each assignment record and print a list to choose from */
-					$id = $row['assignment_id'];
-					$title = $row['assignment_title'];
-					$description = $row['assignment_description'];
-					$dueDate = $row['assignment_duedate'];
-					$points = $row['assignment_points'];
-				
-					echo '<input type="radio" name="assignment-choice" id="assignment-'. 
-							$id . '" value="' .$id. '"> ' . $title .' <em>Due ' . $dueDate . '</em>
-							<div class="description">'. $description .'</div>
-							<p class="totalPoints">Total Points: ' . $points . '</p>';
+					while ( $row = mysql_fetch_array($resultGrade)) {
+					/* go through each grade record and print a list to choose from */
+					$id = $row['grade_id'];
+					$student = $row['grade_student'];
+					$rubric = $row['grade_rubric_id'];
+					$assignment = $row['grade_assignment_id'];
+					
+					$assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignment'");
+					$assignmentCount = mysql_num_rows($assignmentQuery);
+					
+					if ($assignmentCount != 0 ) {
+						while ($assignmentRow = mysql_fetch_array($assignmentQuery)) {
+							$assignment = $assignmentRow['assignment_title'];
+						}
 					}
+					
+				
+					echo '<p><input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' | Total Points: ' . $possiblePoints . '</p>';
+				}		
 				?>
 			 </fieldset>	
 			
-			 <input type="submit" name="edit-assignment" onclick="editAssignment();" value="Edit this Assignment" />
-			 <input type="submit" name="view-grades" onclick="viewAssignmentGrades();" value="View Grades for this Assignment" />
-			 
+			 <input type="hidden" name="form-origin" value="grade-list" />
+			 <input type="submit" value="edit grade" />
 			</form>		
 	<?php } else { ?>
 	
-			<p>You have no assignments yet. <a href="assignment-new.php">Create one!</a></p>
+			<p>You have no grades yet.</p>
 	
 		<?php } ?>
-	 
 	 
 	<p><a href="user-admin.php">Click here to go back to User Admin.</a></p>
 	<p><a href="user-logout.php">Click here to log out.</a></p>

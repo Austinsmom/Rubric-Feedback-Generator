@@ -1,5 +1,3 @@
 title	Jenn's Form									
 plaintext	Here is my form. It's awesome and <b>HTML</b> friendly!									
-criteria	radio	Question 1 answers are correct	Yes, they are correct.	5	No, they are not correct.	0		
-criteria	checklist	Question 2 was...	Awesome	5	Correct	5	Incorrect	0	Good effort	2
-criteria	textarea	Extra credit
+criteria	radio	Question 1 answers are correct	Yes, they are correct.	5	No, they are not correct.	0

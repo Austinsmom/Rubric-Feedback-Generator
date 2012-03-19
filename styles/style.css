@@ -44,6 +44,7 @@ fieldset.deleted .button.save { display: none; }
 
 /* ----- Grade Output ------------------ */
 .thead { font-weight: bold; }
+.table-grade { background: #efefef; }
 
 /* ----- Misc. CSS Fixes --------------- */
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;}

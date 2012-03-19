@@ -27,6 +27,14 @@ jQuery(document).ready(function () {
 	$("#view-assignments").click( function(){
 		$("#form-classes").attr("action", "/class-assignments.php").submit();
 	});
+	
+	// Determine whether user wants to edit assignment or view grades based on submit
+	$("#edit-assignment").click( function(){
+		$("#form-assignment").attr("action", "/assignment-edit.php").submit();
+	});
+	$("#view-grades").click( function(){
+		$("#form-assignment").attr("action", "/assignment-grades.php").submit();
+	});
 
 	
 	/**

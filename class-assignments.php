@@ -30,7 +30,7 @@ $classTitle = $_POST['class-title'];
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-assignment-list" name="form-assignment-list" action="assignment-edit.php" method="post">
+			<form id="form-assignment" name="form-assignment" method="post">
 			 <fieldset>
 				
 				<?php 
@@ -44,16 +44,18 @@ $classTitle = $_POST['class-title'];
 					$points = $row['assignment_points'];
 				
 					echo '<input type="radio" name="assignment-choice" id="assignment-'. 
-							$id . '" value="' .$id. '"> ' . $title .' <em>Due ' . $dueDate . '</em>
+							$id . '" value="' . $id . '"> ' . $title .' <em>Due ' . $dueDate . '</em>
 							<div class="description">'. $description .'</div>
 							<p class="totalPoints">Total Points: ' . $points . '</p>';
 					}
 				?>
 			 </fieldset>	
 			
-			 <input type="submit" name="edit-assignment" onclick="editAssignment();" value="Edit this Assignment" />
-			 <input type="submit" name="view-grades" onclick="viewAssignmentGrades();" value="View Grades for this Assignment" />
-			 
+			 <input type="hidden" name="assignment-title" value="<?php echo $title; ?>" />
+			 <input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
+			 <input type="submit" id="edit-assignment" value="Edit this Assignment" />
+			 <input type="submit" id="view-grades" value="View Grades for this Assignment" />
+			  
 			</form>		
 	<?php } else { ?>
 	
@@ -61,7 +63,7 @@ $classTitle = $_POST['class-title'];
 	
 		<?php } ?>
 	 
-	 
+	<p><a href="class-admin.php">Click here to go back to your class list.</a></p>
 	<p><a href="user-admin.php">Click here to go back to User Admin.</a></p>
 	<p><a href="user-logout.php">Click here to log out.</a></p>
 
