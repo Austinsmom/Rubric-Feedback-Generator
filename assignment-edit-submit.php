@@ -29,7 +29,7 @@ echo '<p>' . $assignmentDescription . '</p>';
 
 <body id="save">
 
-Your assignment was saved. <a href="class-admin.php">Click here to go back to your class list.</a>
+Your assignment was saved. <a href="user-admin.php">Click here to go back to User Admin.</a>
 
 
 <?php require('includes/footer.php'); ?>

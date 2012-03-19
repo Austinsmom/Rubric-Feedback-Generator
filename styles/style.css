@@ -11,17 +11,22 @@
 html { font-family: Monaco, 'Courier New', Courier, monospace; font-size: 14px; }
 body { width: 75%; max-width: 800px; margin: 20px auto; }
 label { display: block; }
-fieldset { border: 2px solid #999; background: #fffff3; margin: 10px 0; position: relative; }
+fieldset { border: 3px solid #999; background: #fff; margin: 10px 0; position: relative; }
+legend { border: 3px solid #999; background: #66cccc; padding: 10px; }
 form { padding: 20px 40px; background: #cc6666; margin: 20px auto 40px; }
-input[type="text"] { width: 50%; } 
+input[type="text"], input[type="email"], input[type="password"] { width: 50%; } 
 textarea { width: 50%; height: 100px; }
+
 
 /* ----- Form Elements ----------------- */
 .button { display: inline-block; padding: 5px 10px; margin: 3px; background: #efefef; font-weight: bold; border: 1px solid #ccc; cursor: pointer; }
 .button:active { background: #ccc; border: 1px solid #bbb; position:relative; top:1px; }
 .button:hover { background: #dedede; }
-
 .button.delete { position: absolute; bottom: 0; right: 0; margin: 15px; }
+
+
+/* ----- Delimited Processsing Form ----- */
+#process textarea { width: 100%; height: 300px; margin: 10px 0; }
 
 
 /* ----- Edit Rubric Form Elements ----- */
@@ -30,21 +35,14 @@ fieldset.deleted input { color: #aaa; font-style: italic; }
 fieldset.deleted .button.save { display: none; }
 
 
-/* ----- Delimited Form Submission ----- */
-#delimited textarea { width: 100%; height: 300px; margin: 10px 0; }
-
-/* ----- Process Delimited Form -------- */
-#process textarea { width: 100%; height: 300px; margin: 10px 0; }
-
-/* ----- View Delimited Form -------- */
-#rubric textarea { width: 100%; height: 300px; margin: 10px 0; }
-
 /* ----- Form Output ------------------- */
 #form-output label { font-size: 1.2em; padding-bottom: 5px; }
+
 
 /* ----- Grade Output ------------------ */
 .thead { font-weight: bold; }
 .table-grade { background: #efefef; }
+
 
 /* ----- Misc. CSS Fixes --------------- */
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;}

@@ -1,60 +1,102 @@
 <?php 
 /**
-*	Rubric Creator - Edit Form
-*	 1. allows the user to edit existing rubric
-*	 2. allows the user to delete existing rubric
-*	 3. allows the user to copy content to new rubric
+*	Rubric Creator - Edit Rubric
+*	 1. outputs form delimited content
+*	 2. allows the user to edit the submitted tab-delimited text and resubmit
 *
 *	@author Jenn Schiffer
 *	@version 0.1
 *	@package Rubric Creator
 */
-if(!isset($_COOKIE["user"])){
-	header("Location: index.php");
-} else { $username = $_COOKIE["user"]; }
 
 require('includes/header.php'); 
 
-$rubricAuthor = $username;
+$rubricChoice = $_POST['rubric-choice'];
+$sql = "SELECT * FROM rubric_form WHERE rubric_id='$rubricChoice'";
+$result = mysql_query($sql);
+$count = mysql_num_rows($result);
+
 ?>
 
-<body>
+<body id="edit">
 
-<h2>Edit Rubrics</h2>
-	 
-	 	<?php
-		$sqlRubric = "SELECT * FROM rubric_form WHERE rubric_author='$username'";
-		$resultRubric = mysql_query($sqlRubric);
-		$count = mysql_num_rows($resultRubric);
+<h1>Rubric Creator - Edit Form</h1>
+
+<?php if ($count != 1) {
+	echo 'Error - more than one rubric with this ID? That isn\'t right!';
+	echo $count;
+}
+else {
+  
+  while ( $row = mysql_fetch_array($result)) {
+	
+	$id = $row['rubric_id'];
+	$title = $row['rubric_title'];
+	$description = $row['rubric_description'];
+	
+	} ?>
+	
+	<form id="form-delimited" name="form-delimited" action="rubric-edit-save.php" method="post">
+	
+		<fieldset>
+			<p>
+				<label for="form-title">Rubric Title:</label>
+				<input type="text" name="form-title" value="<?php echo $title; ?>" />
+			</p>
 			
-		if ($count != 0) { ?>
+			<p>
+				<label for="form-description">Rubric Description:</label>
+				<textarea name="form-description"><?php echo $description; ?></textarea>
+			</p>
+		</fieldset>
+		
+		<?php 
+		
+		$arrayQuery = mysql_query("SELECT criteria_id, criteria_type, criteria_order, criteria_content, criteria_live FROM rubric_criteria WHERE criteria_rubric_id = '$id' AND criteria_live = '1' ORDER BY criteria_order;");
+		
+		$newCriteriaArray;
+		$arrayCount = 0;
+		
+		while ( $criteriaArray = mysql_fetch_array($arrayQuery)) {
 			
-			<form id="form-rubric-edit" name="form-rubric-edit" action="rubric-edit-form.php" method="post">
-			 <fieldset>
-				<legend>Select a rubric to edit:</legend>
+				$criteriaID = $criteriaArray[0];
+				$criteriaType = $criteriaArray[1];
+				$criteriaOrder = $criteriaArray[2];
+				$criteriaContent = $criteriaArray[3];
+				$criteriaLive = $criteriaArray[4];
+			
+			if ( $criteriaType == "title" ) {
+				echo '<fieldset class="edit title">';
+				printEditTitle($criteriaID, $criteriaOrder );
+				echo '<div class="button delete">Delete</div>';
+				echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
+				echo '</fieldset>';
 				
-				<?php 
-				
-					while ( $row = mysql_fetch_array($resultRubric)) {
-					/* go through each rubric record and print a list to choose from */
-					$id = $row['rubric_id'];
-					$title = $row['rubric_title'];
-					$description = stripslashes($row['rubric_description']);
-				
-					echo '<input type="radio" name="rubric-choice" id="rubric-'. 
-							$id . '" value="' .$id. '"> ' . $title .'<div class="description">'. $description .'</div>';
+			}
+			else if ( $criteriaType == "plaintext" ) {
+					echo '<fieldset class="edit text">';
+					printEditPlaintext($criteriaID, $criteriaOrder );
+					echo '<div class="button delete">Delete</div>';
+					echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
+					echo '</fieldset>';
+				}
+				else if ($criteriaType == "radio" ) {
+						echo '<fieldset class="edit radio">';
+						printEditRadio($criteriaID, $criteriaOrder );
+						echo '<div class="button delete">Delete</div>';
+						echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
+						echo '</fieldset>';
 					}
-				?>
-			 </fieldset>	
-			
-			 <input type="hidden" name="form-origin" value="rubric-edit" />
-			 <input type="submit" value="edit rubric" />
-			</form>		
-	<?php } else { ?>
+		}
+		
+		?>
 	
-			<p>You have no rubrics yet. <a href="rubric-new.php">Create one!</a></p>
+		
+		<input type="hidden" name="rubric-id" value="<?php echo $id; ?>" />
+		<input type="submit" value="submit edits" />
 	
-		<?php } ?>
+	</form>
 
+<?php } ?>
 
 <?php require('includes/footer.php'); ?>

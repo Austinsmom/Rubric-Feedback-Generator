@@ -17,7 +17,7 @@ jQuery(document).ready(function () {
 	$("textarea").tabby();
 	
 	/**
-	* Class Admin Scripts
+	* User Admin Scripts
 	*/
 	
 	// Determine whether user wants to edit class or view assignments based on submit
@@ -34,6 +34,14 @@ jQuery(document).ready(function () {
 	});
 	$("#view-grades").click( function(){
 		$("#form-assignment").attr("action", "/assignment-grades.php").submit();
+	});
+	
+	// Determine whether user wants to edit rubric or complete rubric based on submit
+	$("#complete-rubric").click( function(){
+		$("#form-rubric").attr("action", "/rubric-complete.php").submit();
+	});
+	$("#edit-rubric").click( function(){
+		$("#form-rubric").attr("action", "/rubric-edit.php").submit();
 	});
 
 	

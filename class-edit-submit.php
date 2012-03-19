@@ -24,7 +24,7 @@ mysql_query("UPDATE rubric_class SET class_title = '$classTitle', class_meetingt
 
 <body id="save">
 
-Your class was saved. <a href="class-admin.php">Go to your Class list to view it.</a>
+Your class was saved. <a href="user-admin.php">Click here to go back to User Admin.</a>
 
 
 <?php require('includes/footer.php'); ?>

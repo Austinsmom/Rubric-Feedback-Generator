@@ -22,7 +22,11 @@ $classTitle = $_POST['class-title'];
 <body id="admin">
 	
 	<h1>Assignments for Class: <?php echo $classTitle; ?></h1>
-			
+	
+	<ol>	
+		<li><a href="assignment-new.php">Create a new assignment.</a></li>
+	</ol>
+		
 	 	<?php
 		$sqlAssignment = "SELECT * FROM rubric_assignment WHERE assignment_class_id='$classID'";
 		$resultAssignment = mysql_query($sqlAssignment);
@@ -32,6 +36,8 @@ $classTitle = $_POST['class-title'];
 			
 			<form id="form-assignment" name="form-assignment" method="post">
 			 <fieldset>
+				 <legend>Select an assignment to edit or view grades:</legend>
+
 				
 				<?php 
 				
@@ -63,7 +69,6 @@ $classTitle = $_POST['class-title'];
 	
 		<?php } ?>
 	 
-	<p><a href="class-admin.php">Click here to go back to your class list.</a></p>
 	<p><a href="user-admin.php">Click here to go back to User Admin.</a></p>
 	<p><a href="user-logout.php">Click here to log out.</a></p>
 

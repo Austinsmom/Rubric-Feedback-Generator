@@ -31,7 +31,7 @@ require('includes/header.php'); ?>
 	
 	<p>
 		<label for="nicename">Display Name: 
-		<input type="nicename" name="nicename" /></label>
+		<input type="text" name="nicename" /></label>
 	</p>
 		
 	<p>

@@ -33,7 +33,8 @@ $assignmentTitle = $_POST['assignment-title'];
 			
 			<form id="form-grade" name="form-grade" action="grade-edit.php" method="post">
 			 <fieldset>
-				
+				 <legend>Select a grade to edit (or email - soon!):</legend>
+
 				<?php 
 				
 					while ( $row = mysql_fetch_array($resultGrade)) {
