@@ -40,12 +40,16 @@ $gradeID = mysql_insert_id();
 while( list( $field, $value ) = each( $gradeArray )) {
 	if ( (strpos($field, 'criteria') !== false) && is_numeric($value) ) {
 	 	$gradeCriteriaID = substr($field,9);
-	 	mysql_query("INSERT INTO rubric_grade_answers (answer_grade_id, answer_criteria_id, answer_value, is_comment) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '0')") or die('There was an error saving: ' . mysql_error());
+	 	mysql_query("INSERT INTO rubric_grade_answers (answer_grade_id, answer_criteria_id, answer_value, is_comment, is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '0','0')") or die('There was an error saving: ' . mysql_error());
 	} 
 	else if ( (strpos($field, 'comment') !== false) ) {
 		 	$gradeCriteriaID = substr($field,8);
-		 	mysql_query("INSERT INTO rubric_grade_answers (answer_grade_id, answer_criteria_id, answer_value, is_comment) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '1')") or die('There was an error saving: ' . mysql_error());
+		 	mysql_query("INSERT INTO rubric_grade_answers (answer_grade_id, answer_criteria_id, answer_value, is_comment, is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '1','0')") or die('There was an error saving: ' . mysql_error());
 		} 
+		else if ( (strpos($field, 'textbox') !== false) ) {
+			 	$gradeCriteriaID = substr($field,8);
+			 	mysql_query("INSERT INTO rubric_grade_answers (answer_grade_id, answer_criteria_id, answer_value, is_comment, is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '0', '1')") or die('There was an error saving: ' . mysql_error());
+			}
 }				
 
 ?>

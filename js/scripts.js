@@ -68,11 +68,23 @@ jQuery(document).ready(function () {
 		}
 	});
 	
-	// Change criteria content and order on click of "save" button
-	$(".button.save").click(function(){ 
-	
-	
-	
+	// Change radio criteria value is_live on click of "delete" button, and undo delete
+	$("div.button.deleteValue").click(function(){ 
+		
+		var $thisButton = $(this);
+			
+		//if button value = Delete this Option, then change is_live to 0 and value to "undo delete"
+		if ( $thisButton.text() == "Delete this Option") {
+			$thisButton.text("Undo delete");
+			$thisButton.parent("li").children("input.is-live").val("0");
+			$thisButton.parent("li").addClass("deleted");
+		}
+		//else change is_live to 1 and value to "Delete this Option"
+		else {
+			$thisButton.text("Delete this Option");
+			$thisButton.parent("li").children('input.is-live').val("1");
+			$thisButton.parent("li").removeClass("deleted");
+		}
 	});
 	
 });

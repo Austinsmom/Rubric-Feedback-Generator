@@ -22,12 +22,17 @@ while( list( $field, $value ) = each( $gradeArray )) {
 	 
 	if ( (strpos($field, 'criteria') !== false) && is_numeric($value) ) {
 	 	$gradeCriteriaID = substr($field,9);
-	 	mysql_query("UPDATE rubric_grade_answers SET answer_value = '$value' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND is_comment = '0'");	 	
+	 	mysql_query("UPDATE rubric_grade_answers SET answer_value = '$value' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND is_comment = '0' AND is_textbox = '0'");	 	
 	} 
 	else if ( (strpos($field, 'comment') !== false) ) {
 		 	$gradeCriteriaID = substr($field,8);
-		 	mysql_query("UPDATE rubric_grade_answers SET answer_value = '$value' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND is_comment = '1'");
+		 	mysql_query("UPDATE rubric_grade_answers SET answer_value = '$value' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND is_comment = '1' AND is_textbox = '0'");
 		} 
+		else if ( (strpos($field, 'textbox') !== false) ) {
+			 	$gradeCriteriaID = substr($field,8);
+			 	mysql_query("UPDATE rubric_grade_answers SET answer_value = '$value' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND is_comment = '0' AND is_textbox = '1'");
+			} 
+
 }				
 
 

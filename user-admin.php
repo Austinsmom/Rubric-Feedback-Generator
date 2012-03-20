@@ -51,8 +51,8 @@ require('includes/header.php'); ?>
 			 </fieldset>	
 			
 			 <input type="hidden" name="class-title" value="<?php echo $title; ?>" />
-			 <input type="submit" id="edit-class" value="Edit this Class" onclick="choseEdit()" />
 			 <input type="submit" id="view-assignments" value="View Assignments for this Class" onclick ="choseViewAssignments()" />
+			 <input type="submit" id="edit-class" value="Edit this Class" onclick="choseEdit()" />
 			</form>		
 	<?php } else { ?>
 	

@@ -87,6 +87,13 @@ else {
 						echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
 						echo '</fieldset>';
 					}
+					else if ($criteriaType == "textbox" ) {
+							echo '<fieldset class="edit textbox">';
+							printEditTextbox($criteriaID, $criteriaOrder );
+							echo '<div class="button delete">Delete</div>';
+							echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
+							echo '</fieldset>';
+						}
 		}
 		
 		?>
