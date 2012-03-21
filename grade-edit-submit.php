@@ -13,8 +13,12 @@ if(!isset($_COOKIE["user"])){
 	header("Location: index.php");
 } else { $username = $_COOKIE["user"]; }
 
-require('includes/header.php'); 
+require('includes/header.php');
+?>
 
+<body id="grade">
+
+<?php 
 $gradeArray = $_POST;
 $gradeID = $_POST['grade-id'];
 

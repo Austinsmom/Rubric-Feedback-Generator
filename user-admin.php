@@ -92,7 +92,6 @@ require('includes/header.php'); ?>
 				?>
 			 </fieldset>	
 			
-			 <input type="hidden" name="form-origin" value="rubric-list" />
 			 <input type="submit" value="Complete Rubric" id="complete-rubric" />
 			 <input type="submit" value="Edit this Rubric" id="edit-rubric" />
 			</form>		

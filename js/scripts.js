@@ -43,6 +43,14 @@ jQuery(document).ready(function () {
 	$("#edit-rubric").click( function(){
 		$("#form-rubric").attr("action", "/rubric-edit.php").submit();
 	});
+	
+	// Determine whether user wants to edit grade or email grade based on submit
+	$("#edit-grade").click( function(){
+		$("#form-grade").attr("action", "/grade-edit.php").submit();
+	});
+	$("#email-grade").click( function(){
+		$("#form-grade").attr("action", "/grade-email.php").submit();
+	});
 
 	
 	/**

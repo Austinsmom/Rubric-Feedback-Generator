@@ -17,7 +17,6 @@ form { padding: 20px 40px; background: #cc6666; margin: 20px auto 40px; }
 input[type="text"], input[type="email"], input[type="password"] { width: 50%; } 
 textarea { width: 50%; height: 100px; }
 
-
 /* ----- Form Elements ----------------- */
 .button { display: inline-block; padding: 5px 10px; margin: 3px; background: #efefef; font-weight: bold; border: 1px solid #ccc; cursor: pointer; }
 .button:active { background: #ccc; border: 1px solid #bbb; }
@@ -25,13 +24,11 @@ textarea { width: 50%; height: 100px; }
 .button.delete { position: absolute; bottom: 0; right: 0; margin: 15px; }
 .button.deleteValue { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
 
-
 /* ----- User Admin Page ---------------- */
 #admin form input { margin: 15px 0 0; }
 
 /* ----- Delimited Processsing Form ----- */
 #process textarea { width: 100%; height: 300px; margin: 10px 0; }
-
 
 /* ----- Edit Rubric Form Elements ----- */
 fieldset.deleted, li.deleted { color: #aaa; font-style: italic; }
@@ -39,15 +36,16 @@ fieldset.deleted input, li.deleted input { color: #aaa; font-style: italic; }
 li.deleted { }
 ul.radio-options li { margin: 20px 0; }
 
-
 /* ----- Form Output ------------------- */
 #form-output label { font-size: 1.2em; padding-bottom: 5px; }
-
 
 /* ----- Grade Output ------------------ */
 .thead { font-weight: bold; }
 .table-grade { background: #efefef; }
 
+/* ----- Grade Email ------------------- */
+#email-header { max-width: 580px; padding: 10px; background: #efefef; border: 1px solid #ddd; margin: 10px auto; }
+#email-content { max-width: 600px; margin: 10px auto; }
 
 /* ----- Misc. CSS Fixes --------------- */
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;}

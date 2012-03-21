@@ -31,7 +31,7 @@ $assignmentTitle = $_POST['assignment-title'];
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-grade" name="form-grade" action="grade-edit.php" method="post">
+			<form id="form-grade" name="form-grade" method="post">
 			 <fieldset>
 				 <legend>Select a grade to edit (or email - soon!):</legend>
 
@@ -59,8 +59,8 @@ $assignmentTitle = $_POST['assignment-title'];
 				?>
 			 </fieldset>	
 			
-			 <input type="hidden" name="form-origin" value="grade-list" />
-			 <input type="submit" value="edit grade" />
+			 <input type="submit" value="edit grade" id="edit-grade" />
+			 <input type="submit" value="email grade" id="email-grade" />
 			</form>		
 	<?php } else { ?>
 	
