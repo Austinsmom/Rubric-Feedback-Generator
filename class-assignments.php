@@ -47,12 +47,10 @@ $classTitle = $_POST['class-title'];
 					$title = $row['assignment_title'];
 					$description = $row['assignment_description'];
 					$dueDate = $row['assignment_duedate'];
-					$points = $row['assignment_points'];
 				
 					echo '<input type="radio" name="assignment-choice" id="assignment-'. 
 							$id . '" value="' . $id . '"> ' . $title .' <em>Due ' . $dueDate . '</em>
-							<div class="description">'. $description .'</div>
-							<p class="totalPoints">Total Points: ' . $points . '</p>';
+							<div class="description">'. $description .'</div>';
 					}
 				?>
 			 </fieldset>	

@@ -61,17 +61,42 @@ require('includes/header.php'); ?>
 		
 		?>
 	</p>
+
+	<p>
+	<label for="assignment-rubric">Rubric</label>
+	
+		<?php 
+			$sql = "SELECT * FROM rubric_form WHERE rubric_author='$username'";
+			$result = mysql_query($sql);
+			$count = mysql_num_rows($result);
+		
+			if ( $count == 0 ) {
+				echo '[<strong>You have not created any rubrics. <a href="rubric-new.php">Click here to create one</a>.</strong>]';
+			}
+			
+			else {
+				echo '<select name="assignment-rubric">';
+				
+				while ( $row = mysql_fetch_array($result)) {
+					/* go through each class record and print a list to choose from */
+					$id = $row['rubric_id'];
+					$title = $row['rubric_title'];
+				
+					echo '<option value="' . $id . '">' . $title . '</option>';
+				}
+
+				echo '</select>';
+			}
+		
+		
+		?>
+	</p>
 	
 	<p>
 	<label for="assignment-duedate">Due Date:</label>
 	<input type="text" name="assignment-duedate" />
 	</p>
-	
-	<p>
-	<label for="assignment-points">Total Points:</label>
-	<input type="text" name="assignment-points" />
-	</p>
-	
+		
 	<input type="submit" value="create assignment" />
 </form>
 

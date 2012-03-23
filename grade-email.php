@@ -70,37 +70,22 @@ $emailSubject = '[' . $assignmentTitle . '] Assignment grade and feedback';
 				</div>
 				
 				<div id="email-content">
-					<p>The following is my feedback and your grade on the assignment<br />
-					<strong>"<?php echo $assignmentTitle; ?>"</strong>:
-					
-					<p><span style="font-weight:bold;font-size:13px;"> ** Criteria Title **</span></p>
-					
-					<p><span style="font-weight:normal;font-size:12px;font-style:italic;"> ** Criteria Plaintext **</span></p>
-					
-					<p> Criteria: ** Criteria Radio - Label **<br />
-						Feedback: ** Criteria Radio Value Graded - Label ** ( ** Value Graded Points ** points )<br />
-						Comments: ** Criteria Radio Value Comments **</p>
-						
-					<p> ** Criteria Textbox - Label ** : ** Criteria Textbox Value Text ** </p>
-					
-					<p><span style="font-weight:bold;">Total Points:</span> ** calculated sum of all points in grade **</p>
-					
-					<p>Respond to this email if you have any questions.</p>
-					
-					<p>--</p>
-					
-					<p>- <?php echo $userNicename; ?></p>
-					
-					<p>sent via Rubric Creator 9000XL Premium</p>
+
+					<?php $emailContent = gradeEmailContent($gradeID, $userNicename, $assignmentTitle);
+						  echo $emailContent;
+					?>
 					
 				</div>
 		
 		</fieldset>
 		
-		<input type="hidden" name="email-to" value="<?php echo $student; ?>" />
+	<!--	<input type="hidden" name="email-to" value="<?php echo $student; ?>" />
 		<input type="hidden" name="email-from" value="<?php echo $userEmail; ?>" />
+		<input type="hidden" name="email-assignment" value="<?php echo $assignmentTitle; ?>" />
 		<input type="hidden" name="email-subject" value="<?php echo $emailSubject; ?>" />
-		<input type="hidden" name="email-content" value="" />
+		<input type="hidden" name="email-content" value="<?php echo addslashes($emailContent); ?>" /> -->
+		
+		<input type="hidden" name="grade-id" value="<?php echo $gradeID; ?>" />
 		
 		<input type="submit" value="Send Email" id="send-email" />
 	

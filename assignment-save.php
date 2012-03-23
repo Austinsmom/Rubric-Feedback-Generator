@@ -20,9 +20,9 @@ $title = $_POST['assignment-title'];
 $description = $_POST['assignment-description'];
 $class = $_POST['assignment-class'];
 $dueDate = $_POST['assignment-duedate'];
-$points = $_POST['assignment-points'];
+$rubric = $_POST['assignment-rubric'];
 
-saveAssignmentToDatabase($title, $author, $description, $class, $dueDate, $points);
+saveAssignmentToDatabase($title, $author, $description, $class, $dueDate, $rubric);
 
 ?>
 

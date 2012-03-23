@@ -14,7 +14,7 @@
 * @param $meetingTime
 * @param $notes
 */
-function saveAssignmentToDatabase( $title, $author, $description, $class, $dueDate, $points ) {
-	mysql_query("INSERT INTO rubric_assignment (assignment_title, assignment_author, assignment_description, assignment_class_id, assignment_duedate, assignment_points) VALUES ('$title', '$author', '$description', '$class', '$dueDate', '$points')") or die('There was an error saving: ' . mysql_error());
+function saveAssignmentToDatabase( $title, $author, $description, $class, $dueDate, $rubric ) {
+	mysql_query("INSERT INTO rubric_assignment (assignment_title, assignment_author, assignment_description, assignment_class_id, assignment_duedate, assignment_rubric_id) VALUES ('$title', '$author', '$description', '$class', '$dueDate', '$rubric')") or die('There was an error saving: ' . mysql_error());
 }
 ?>

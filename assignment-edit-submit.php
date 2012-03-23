@@ -13,17 +13,14 @@ if(!isset($_COOKIE["user"])){
 
 require('includes/header.php'); 
 
-$assignmentID = $_POST['id'];
-$assignmentTitle = $_POST['title'];
-$assignmentDueDate = $_POST['date'];
-$assignmentDescription = $_POST['description'];
+$assignmentID = $_POST['assignment-id'];
+$assignmentTitle = $_POST['assignment-title'];
+$assignmentDueDate = $_POST['assignment-duedate'];
+$assignmentDescription = $_POST['assignment-description'];
+$assignmentClass = $_POST['assignment-class'];
+$assignmentRubric = $_POST['assignment-rubric'];
 
-mysql_query("UPDATE rubric_assignment SET assignment_title = '$assignmentTitle', assignment_duedate = '$assignmentDueDate', assignment_description = '$assignmentDescription' WHERE assignment_id = '$assignmentID';");	 	
-
-echo '<p>' . $assignmentID . '</p>';
-echo '<p>' . $assignmentTitle . '</p>';
-echo '<p>' . $assignmentDueDate . '</p>';
-echo '<p>' . $assignmentDescription . '</p>';
+mysql_query("UPDATE rubric_assignment SET assignment_title = '$assignmentTitle', assignment_duedate = '$assignmentDueDate', assignment_description = '$assignmentDescription', assignment_class_id = '$assignmentClass', assignment_rubric_id = '$assignmentRubric' WHERE assignment_id = '$assignmentID';");	 	
 
 ?>
 
