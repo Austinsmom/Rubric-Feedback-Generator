@@ -246,7 +246,7 @@ function saveCriteriaToDatabase($id) {
 
 
 //*******************************************************
-//	Printing/Grading Rubric
+//	Printing Rubric
 //*******************************************************
 
 /** 
@@ -371,7 +371,7 @@ function printRadio($id, $order) {
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
 			echo '<input type="radio" name="criteria-' . $criteriaID . '" value="0" checked style="display:none;" />';
 
-			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
+			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);
 			
 			if ( $valueCount != 0 ) {
@@ -423,6 +423,9 @@ function printTextbox($id, $order) {
 	else echo "Error: Multiple, or no, criteria with this ID exist. Contact admin for help.";
 }
 
+//*******************************************************
+//	Editing Rubric
+//*******************************************************
 
 /** 
 * Prints rubric criteria of type "title" to be editable
@@ -563,6 +566,10 @@ function printEditTextbox($id) {
 }
 
 
+//*******************************************************
+//	Grade Rubric
+//*******************************************************
+
 /** 
 * Prints rubric criteria of type "radio" to edit the grade
 * @param $id
@@ -681,5 +688,40 @@ function printGradedTextbox($id, $order, $grade) {
 	else echo "Error: Multiple, or no, criteria with this ID exist. Contact admin for help.";
 }
 
+//*******************************************************
+//	Miscellaneous Rubric Functions
+//*******************************************************
+
+/**
+* Calculates and returns the total possible points for grades of a specific rubric
+* @param $rubricID
+*/
+function calculateTotalPossiblePoints( $rubricID ) {
+	$possiblePoints = 0;
+	$criteria = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_type = 'radio'");
+	$criteriaCount = mysql_num_rows($criteria);
+	
+	if ( $criteriaCount > 0 ) {
+		while ( $criteriaRow = mysql_fetch_array($criteria) ) {
+			$criteriaID = $criteriaRow['criteria_id'];
+			
+			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1';");
+			$criteriaValuesCount = mysql_num_rows($criteriaValues);
+			
+			if ($criteriaValuesCount > 0) {
+				while ( $criteriaValuesRow = mysql_fetch_array($criteriaValues) ) {
+					$valuePoints = $criteriaValuesRow['value_points'];
+					if ( $valuePoints > $possiblePoints ) {
+						$possiblePoints = $valuePoints;
+					}
+				}
+			}
+			else $possiblePoints = 0;
+		}
+	}
+	else $possiblePoints = 0;
+	
+	return $possiblePoints;
+}
 
 ?>

@@ -79,7 +79,8 @@ $emailSubject = '[' . $assignmentTitle . '] Assignment grade and feedback';
 		
 		</fieldset>
 		
-	<!--	<input type="hidden" name="email-to" value="<?php echo $student; ?>" />
+	<!-- PROBABLY DO NOT NEED THESE TO SEND, YARP?
+		<input type="hidden" name="email-to" value="<?php echo $student; ?>" />
 		<input type="hidden" name="email-from" value="<?php echo $userEmail; ?>" />
 		<input type="hidden" name="email-assignment" value="<?php echo $assignmentTitle; ?>" />
 		<input type="hidden" name="email-subject" value="<?php echo $emailSubject; ?>" />

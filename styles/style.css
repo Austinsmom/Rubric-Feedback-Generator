@@ -8,14 +8,16 @@
 /* RESET GOES HERE */
 
 /* ----- Global ------------------------ */
-html { font-family: Monaco, 'Courier New', Courier, monospace; font-size: 14px; }
+html { font-family: Helvetica, Arial, sans-serif; font-size: 14px; }
 body { width: 75%; max-width: 800px; margin: 20px auto; }
 label { display: block; }
-fieldset { border: 1px solid #999; background: #fff; margin: 10px 0; position: relative; }
+fieldset { border: 1px solid #999; background: #fff; margin: 10px 0; padding: 10px 20px 20px; position: relative; }
 legend { border: 1px solid #999; background: #66cccc; padding: 10px; }
 form { padding: 20px 40px; background: #cc6666; margin: 20px auto 40px; }
 input[type="text"], input[type="email"], input[type="password"] { width: 50%; } 
 textarea { width: 50%; height: 100px; }
+
+h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
 
 /* ----- Form Elements ----------------- */
 .button { display: inline-block; padding: 5px 10px; margin: 3px; background: #efefef; font-weight: bold; border: 1px solid #ccc; cursor: pointer; }
@@ -46,6 +48,7 @@ ul.radio-options li { margin: 20px 0; }
 /* ----- Grade Email ------------------- */
 #email-header { max-width: 580px; padding: 10px; background: #efefef; border: 1px solid #ddd; margin: 10px auto; }
 #email-content { max-width: 600px; margin: 10px auto; }
+#email-content > div > h1 { font-family: Helvetica, Arial, sans-serif; }
 
 /* ----- Misc. CSS Fixes --------------- */
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;}

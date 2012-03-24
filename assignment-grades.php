@@ -43,6 +43,7 @@ $assignmentTitle = $_POST['assignment-title'];
 					$student = $row['grade_student'];
 					$rubric = $row['grade_rubric_id'];
 					$assignment = $row['grade_assignment_id'];
+					$gradeTotal = calculateGradeTotal($id);
 					
 					$assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignment'");
 					$assignmentCount = mysql_num_rows($assignmentQuery);
@@ -54,7 +55,7 @@ $assignmentTitle = $_POST['assignment-title'];
 					}
 					
 				
-					echo '<p><input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' | Total Points: ' . $possiblePoints . '</p>';
+					echo '<p><input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' | Total Points: ' . $gradeTotal . '</p>';
 				}		
 				?>
 			 </fieldset>	
