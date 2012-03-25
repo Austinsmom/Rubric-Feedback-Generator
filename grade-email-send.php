@@ -12,22 +12,26 @@ if(!isset($_COOKIE["user"])){
 } else { $username = $_COOKIE["user"]; }
 
 require('includes/header.php'); 
+
+$emailTo = $_POST['email-to'];
+$emailFrom = $_POST['email-from'];
+$assignment = $_POST['email-assignment'];
+$emailSubject = stripSlashes($_POST['email-subject']);
+$gradeID = $_POST['grade-id'];
+$userNicename = $_POST['email-nicename'];
+$emailContent = stripSlashes(gradeEmailContent($gradeID, $userNicename, $assignment));
 ?>
 
 <body id="grade-email-send">
 
 <?php
 if(count($_POST)) {
-
-	$emailTo = "jjschiffer@gmail.com"; // (student's email) for example: strip_tags($_POST['email']);
-	$emailFrom = "schifferj@mail.montclair.edu"; // (faculty/user's email)
-	$emailSubject = "Your rubric test email works!"; // Your Grade & Feedback for (assignment name) 
-	$emailText = "Here is your grade content!\r\n"; // Grade content
+	$emailHeaders = 'MIME-Version: 1.0' . "\r\n";
+	$emailHeaders .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+	$emailHeaders .= 'To: ' . $emailTo . "\r\n";
+	$emailHeaders .= 'From: ' . $emailFrom . "\r\n";
 	
-	$emailHeaders = "From: " . $emailFrom . "\r\n" .
-     "X-Mailer: php";
-	
-	if ( @mail( $emailTo, $emailSubject, $emailText, $emailHeaders) ) {
+	if ( @mail( $emailTo, $emailSubject, $emailContent, $emailHeaders) ) {
 		echo 'The grade was successfully sent via email. <a href="user-admin.php">Click here to go back to User Admin.</a>';
 	}
 	else {

@@ -58,7 +58,7 @@ $emailSubject = '[' . $assignmentTitle . '] Assignment grade and feedback';
 
 <h1>Email grade confirmation</h1>
 
-<form id="form-email" name="form-email" method="post">
+<form id="form-email" name="form-email" action="grade-email-send.php" method="post">
 	<fieldset>
 	
 		<legend>Here is what the email message will look like.</legend>
@@ -79,13 +79,11 @@ $emailSubject = '[' . $assignmentTitle . '] Assignment grade and feedback';
 		
 		</fieldset>
 		
-	<!-- PROBABLY DO NOT NEED THESE TO SEND, YARP?
 		<input type="hidden" name="email-to" value="<?php echo $student; ?>" />
 		<input type="hidden" name="email-from" value="<?php echo $userEmail; ?>" />
+		<input type="hidden" name="email-nicename" value="<?php echo $userNicename; ?>" />
 		<input type="hidden" name="email-assignment" value="<?php echo $assignmentTitle; ?>" />
 		<input type="hidden" name="email-subject" value="<?php echo $emailSubject; ?>" />
-		<input type="hidden" name="email-content" value="<?php echo addslashes($emailContent); ?>" /> -->
-		
 		<input type="hidden" name="grade-id" value="<?php echo $gradeID; ?>" />
 		
 		<input type="submit" value="Send Email" id="send-email" />
