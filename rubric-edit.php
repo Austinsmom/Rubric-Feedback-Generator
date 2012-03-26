@@ -12,9 +12,11 @@
 require('includes/header.php'); 
 
 $rubricChoice = $_POST['rubric-choice'];
-$sql = "SELECT * FROM rubric_form WHERE rubric_id='$rubricChoice'";
-$result = mysql_query($sql);
-$count = mysql_num_rows($result);
+$rubricRecords = mysql_query("SELECT * FROM rubric_form WHERE rubric_id='$rubricChoice'");
+$rubricCount = mysql_num_rows($rubricRecords);
+
+$assignmentRecords = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_rubric_id='$rubricChoice'");
+$assignmentCount = mysql_num_rows($assignmentRecords);
 
 ?>
 
@@ -22,21 +24,44 @@ $count = mysql_num_rows($result);
 
 <h1>Rubric Creator - Edit Form</h1>
 
-<?php if ($count != 1) {
+<?php if ($rubricCount != 1) {
 	echo 'Error - more than one rubric with this ID? That isn\'t right!';
-	echo $count;
 }
 else {
+
+  if ( $assignmentCount > 0 ) {
+  	// check if assignments are attributed to this rubric
+  	// if there are and they have grades, warn user
+  	
+  	$warning = '<div class="warning"><h3>WARNING</h3><p>You have assignments using this rubric, which may have grades on record already. If you edit this rubric, you will be changing those grades.</p><ul>';
   
-  while ( $row = mysql_fetch_array($result)) {
+	  	while ( $assignmentRow = mysql_fetch_array($assignmentRecords) ){
+	  		$assignmentID = $assignmentRow['assignment_id'];
+	  		$assignmentTitle = $assignmentRow['assignment_title'];
+	  		
+	  		$assignmentText = '<li>' . $assignmentTitle;
+	  		
+	  		$gradeRecords = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");
+	  		$gradeCount = mysql_num_rows($gradeRecords);
+	  		
+	  		$assignmentText .= ' [' . $gradeCount . ' grade(s) on record]</li>';
+	  		
+	  		$warning .= $assignmentText;
+		}
 	
-	$id = $row['rubric_id'];
-	$title = $row['rubric_title'];
-	$description = $row['rubric_description'];
+	$warning .= '</ul></div>';
+	echo $warning;
+  }
+  
+  while ( $rubricRow = mysql_fetch_array($rubricRecords)) {
+	
+	$id = $rubricRow['rubric_id'];
+	$title = $rubricRow['rubric_title'];
+	$description = $rubricRow['rubric_description'];
 	
 	} ?>
 	
-	<form id="form-delimited" name="form-delimited" action="rubric-edit-save.php" method="post">
+	<form id="form-edit" name="form-edit" action="rubric-edit-save.php" method="post">
 	
 		<fieldset>
 			<p>
@@ -46,7 +71,7 @@ else {
 			
 			<p>
 				<label for="form-description">Rubric Description:</label>
-				<textarea name="form-description"><?php echo $description; ?></textarea>
+				<textarea name="form-description"><?php echo stripSlashes($description); ?></textarea>
 			</p>
 		</fieldset>
 		
@@ -97,7 +122,13 @@ else {
 		}
 		
 		?>
-	
+		
+		<div id="add-items-panel">
+			<div id="add-title" class="button">Add Title</div>
+			<div id="add-plaintext" class="button">Add Plaintext</div>
+			<div id="add-textbox" class="button">Add Textbox Criteria</div>
+			<div id="add-radio" class="button">Add Radio Criteria</div>
+		</div>
 		
 		<input type="hidden" name="rubric-id" value="<?php echo $id; ?>" />
 		<input type="submit" value="submit edits" />

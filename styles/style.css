@@ -2,29 +2,33 @@
 *	Rubric Creator
 *	Author: Jenn Schiffer
 *	Email: schifferj@mail.montclair.edu
-*	Updated: 01-19-2012
+*	Updated: 03-25-2012
 */
 
 /* RESET GOES HERE */
+/* eventually */
 
 /* ----- Global ------------------------ */
 html { font-family: Helvetica, Arial, sans-serif; font-size: 14px; }
 body { width: 75%; max-width: 800px; margin: 20px auto; }
 label { display: block; }
-fieldset { border: 1px solid #999; background: #fff; margin: 10px 0; padding: 10px 20px 20px; position: relative; }
-legend { border: 1px solid #999; background: #66cccc; padding: 10px; }
-form { padding: 20px 40px; background: #cc6666; margin: 20px auto 40px; }
+fieldset { border: 1px solid #ddd; background: #fff; margin: 10px 0; padding: 10px 20px 20px; position: relative; }
+legend { border: 1px solid #ddd; background: #6cc; padding: 10px; }
+form { padding: 20px 40px; background: #efefef; border: 1px solid #ddd; margin: 20px auto 40px; }
 input[type="text"], input[type="email"], input[type="password"] { width: 50%; } 
 textarea { width: 50%; height: 100px; }
 
 h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
 
+.warning { padding: 20px; background: #c66; border: 1px solid #c66; }
+
 /* ----- Form Elements ----------------- */
 .button { display: inline-block; padding: 5px 10px; margin: 3px; background: #efefef; font-weight: bold; border: 1px solid #ccc; cursor: pointer; }
 .button:active { background: #ccc; border: 1px solid #bbb; }
 .button:hover { background: #dedede; }
-.button.delete { position: absolute; bottom: 0; right: 0; margin: 15px; }
-.button.deleteValue { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
+.button.delete, .button.new-delete { position: absolute; bottom: 0; right: 0; margin: 15px; }
+.button.delete-value, .button.add-value { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
+.button.add-value { margin-left: 40px; }
 
 /* ----- User Admin Page ---------------- */
 #admin form input { margin: 15px 0 0; }
@@ -33,10 +37,11 @@ h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
 #process textarea { width: 100%; height: 300px; margin: 10px 0; }
 
 /* ----- Edit Rubric Form Elements ----- */
-fieldset.deleted, li.deleted { color: #aaa; font-style: italic; }
-fieldset.deleted input, li.deleted input { color: #aaa; font-style: italic; }
+fieldset.deleted, li.deleted { color: #aaa; font-style: italic; background: #efefef; }
+fieldset.deleted input, li.deleted input { color: #aaa; font-style: italic; background: #efefef; }
 li.deleted { }
 ul.radio-options li { margin: 20px 0; }
+#add-items-panel { text-align: right; }
 
 /* ----- Form Output ------------------- */
 #form-output label { font-size: 1.2em; padding-bottom: 5px; }

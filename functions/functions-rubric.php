@@ -523,7 +523,7 @@ function printEditRadio($id) {
 					echo 'Option Label: <input type="text" name="valueLabel-' . $valueID . '" class="value-label" value="' . $valueContent . '" />';
 					echo '<br />';
 					echo 'Option Points: <input type="text" name="valuePoints-' . $valueID . '" class="value-points" value="' . $valuePoints . '" />';
-					echo '<br /><div class="button deleteValue">Delete this Option</div>';
+					echo '<br /><div class="button delete-value">Delete this Option</div>';
 					echo '<input type="hidden" name="valOn-' . $valueID . '" class="is-live" value="1" />';
 					echo '</li>';
 					
