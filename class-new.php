@@ -8,6 +8,10 @@
 *	@package Rubric Creator
 */
 
+if(!isset($_COOKIE["user"])){
+	header("Location: index.php");
+} else { $username = $_COOKIE["user"]; }
+
 require('includes/header.php'); ?>
 
 <body id="assignment">

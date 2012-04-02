@@ -17,17 +17,16 @@ legend { border: 1px solid #ddd; background: #6cc; padding: 10px; }
 form { padding: 20px 40px; background: #efefef; border: 1px solid #ddd; margin: 20px auto 40px; }
 input[type="text"], input[type="email"], input[type="password"] { width: 50%; } 
 textarea { width: 50%; height: 100px; }
-
 h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
-
 .warning { padding: 20px; background: #c66; border: 1px solid #c66; }
+#footer-admin { background: #efefef; padding: 10px; margin: 20px auto; border: 1px solid #ddd; text-align: right; }
 
 /* ----- Form Elements ----------------- */
 .button { display: inline-block; padding: 5px 10px; margin: 3px; background: #efefef; font-weight: bold; border: 1px solid #ccc; cursor: pointer; }
 .button:active { background: #ccc; border: 1px solid #bbb; }
 .button:hover { background: #dedede; }
 .button.delete, .button.new-delete { position: absolute; bottom: 0; right: 0; margin: 15px; }
-.button.delete-value, .button.add-value { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
+.button.delete-value, .button.delete-new-value, .button.add-value { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
 .button.add-value { margin-left: 40px; }
 
 /* ----- User Admin Page ---------------- */

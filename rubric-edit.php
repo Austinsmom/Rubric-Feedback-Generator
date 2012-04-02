@@ -9,6 +9,10 @@
 *	@package Rubric Creator
 */
 
+if(!isset($_COOKIE["user"])){
+	header("Location: index.php");
+} else { $username = $_COOKIE["user"]; }
+
 require('includes/header.php'); 
 
 $rubricChoice = $_POST['rubric-choice'];
@@ -91,7 +95,7 @@ else {
 				$criteriaLive = $criteriaArray[4];
 			
 			if ( $criteriaType == "title" ) {
-				echo '<fieldset class="edit title">';
+				echo '<fieldset class="edit title" id="existing-'. $criteriaID .'">';
 				printEditTitle($criteriaID, $criteriaOrder );
 				echo '<div class="button delete">Delete</div>';
 				echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
@@ -99,21 +103,21 @@ else {
 				
 			}
 			else if ( $criteriaType == "plaintext" ) {
-					echo '<fieldset class="edit text">';
+					echo '<fieldset class="edit text" id="existing-'. $criteriaID .'">';
 					printEditPlaintext($criteriaID, $criteriaOrder );
 					echo '<div class="button delete">Delete</div>';
 					echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
 					echo '</fieldset>';
 				}
 				else if ($criteriaType == "radio" ) {
-						echo '<fieldset class="edit radio">';
+						echo '<fieldset class="edit radio" id="existing-'. $criteriaID .'">';
 						printEditRadio($criteriaID, $criteriaOrder );
 						echo '<div class="button delete">Delete</div>';
 						echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
 						echo '</fieldset>';
 					}
 					else if ($criteriaType == "textbox" ) {
-							echo '<fieldset class="edit textbox">';
+							echo '<fieldset class="edit textbox" id="existing-'. $criteriaID .'">';
 							printEditTextbox($criteriaID, $criteriaOrder );
 							echo '<div class="button delete">Delete</div>';
 							echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';

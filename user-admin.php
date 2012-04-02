@@ -92,7 +92,6 @@ require('includes/header.php'); ?>
 				?>
 			 </fieldset>	
 			
-			 <input type="submit" value="Complete Rubric" id="complete-rubric" />
 			 <input type="submit" value="Edit this Rubric" id="edit-rubric" />
 			</form>		
 	<?php } else { ?>
@@ -101,7 +100,4 @@ require('includes/header.php'); ?>
 	
 		<?php } ?>
 		
-	
-	<p><a href="user-logout.php">Click here to log out.</a></p>
-
 <?php require('includes/footer.php'); ?>

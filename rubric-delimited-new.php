@@ -20,8 +20,12 @@ require('includes/header.php'); ?>
 
 <h1>Rubric Creator - Create New Rubric</h1>
 
-<p>Here is where you will be able to create rubrics from scratch.</p>
+<p>In the following form, paste the tab-delimited content needed to generate your rubric content.</p>
 
-<p><a href="rubric-delimited-new.php">Click here to import new rubric.</a></p>
+<form id="form-delimited" name="form-delimited" action="rubric-delimited-verify.php" method="post">
+	<label for="deliminited-text">Enter your tab-delimited content here:</label>
+	<textarea name="delimited-text"></textarea>
+	<input type="submit" value="submit" />
+</form>
 
 <?php require('includes/footer.php'); ?>

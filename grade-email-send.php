@@ -7,6 +7,7 @@
 *	@version 0.1
 *	@package Rubric Creator
 */
+
 if(!isset($_COOKIE["user"])){
 	header("Location: index.php");
 } else { $username = $_COOKIE["user"]; }

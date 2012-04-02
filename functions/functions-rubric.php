@@ -529,7 +529,7 @@ function printEditRadio($id) {
 					
 				}
 				
-				echo '</ul>';
+				echo '</ul><div class="button add-value existing-radio">Add Option</div>';
 							
 			}
 			else echo "(There are no options/values for this Radio criteria.)";
@@ -540,7 +540,7 @@ function printEditRadio($id) {
 }
 
 /** 
-* Prints rubric criteria of type "radio" to be edited
+* Prints rubric criteria of type "textbox" to be edited
 * @param $id
 */
 
