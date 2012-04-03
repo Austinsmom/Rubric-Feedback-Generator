@@ -60,9 +60,10 @@ while( list( $field, $value ) = each( $postArray )) {
 								$points = $checkMoreValue;
 							}
 				}
-				// add this radio value to the database
-				mysql_query("INSERT INTO rubric_criteria_values (value_criteria_id, value_order, value_content, value_points, value_is_live) VALUES ('$radioID', '$order', '$content', '$points', '$isLive')") or die('There was an error saving: ' . mysql_error());
-	
+				// add this radio value to the database if isLive = 1
+				if ($isLive == 1) {
+					mysql_query("INSERT INTO rubric_criteria_values (value_criteria_id, value_order, value_content, value_points, value_is_live) VALUES ('$radioID', '$order', '$content', '$points', '$isLive')") or die('There was an error saving: ' . mysql_error());
+				}
 			}		
 		}
 		// new criteria items to be saved
@@ -87,9 +88,10 @@ while( list( $field, $value ) = each( $postArray )) {
 					}
 				}
 				
-				// add this new title to the database
-				mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
-				
+				// add this new title to the database if isLive = 1
+				if ($isLive == 1) {
+					mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
+				}
 			}
 			else if ( strpos($field, 'plaintext') !== false ) {
 					// saves new rubric plaintext
@@ -112,9 +114,10 @@ while( list( $field, $value ) = each( $postArray )) {
 						}
 					}
 					
-					// add this new plaintext to the database
-					mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
-					
+					// add this new plaintext to the database if isLive = 1
+					if ($isLive == 1) {
+						mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
+					}
 				}
 				else if ( strpos($field, 'textbox') !== false ) {
 						// saves new rubric textbox
@@ -137,8 +140,10 @@ while( list( $field, $value ) = each( $postArray )) {
 							}
 						}
 						
-						// add this new textbox to the database
-						mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
+						// add this new textbox to the database if isLive = 1
+						if ($isLive == 1) {
+							mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
+						}
 					}
 					else if ( strpos($field, 'radio') !== false ) {
 							// saves new rubric radio
@@ -161,47 +166,49 @@ while( list( $field, $value ) = each( $postArray )) {
 								}
 							}
 							
-							// add this new radio to the database
-							mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$radioContent', '$isLive')") or die('There was an error saving: ' . mysql_error()); 
-													
-							// get latest radio id
-							$radioID = mysql_insert_id();
-							
-							//go through array again and search for field new-$tempID-valueLabel-#
-							$checkArrayValues = $checkArray;
-							while ( list( $checkOptionField, $checkOptionValue ) = each ($checkArrayValues)) {
+							// add this new radio to the database if isLive = 1
+							if ($isLive == 1) {
+								mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$radioContent', '$isLive')") or die('There was an error saving: ' . mysql_error()); 
+											
+								// get latest radio id
+								$radioID = mysql_insert_id();
 								
-								$contentField = "new-" . $tempID . "-valueLabel-";
+								//go through array again and search for field new-$tempID-valueLabel-#
+								$checkArrayValues = $checkArray;
+								while ( list( $checkOptionField, $checkOptionValue ) = each ($checkArrayValues)) {
 									
-								// first get label content of value
-								if ( strpos($checkOptionField, $contentField) !== false ){
-									$content = $checkOptionValue;
-									
-									// get $tempValueID
-									$tempValueIDPos = strpos($checkOptionField, "valueLabel-") + 11;
-									$tempValueID = substr($checkOptionField,$tempValueIDPos);
-	
-									$orderField = "new-" . $tempID . "-valueChron-" . $tempValueID;	
-									$liveField = "new-" . $tempID . "-valueOn-" . $tempValueID;
-									$pointsField = "new-" . $tempID . "-valuePoints-" . $tempValueID;
-									
-									// go through array again to grab isLive and order info
-									$checkMoreArrayValues = $checkArray;
-									while ( list( $checkMoreField, $checkMoreValue ) = each ($checkMoreArrayValues)) {
-																
-										if ( $orderField == $checkMoreField ) {
-								 			$order = $checkMoreValue;
-										} 
-										else if ( $liveField == $checkMoreField ){
-												$isLive = $checkMoreValue;
-											}
-											else if ( $pointsField == $checkMoreField ){
-													$points = $checkMoreValue;
+									$contentField = "new-" . $tempID . "-valueLabel-";
+										
+									// first get label content of value
+									if ( strpos($checkOptionField, $contentField) !== false ){
+										$content = $checkOptionValue;
+										
+										// get $tempValueID
+										$tempValueIDPos = strpos($checkOptionField, "valueLabel-") + 11;
+										$tempValueID = substr($checkOptionField,$tempValueIDPos);
+		
+										$orderField = "new-" . $tempID . "-valueChron-" . $tempValueID;	
+										$liveField = "new-" . $tempID . "-valueOn-" . $tempValueID;
+										$pointsField = "new-" . $tempID . "-valuePoints-" . $tempValueID;
+										
+										// go through array again to grab isLive and order info
+										$checkMoreArrayValues = $checkArray;
+										while ( list( $checkMoreField, $checkMoreValue ) = each ($checkMoreArrayValues)) {
+																	
+											if ( $orderField == $checkMoreField ) {
+									 			$order = $checkMoreValue;
+											} 
+											else if ( $liveField == $checkMoreField ){
+													$isLive = $checkMoreValue;
 												}
+												else if ( $pointsField == $checkMoreField ){
+														$points = $checkMoreValue;
+													}
+										}
+										
+										// add this radio value to the database
+										mysql_query("INSERT INTO rubric_criteria_values (value_criteria_id, value_order, value_content, value_points, value_is_live) VALUES ('$radioID', '$order', '$content', '$points', '$isLive')") or die('There was an error saving: ' . mysql_error());
 									}
-									
-									// add this radio value to the database
-									mysql_query("INSERT INTO rubric_criteria_values (value_criteria_id, value_order, value_content, value_points, value_is_live) VALUES ('$radioID', '$order', '$content', '$points', '$isLive')") or die('There was an error saving: ' . mysql_error());
 								}
 							}
 						}

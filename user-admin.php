@@ -54,11 +54,7 @@ require('includes/header.php'); ?>
 			 <input type="submit" id="view-assignments" value="View Assignments for this Class" onclick ="choseViewAssignments()" />
 			 <input type="submit" id="edit-class" value="Edit this Class" onclick="choseEdit()" />
 			</form>		
-	<?php } else { ?>
-	
-			<p>You have no classes yet. <a href="class-new.php">Create one!</a></p>
-	
-			<?php } ?>		 
+	<?php } else { /* no classes, do nothing */} ?>		 
 	 
 	 
 	 <h2>Your rubrics</h2>
@@ -94,10 +90,6 @@ require('includes/header.php'); ?>
 			
 			 <input type="submit" value="Edit this Rubric" id="edit-rubric" />
 			</form>		
-	<?php } else { ?>
-	
-			<p>You have no rubrics yet. <a href="rubric-new.php">Create one!</a></p>
-	
-		<?php } ?>
+	<?php } else { /* no rubrics, do nothing */ } ?>
 		
 <?php require('includes/footer.php'); ?>

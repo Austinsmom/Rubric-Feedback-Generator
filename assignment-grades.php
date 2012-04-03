@@ -69,7 +69,4 @@ $assignmentTitle = $_POST['assignment-title'];
 	
 		<?php } ?>
 	 
-	<p><a href="user-admin.php">Click here to go back to User Admin.</a></p>
-	<p><a href="user-logout.php">Click here to log out.</a></p>
-
 <?php require('includes/footer.php'); ?>

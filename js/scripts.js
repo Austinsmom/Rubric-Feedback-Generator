@@ -28,15 +28,18 @@ jQuery(document).ready(function () {
 		$("#form-classes").attr("action", "/class-assignments.php").submit();
 	});
 	
-	// Determine whether user wants to edit assignment or view grades based on submit
+	// Determine whether user wants to edit assignment, grade assignment or view grades based on submit
 	$("#edit-assignment").click( function(){
 		$("#form-assignment").attr("action", "/assignment-edit.php").submit();
 	});
+	$("#grade-assignment").click( function(){
+		$("#form-assignment").attr("action", "/grade-assignment.php").submit();
+	});	
 	$("#view-grades").click( function(){
 		$("#form-assignment").attr("action", "/assignment-grades.php").submit();
 	});
 	
-	// Determine whether user wants to edit rubric or complete rubric based on submit
+	// Determine if user wants to edit rubric based on submit
 	$("#edit-rubric").click( function(){
 		$("#form-rubric").attr("action", "/rubric-edit.php").submit();
 	});
@@ -56,6 +59,18 @@ jQuery(document).ready(function () {
 	
 	var editInputCount = 1;
 	var radioValueCount = 1;
+
+	// returns the max value of all inputs with class="order"
+	function findMaxOrder() {
+		var tempMax = 0;
+		$("input.order").each( function(){
+				var thisInputValue = parseInt($(this).val());
+				if ( thisInputValue > tempMax ) {
+					tempMax = thisInputValue;
+				}
+		});
+		return tempMax + 1;
+	}
 	
 	// Change criteria is_live on click of "delete" button, and undo delete
 	$("div.button.delete").click(function(){ 
@@ -97,31 +112,34 @@ jQuery(document).ready(function () {
 	
 	// Add title object to rubric when editing rubric form
 	$("#add-title").click(function(){ 
+		var order = findMaxOrder();
 		$('#form-edit fieldset').last()
-			.after('<fieldset class="edit title ' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" /><br />Title Content: <input type="text" name="new-title-' + editInputCount + '" class="content title" /><div class="button new-delete">Delete</div><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
+			.after('<fieldset class="edit title ' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" value="' + order + '" /><br />Title Content: <input type="text" name="new-title-' + editInputCount + '" class="content title" /><div class="button new-delete">Delete</div><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
 			editInputCount++;
 	});	
 	
 	
 	// Add plaintext object to rubric when editing rubric form
 	$("#add-plaintext").click(function(){ 
+		var order = findMaxOrder();
 		$('#form-edit fieldset').last()
-			.after('<fieldset class="edit text ' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" /><br />Text Content: <input type="text" name="new-plaintext-' + editInputCount + '" class="content text" /><div class="button new-delete">Delete</div><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
+			.after('<fieldset class="edit text ' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" value="' + order + '" /><br />Text Content: <input type="text" name="new-plaintext-' + editInputCount + '" class="content text" /><div class="button new-delete">Delete</div><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
 			editInputCount++;
 	});	
 	
 	// Add textbox object to rubric when editing rubric form
 	$("#add-textbox").click(function(){ 
+		var order = findMaxOrder();
 		$('#form-edit fieldset').last()
-			.after('<fieldset class="edit textbox ' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" /><br />Textbox Label: <input type="text" name="new-textbox-' + editInputCount + '" class="content textbox" /><div class="button new-delete">Delete</div><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
+			.after('<fieldset class="edit textbox ' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" value="' + order + '" /><br />Textbox Label: <input type="text" name="new-textbox-' + editInputCount + '" class="content textbox" /><div class="button new-delete">Delete</div><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
 			editInputCount++;
 	});	
 	
 	// Add radio object to rubric when editing rubric form
 	$("#add-radio").click(function(){ 
-	
+		var order = findMaxOrder();
 		$('#form-edit fieldset').last()
-			.after('<fieldset class="edit radio ' + editInputCount + '" id="' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" /><br />Radio Label: <input type="text" name="new-radio-' + editInputCount + '" class="content textbox" /><p>Options:</p><ul class="radio-options"><li>Option Order: <input type="text" name="new-' + editInputCount + '-valueChron-' + radioValueCount + '" class="value-order" /><br />Option Label: <input type="text" name="new-' + editInputCount + '-valueLabel-' + radioValueCount + '" class="value-label" /><br />Option Points: <input type="text" name="new-' + editInputCount + '-valuePoints-' + radioValueCount + '" class="value-points" /><br /><div class="button delete-new-value">Delete this Option</div><input type="hidden" name="new-' + editInputCount + '-valueOn-' + radioValueCount + '" class="is-live" value="1" /></li></ul><div class="button add-value new-radio">Add Option</div><div class="button new-delete">Delete</div><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
+			.after('<fieldset class="edit radio ' + editInputCount + '" id="' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" value="' + order + '" /><br />Radio Label: <input type="text" name="new-radio-' + editInputCount + '" class="content textbox" /><p>Options:</p><ul class="radio-options"><li>Option Order: <input type="text" name="new-' + editInputCount + '-valueChron-' + radioValueCount + '" class="value-order" value="1" /><br />Option Label: <input type="text" name="new-' + editInputCount + '-valueLabel-' + radioValueCount + '" class="value-label" /><br />Option Points: <input type="text" name="new-' + editInputCount + '-valuePoints-' + radioValueCount + '" class="value-points" /><br /><div class="button delete-new-value">Delete this Option</div><input type="hidden" name="new-' + editInputCount + '-valueOn-' + radioValueCount + '" class="is-live" value="1" /></li></ul><div class="button add-value new-radio">Add Option</div><div class="button new-delete">Delete</div><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
 			editInputCount++;
 			radioValueCount++;
 	});
@@ -146,20 +164,38 @@ jQuery(document).ready(function () {
 	
 	// Add live click event to add value buttons of already existing radio criteria
 	$(".button.add-value.existing-radio").live("click", function(){
-	
+		
+		var tempMax = 0;
+		$(this).siblings("ul").children("li").children("input.value-order").each( function(){
+				var thisInputValue = parseInt($(this).val());
+				if ( thisInputValue > tempMax ) {
+					tempMax = thisInputValue;
+				}
+		});
+		var order = tempMax + 1;
+		
 		var radioID = $(this).parent("fieldset").attr("ID");
 		
-		$(this).siblings("ul").append('<li>Option Order: <input type="text" name="new-' + radioID + '-valueChron-' + radioValueCount + '" class="value-order" /><br />Option Label: <input type="text" name="new-' + radioID + '-valueLabel-' + radioValueCount + '" class="value-label" /><br />Option Points: <input type="text" name="new-' + radioID + '-valuePoints-' + radioValueCount + '" class="value-points" /><br /><div class="button delete-new-value">Delete this Option</div><input type="hidden" name="new-' + radioID + '-valueOn-' + radioValueCount + '" class="is-live" value="1" /></li>');
+		$(this).siblings("ul").append('<li>Option Order: <input type="text" name="new-' + radioID + '-valueChron-' + radioValueCount + '" class="value-order" value="' + order +'" /><br />Option Label: <input type="text" name="new-' + radioID + '-valueLabel-' + radioValueCount + '" class="value-label" /><br />Option Points: <input type="text" name="new-' + radioID + '-valuePoints-' + radioValueCount + '" class="value-points" /><br /><div class="button delete-new-value">Delete this Option</div><input type="hidden" name="new-' + radioID + '-valueOn-' + radioValueCount + '" class="is-live" value="1" /></li>');
   		
   		radioValueCount++;
   	});
 
 	// Add live click event to add value buttons of newly created radio criteria
 	$(".button.add-value.new-radio").live("click", function(){
-	
+		
+		var tempMax = 0;
+		$(this).siblings("ul").children("li").children("input.value-order").each( function(){
+				var thisInputValue = parseInt($(this).val());
+				if ( thisInputValue > tempMax ) {
+					tempMax = thisInputValue;
+				}
+		});
+		var order = tempMax + 1;
+		
 		var radioID = $(this).parent("fieldset").attr("ID");
 		
-		$(this).siblings("ul").append('<li>Option Order: <input type="text" name="new-' + radioID + '-valueChron-' + radioValueCount + '" class="value-order" /><br />Option Label: <input type="text" name="new-' + radioID + '-valueLabel-' + radioValueCount + '" class="value-label" /><br />Option Points: <input type="text" name="new-' + radioID + '-valuePoints-' + radioValueCount + '" class="value-points" /><br /><div class="button delete-new-value">Delete this Option</div><input type="hidden" name="new-' + radioID + '-valueOn-' + radioValueCount + '" class="is-live" value="1" /></li>');
+		$(this).siblings("ul").append('<li>Option Order: <input type="text" name="new-' + radioID + '-valueChron-' + radioValueCount + '" class="value-order" value="' + order +'" /><br />Option Label: <input type="text" name="new-' + radioID + '-valueLabel-' + radioValueCount + '" class="value-label" /><br />Option Points: <input type="text" name="new-' + radioID + '-valuePoints-' + radioValueCount + '" class="value-points" /><br /><div class="button delete-new-value">Delete this Option</div><input type="hidden" name="new-' + radioID + '-valueOn-' + radioValueCount + '" class="is-live" value="1" /></li>');
   		
   		radioValueCount++;
   	});

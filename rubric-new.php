@@ -20,7 +20,7 @@ require('includes/header.php'); ?>
 
 <h1>Rubric Creator - Create New Rubric</h1>
 
-<p>Here is where you will be able to create rubrics from scratch.</p>
+<p>Here is where you will <em>soon</em> be able to create rubrics from scratch.</p>
 
 <p><a href="rubric-delimited-new.php">Click here to import new rubric.</a></p>
 
