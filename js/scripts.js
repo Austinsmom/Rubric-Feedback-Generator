@@ -15,6 +15,89 @@ jQuery(document).ready(function () {
 	// Allows tabs to be entered in textarea elements
 	$("textarea").tabby();
 	
+	// Always have a form's first radio button selected by default
+	$("fieldset").each(function() {
+		$(this).children("input:first").attr('checked', true);
+	});
+	
+	/**
+	* Login & Registration
+	*/
+	
+	// validate login
+	$("#user-login").click( function(){
+		
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if username is blank, warn user
+		if ( $("#username").val().length == 0) {
+     		 $("#username").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if password is blank, warn user
+		if ($("#password").val().length == 0) {
+			$("#password").addClass('empty-input');
+			validInput = false;
+		}
+		
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$(this).parent("form").append('<span id="submit-warning">Do not leave any fields blank!</span>');
+			return validInput
+		}
+		else {
+			$("#form-login").attr("action", "user-validate.php").submit();
+		}
+	});
+	
+	// register submit
+	$("#user-register").click( function(){
+				
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if username is blank, warn user
+		if ( $("#username").val().length == 0) {
+     		 $("#username").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if password is blank, warn user
+		if ($("#password").val().length == 0) {
+			$("#password").addClass('empty-input');
+			validInput = false;
+		}
+		
+		// if display name is blank, warn user
+		if ( $("#nicename").val().length == 0) {
+     		 $("#nicename").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if email is blank, warn user
+		if ($("#email").val().length == 0) {
+			$("#email").addClass('empty-input');
+			validInput = false;
+		}
+		
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$(this).parent("form").append('<span id="submit-warning">Do not leave any fields blank!</span>');
+			return validInput
+		}
+		else {
+			$("#form-register").attr("action", "user-validate.php").submit();
+		}
+
+	});
 	
 	/**
 	* User Admin Scripts
@@ -22,34 +105,34 @@ jQuery(document).ready(function () {
 	
 	// Determine whether user wants to edit class or view assignments based on submit
 	$("#edit-class").click( function(){
-		$("#form-classes").attr("action", "/class-edit.php").submit();
+		$("#form-classes").attr("action", "class-edit.php").submit();
 	});
 	$("#view-assignments").click( function(){
-		$("#form-classes").attr("action", "/class-assignments.php").submit();
+		$("#form-classes").attr("action", "class-assignments.php").submit();
 	});
 	
 	// Determine whether user wants to edit assignment, grade assignment or view grades based on submit
 	$("#edit-assignment").click( function(){
-		$("#form-assignment").attr("action", "/assignment-edit.php").submit();
+		$("#form-assignment").attr("action", "assignment-edit.php").submit();
 	});
 	$("#grade-assignment").click( function(){
-		$("#form-assignment").attr("action", "/grade-assignment.php").submit();
+		$("#form-assignment").attr("action", "grade-assignment.php").submit();
 	});	
 	$("#view-grades").click( function(){
-		$("#form-assignment").attr("action", "/assignment-grades.php").submit();
+		$("#form-assignment").attr("action", "assignment-grades.php").submit();
 	});
 	
 	// Determine if user wants to edit rubric based on submit
 	$("#edit-rubric").click( function(){
-		$("#form-rubric").attr("action", "/rubric-edit.php").submit();
+		$("#form-rubric").attr("action", "rubric-edit.php").submit();
 	});
 	
 	// Determine whether user wants to edit grade or email grade based on submit
 	$("#edit-grade").click( function(){
-		$("#form-grade").attr("action", "/grade-edit.php").submit();
+		$("#form-grade").attr("action", "grade-edit.php").submit();
 	});
 	$("#email-grade").click( function(){
-		$("#form-grade").attr("action", "/grade-email.php").submit();
+		$("#form-grade").attr("action", "grade-email.php").submit();
 	});
 
 	

@@ -96,8 +96,7 @@ function generatePlaintext( $itemArray, $itemCount ) {
 function generateCriteriaRadio( $itemArray, $itemCount ) {
 	echo '<fieldset class="radio fieldset-' . $itemCount . '">';
 	echo '<label for="item-'. $itemCount . '">' . $itemArray[2] . '</label>';
-	echo '<input type="radio" name="item-' . $itemCount . '" value="0" checked style="display:none;" />';
-
+	
 	$responseCount = 1;
 	$responseStart = 3;
 	$responseLength = count($itemArray) - $responseStart + 1;
@@ -369,7 +368,6 @@ function printRadio($id, $order) {
 			
 			echo '<fieldset class="rubric-radio criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
-			echo '<input type="radio" name="criteria-' . $criteriaID . '" value="0" checked style="display:none;" />';
 
 			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);
@@ -592,7 +590,6 @@ function printGradedRadio($id, $order, $grade) {
 			
 			echo '<fieldset class="rubric-radio criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
-			echo '<input type="radio" name="criteria-' . $criteriaID . '" value="0" checked style="display:none;" />';
 
 			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);

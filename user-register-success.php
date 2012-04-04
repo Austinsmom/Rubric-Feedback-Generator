@@ -2,7 +2,6 @@
 /**
 *	Rubric Creator - Successful Register
 *	 1. Tells user they successfully registered
-*	 2. Links to Login form
 *
 *	@author Jenn Schiffer
 *	@version 0.1

@@ -2,8 +2,6 @@
 /**
 *	Rubric Creator - User Register
 *	 1. Registration form
-*	 2. Validation of Registration form entry
-*	 3. Valid registration takes user to Login page
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -18,30 +16,29 @@ require('includes/header.php'); ?>
 
 <p>Fill out the following form to register for a Rubric Creator account.</p>
 
-<form id="form-register" name="form-register" action="user-validate.php" method="post">
+<form id="form-register" name="form-register" method="post">
 	<p>
-		<label for="username">Username: 
-		<input type="text" name="username" /></label>
+		<label for="username">Username:</label>
+		<input type="text" name="username" id="username" />
 	</p>
 	
 	<p>
-		<label for="password">Password: 
-		<input type="password" name="password" /></label>
+		<label for="password">Password:</label>
+		<input type="password" name="password" id="password" />
 	</p>
 	
 	<p>
-		<label for="nicename">Display Name: 
-		<input type="text" name="nicename" /></label>
+		<label for="nicename">Display Name:</label>
+		<input type="text" name="nicename" id="nicename" />
 	</p>
 		
 	<p>
-		<label for="email">Email Address: 
-		<input type="email" name="email" /></label>
+		<label for="email">Email Address:</label>
+		<input type="email" name="email" id="email" />
 	</p>
 
 	<input type="hidden" name="form-origin" value="register">	
-	<input type="submit" value="submit" />
+	<input type="submit" value="submit" id="user-register" />
 </form>
-
 
 <?php require('includes/footer.php'); ?>

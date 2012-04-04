@@ -57,6 +57,7 @@ $classTitle = $_POST['class-title'];
 			
 			 <input type="hidden" name="assignment-title" value="<?php echo $title; ?>" />
 			 <input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
+			 
 			 <input type="submit" id="grade-assignment" value="Grade this Assignment" />
 			 <input type="submit" id="view-grades" value="View Grades for this Assignment" />
 			 <input type="submit" id="edit-assignment" value="Edit this Assignment" />

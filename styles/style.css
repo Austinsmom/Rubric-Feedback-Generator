@@ -54,6 +54,9 @@ ul.radio-options li { margin: 20px 0; }
 #email-content { max-width: 600px; margin: 10px auto; }
 #email-content > div > h1 { font-family: Helvetica, Arial, sans-serif; }
 
+/* ----- Form Validation --------------- */
+.empty-input { border: 2px solid #C00; }
+
 /* ----- Misc. CSS Fixes --------------- */
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;}
 .clearfix:after{clear:both;content:' ';display:block;font-size:0;line-height:0;visibility:hidden;width:0;height:0}
