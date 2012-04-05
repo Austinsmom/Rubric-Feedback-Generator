@@ -2,7 +2,6 @@
 /**
 *	Rubric Creator - Assignment Save
 *	 1. Saves assignment to database
-*	 2. Links user back to admin
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -28,6 +27,6 @@ saveAssignmentToDatabase($title, $author, $description, $class, $dueDate, $rubri
 
 <body id="save">
 
-Your assignment was saved. <a href="user-admin.php">Go to admin to view it.</a>
+<p>Your assignment was saved. <a href="user-admin.php">Click here to go back to User Admin.</a></p>
 
 <?php require('includes/footer.php'); ?>

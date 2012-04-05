@@ -44,6 +44,6 @@ while( list( $field, $value ) = each( $gradeArray )) {
 
 <body id="save">
 
-Your grade was saved. <a href="user-admin.php">Go to admin.</a>
+<p>Your grade was saved. <a href="user-admin.php">Click here to go back to User Admin.</a></p>
 
 <?php require('includes/footer.php'); ?>

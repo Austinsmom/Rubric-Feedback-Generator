@@ -22,8 +22,7 @@ require('includes/header.php');
 	
 	<?php  
   		$classID = $_POST['class-choice'];
-		$sql = "SELECT * FROM rubric_class WHERE class_id='$classID'";
-		$result = mysql_query($sql);
+		$result = mysql_query("SELECT * FROM rubric_class WHERE class_id='$classID'");
 		$count = mysql_num_rows($result);
 
 		if ($count != 0) { 
@@ -35,22 +34,30 @@ require('includes/header.php');
 				$notes = $row['class_notes'];
 				
 		?>
-				<form id="form-class-edit" name="form-class-edit" action="class-edit-submit.php" method="post">
+				<form id="form-class-edit" name="form-class-edit" method="post">
 					
 					<p>
-					Class Title: <input type="text" name="title" value="<?php echo $title; ?>" /><br />
-					Meeting Time: <input type="text" name="time" value="<?php echo $meetingTime; ?>" />
+						<label for="class-title">Class Title:</label>
+						<input type="text" name="class-title" id="class-title" class="text" value="<?php echo $title; ?>" />
 					</p>
 					
-					<p>Notes:<br /><textarea name="notes"><?php echo $notes; ?></textarea></p>
+					<p>
+						<label for="class-time">Meeting Time:</label>
+						<input type="text" name="class-time" id="class-time" class="text" value="<?php echo $meetingTime; ?>" />
+					</p>
 					
-					<input type="hidden" name="id" value="<?php echo $classID; ?>" />
-					<input type="submit" value="Submit Changes" />
+					<p>
+						<label for="class-notes">Notes:</label>
+						<textarea name="class-notes" id="class-notes" class="textarea"><?php echo $notes; ?></textarea>
+					</p>
+					
+					<input type="hidden" name="class-id" value="<?php echo $classID; ?>" />
+					<input type="submit" id="submit-class-edit" value="Submit Changes" />
 									
 				</form>
 	<?php 	}
 		}
-		else { echo 'Error - No Class with this ID!'; } ?>
+		else { echo 'Error - No Class with this ID. Contact admin for help.'; } ?>
 
 
 <?php require('includes/footer.php'); ?>

@@ -33,7 +33,7 @@ if(count($_POST)) {
 	$emailHeaders .= 'From: ' . $emailFrom . "\r\n";
 	
 	if ( @mail( $emailTo, $emailSubject, $emailContent, $emailHeaders) ) {
-		echo 'The grade was successfully sent via email. <a href="user-admin.php">Click here to go back to User Admin.</a>';
+		echo '<p>The grade was successfully sent via email. <a href="user-admin.php">Click here to go back to User Admin.</a></p>';
 	}
 	else {
 		die('Error: Unable to send email. Contact admin for help.' . mysql_error()); 

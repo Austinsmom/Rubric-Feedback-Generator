@@ -48,7 +48,7 @@ jQuery(document).ready(function () {
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$(this).parent("form").append('<span id="submit-warning">Do not leave any fields blank!</span>');
-			return validInput
+			return validInput;
 		}
 		else {
 			$("#form-login").attr("action", "user-validate.php").submit();
@@ -91,12 +91,148 @@ jQuery(document).ready(function () {
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$(this).parent("form").append('<span id="submit-warning">Do not leave any fields blank!</span>');
-			return validInput
+			return validInput;
 		}
 		else {
 			$("#form-register").attr("action", "user-validate.php").submit();
 		}
 
+	});
+	
+	/**
+	* Classes
+	*/
+	
+	// create new class
+	$("#new-class").click( function() {
+	
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if title is blank, warn user
+		if ( $("#class-title").val().length == 0) {
+     		 $("#class-title").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if time is blank, warn user
+		if ($("#class-time").val().length == 0) {
+			$("#class-time").addClass('empty-input');
+			validInput = false;
+		}
+		
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$(this).parent("form").append('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-class").attr("action", "class-save.php").submit();
+		}
+
+	});
+	
+	// edit class
+	$("#submit-class-edit").click( function() {
+	
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if title is blank, warn user
+		if ( $("#class-title").val().length == 0) {
+     		 $("#class-title").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if time is blank, warn user
+		if ($("#class-time").val().length == 0) {
+			$("#class-time").addClass('empty-input');
+			validInput = false;
+		}
+
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$(this).parent("form").append('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-class-edit").attr("action", "class-edit-submit.php").submit();
+		}
+
+	});
+
+	/**
+	* Assignments
+	*/
+
+	 // new assignment
+	$("#new-assignment").click( function() {
+
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if title is blank, warn user
+		if ( $("#assignment-title").val().length == 0) {
+     		 $("#assignment-title").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if due date is blank, warn user
+		if ($("#assignment-duedate").val().length == 0) {
+			$("#assignment-duedate").addClass('empty-input');
+			validInput = false;
+		}	
+
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$(this).parent("form").append('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-assignment").attr("action", "assignment-save.php").submit();
+		}
+		
+	});
+	
+	// edit assignment
+	$("#submit-assignment-edit").click( function() {
+
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if title is blank, warn user
+		if ( $("#assignment-title").val().length == 0) {
+     		 $("#assignment-title").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if due date is blank, warn user
+		if ($("#assignment-duedate").val().length == 0) {
+			$("#assignment-duedate").addClass('empty-input');
+			validInput = false;
+		}	
+
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$(this).parent("form").append('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-assignment-edit").attr("action", "assignment-edit-submit.php").submit();
+		}
+		
 	});
 	
 	/**

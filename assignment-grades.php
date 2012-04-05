@@ -1,8 +1,7 @@
 <?php 
 /**
 *	Rubric Creator - Assignment Grades List
-*	 1. Lists grades from assignment user submited
-*	 2. Lets user select grade to edit or email to students
+*	 1. Lists grades from assignment user submitted to edit, grade, or view grades
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -25,46 +24,43 @@ $assignmentTitle = $_POST['assignment-title'];
 	<h1>Grades for Assignment:<br /> <?php echo stripSlashes($assignmentTitle); ?></h1>
 			
 	 <?php
-		$sqlGrade = "SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'";
-		$resultGrade = mysql_query($sqlGrade);
+		$resultGrade = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");
 		$count = mysql_num_rows($resultGrade);
 			
 		if ($count != 0) { ?>
 			
 			<form id="form-grade" name="form-grade" method="post">
 			 <fieldset>
-				 <legend>Select a grade to edit (or email - soon!):</legend>
+				 <legend>Select a grade to edit or send to student:</legend>
 
 				<?php 
-				
 					while ( $row = mysql_fetch_array($resultGrade)) {
-					/* go through each grade record and print a list to choose from */
-					$id = $row['grade_id'];
-					$student = $row['grade_student'];
-					$rubric = $row['grade_rubric_id'];
-					$assignment = $row['grade_assignment_id'];
-					$gradeTotal = calculateGradeTotal($id);
-					
-					$assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignment'");
-					$assignmentCount = mysql_num_rows($assignmentQuery);
-					
-					if ($assignmentCount != 0 ) {
-						while ($assignmentRow = mysql_fetch_array($assignmentQuery)) {
-							$assignment = $assignmentRow['assignment_title'];
+						// list each grade so the user can edit or email
+						$id = $row['grade_id'];
+						$student = $row['grade_student'];
+						$rubric = $row['grade_rubric_id'];
+						$assignment = $row['grade_assignment_id'];
+						$gradeTotal = calculateGradeTotal($id);
+						
+						$assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignment'");
+						$assignmentCount = mysql_num_rows($assignmentQuery);
+						
+						if ($assignmentCount != 0 ) {
+							while ($assignmentRow = mysql_fetch_array($assignmentQuery)) {
+								$assignment = $assignmentRow['assignment_title'];
+							}
 						}
-					}
-					
-				
-					echo '<p><input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' | Total Points: ' . $gradeTotal . '</p>';
-				}		
-				?>
+						
+						echo '<p><input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' &bull; Total Points: ' . $gradeTotal . '</p>';
+					}		
+				?>	
 			 </fieldset>	
 			
 			 <input type="submit" value="edit grade" id="edit-grade" />
 			 <input type="submit" value="email grade" id="email-grade" />
 			</form>		
 	<?php } else { ?>
-	
+
 			<p>You have no grades yet.</p>
 	
 		<?php } ?>

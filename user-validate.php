@@ -21,8 +21,7 @@ if ($formOrigin == 'login') {
 	/* make sure that username and password combination is valid */
 	$username = $_POST['username'];
 	$password = md5($_POST['password']);
-	$sql = "SELECT * FROM rubric_user WHERE user_login='$username' and user_password='$password'";
-	$result = mysql_query($sql) or die('Database connection error.');
+	$result = mysql_query("SELECT * FROM rubric_user WHERE user_login='$username' and user_password='$password'") or die('Database connection error.');
 	$count = mysql_num_rows($result);
 	
 	if ($count !== 1) {
@@ -43,8 +42,7 @@ else if ($formOrigin == 'register') {
 		$nicename = $_POST['nicename'];
 		$role = "grader";
 		
-		$sql = "SELECT * FROM rubric_user WHERE user_login='$username'";
-		$result = mysql_query($sql) or die('oh nooo');
+		$result = mysql_query("SELECT * FROM rubric_user WHERE user_login='$username'");
 		$count = mysql_num_rows($result);
 		
 		if ($count != 0) {

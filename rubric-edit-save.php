@@ -269,6 +269,6 @@ if ($rubricTitle == null) {
 
 <body id="save">
 
-<p>Your rubric was saved. <a href="user-admin.php">Go to admin to view it.</a></p>
+<p>Your rubric was saved. <a href="user-admin.php">Click here to go back to User Admin.</a></p>
 
 <?php require('includes/footer.php'); ?>

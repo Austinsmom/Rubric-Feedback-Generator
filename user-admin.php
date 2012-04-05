@@ -26,8 +26,7 @@ require('includes/header.php'); ?>
 	</ul>
 	
 	<?php
-		$sqlClass = "SELECT * FROM rubric_class WHERE class_author='$username'";
-		$resultClass = mysql_query($sqlClass);
+		$resultClass = mysql_query("SELECT * FROM rubric_class WHERE class_author='$username'");
 		$count = mysql_num_rows($resultClass);
 			
 		if ($count != 0) { ?>
@@ -38,7 +37,6 @@ require('includes/header.php'); ?>
 				
 				<?php 
 					while ( $row = mysql_fetch_array($resultClass)) {
-					/* go through each rubric record and print a list to choose from */
 					$id = $row['class_id'];
 					$title = $row['class_title'];
 					$meeting = $row['class_meetingtime'];
@@ -64,8 +62,7 @@ require('includes/header.php'); ?>
 	</ul>
 	 
 	 <?php
-		$sqlRubric = "SELECT * FROM rubric_form WHERE rubric_author='$username'";
-		$resultRubric = mysql_query($sqlRubric);
+		$resultRubric = mysql_query("SELECT * FROM rubric_form WHERE rubric_author='$username'");
 		$count = mysql_num_rows($resultRubric);
 			
 		if ($count != 0) { ?>

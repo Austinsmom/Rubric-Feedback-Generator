@@ -2,7 +2,6 @@
 /**
 *	Rubric Creator - Class Assignments List
 *	 1. Lists assignments from class user submited
-*	 2. Lets user select assignment to view the grades of
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -17,31 +16,32 @@ require('includes/header.php');
 
 $classID = $_POST['class-choice'];
 $classTitle = $_POST['class-title'];
+	
 ?>
 
-<body id="admin">
+<body id="class-assignments">
 	
 	<h1>Assignments for Class: <?php echo $classTitle; ?></h1>
 	
-	<ol>	
-		<li><a href="assignment-new.php">Create a new assignment.</a></li>
-	</ol>
+	<form id="create-new-assignment" action="assignment-new.php" method="post">
+		<input type="hidden" name="class-id" value="<?php echo $classID; ?>" />
+		<input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
+		<input type="submit" name="create-new-assignment" value="Create New Assignment" />
+	</form>
 		
-	 	<?php
-		$sqlAssignment = "SELECT * FROM rubric_assignment WHERE assignment_class_id='$classID'";
-		$resultAssignment = mysql_query($sqlAssignment);
+	 <?php
+		$resultAssignment = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_class_id='$classID'");
 		$count = mysql_num_rows($resultAssignment);
 			
 		if ($count != 0) { ?>
 			
 			<form id="form-assignment" name="form-assignment" method="post">
 			 <fieldset>
-				 <legend>Select an assignment to edit or view grades:</legend>
+				 <legend>Select an assignment to edit, grade, or view its grades:</legend>
 
-				
 				<?php 
-				
 					while ( $row = mysql_fetch_array($resultAssignment)) {
+					
 					/* go through each assignment record and print a list to choose from */
 					$id = $row['assignment_id'];
 					$title = $row['assignment_title'];
@@ -63,10 +63,6 @@ $classTitle = $_POST['class-title'];
 			 <input type="submit" id="edit-assignment" value="Edit this Assignment" />
 			  
 			</form>		
-	<?php } else { ?>
-	
-			<p>You have no assignments yet. <a href="assignment-new.php">Create one!</a></p>
-	
-		<?php } ?>
+	<?php } else { /* no assignments, do nothing */ } ?>
 
 <?php require('includes/footer.php'); ?>

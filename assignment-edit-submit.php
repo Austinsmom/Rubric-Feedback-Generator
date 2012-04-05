@@ -17,16 +17,15 @@ $assignmentID = $_POST['assignment-id'];
 $assignmentTitle = $_POST['assignment-title'];
 $assignmentDueDate = $_POST['assignment-duedate'];
 $assignmentDescription = $_POST['assignment-description'];
-$assignmentClass = $_POST['assignment-class'];
 $assignmentRubric = $_POST['assignment-rubric'];
 
-mysql_query("UPDATE rubric_assignment SET assignment_title = '$assignmentTitle', assignment_duedate = '$assignmentDueDate', assignment_description = '$assignmentDescription', assignment_class_id = '$assignmentClass', assignment_rubric_id = '$assignmentRubric' WHERE assignment_id = '$assignmentID';");	 	
+// update this assignment in the database
+mysql_query("UPDATE rubric_assignment SET assignment_title = '$assignmentTitle', assignment_duedate = '$assignmentDueDate', assignment_description = '$assignmentDescription', assignment_rubric_id = '$assignmentRubric' WHERE assignment_id = '$assignmentID';");	 	
 
 ?>
 
 <body id="save">
 
-Your assignment was saved. <a href="user-admin.php">Click here to go back to User Admin.</a>
-
+<p>Your assignment was saved. <a href="user-admin.php">Click here to go back to User Admin.</a></p>
 
 <?php require('includes/footer.php'); ?>

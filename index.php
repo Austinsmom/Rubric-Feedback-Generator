@@ -12,7 +12,6 @@ require('includes/header.php');
  
 ?>
 
-
 <body id="login">
 
 <h1>Rubric Creator - Login</h1>
