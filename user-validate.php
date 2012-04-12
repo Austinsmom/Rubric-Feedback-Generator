@@ -51,12 +51,39 @@ else if ($formOrigin == 'register') {
 		else {
 			/* add user to database & celebrate */
 			addUsertoDatabase($username, $password, $email, $nicename, $role);
-			header('Location: /user-register-success.php');
+			header('Location: user-register-success.php');
 		}
 
 	}
-	else {
-			echo 'Okay, there seems to be some type of error. Not sure 
-						what form you came from!';
-		 }
+	else if ($formOrigin == 'edit') {
+		
+			$username = $_POST['username'];
+			$submittedPassword = $_POST['password'];
+			$email = $_POST['email'];
+			$nicename = $_POST['nicename'];
+			$role = "grader";
+			
+			// if password is blank, then don't update password
+			if ( $submittedPassword == "" ) {
+				
+				// get password from database
+				$userRecord = mysql_query("SELECT * FROM rubric_user WHERE user_login='$username'");
+				$userCount = mysql_num_rows($userRecord);
+				if ($userCount == 1) {
+					while ( $userRow = mysql_fetch_array($userRecord)) {
+						$password = $userRow['user_password'];
+					}
+				}
+			}
+			else {
+				$password = md5($submittedPassword);
+			}
+			
+			// update user
+			updateUser($username, $password, $email, $nicename, $role);
+			header('Location: user-edit-success.php');
+		}
+		else {
+				echo 'Okay, there seems to be some type of error. Contact admin for help.';
+			 }
 ?>

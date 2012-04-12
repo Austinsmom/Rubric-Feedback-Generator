@@ -17,9 +17,9 @@
 
 /**
 * Processes each item in the delimitedTextItems array
-* @param $arrayToProcess
+* @param $arrayToProcess - array of tab-delimited rubric content
 */
-function processCriteria( $arrayToProcess ) {
+function processCriteria($arrayToProcess) {
 	
 	$criteria = array();
 	$count = 1;
@@ -70,8 +70,8 @@ function processCriteria( $arrayToProcess ) {
 
 /**
 * Outputs an <h1>, meant to be used for form titles when initially creating rubric
-* @param $itemArray
-* @param $itemCount
+* @param $itemArray - tokens for title array
+* @param $itemCount - order of this item
 */
 function generateTitle($itemArray, $itemCount) {
 	echo '<h1 class="title item-'. $itemCount . '">'. $itemArray[1] . '</h1>
@@ -80,21 +80,21 @@ function generateTitle($itemArray, $itemCount) {
 
 /**
 * Outputs a <div>, meant for text outside of criteria when initially creating rubric
-* @param $itemArray
-* @param $itemCount
+* @param $itemArray - tokens for text array
+* @param $itemCount - order of this item
 */
-function generatePlaintext( $itemArray, $itemCount ) {
+function generatePlaintext($itemArray, $itemCount) {
 	echo '<div class="plaintext item-'. $itemCount .  '">'. $itemArray[1] . '</div>
 		  <input type="hidden" name="plaintext" value="'. $itemArray[1] .  '" />';
 }
 
 /**
 * Outputs a <fieldset> container for a radio button input when initially creating rubric
-* @param $itemArray
-* @param $itemCount
+* @param $itemArray - tokens for radio array
+* @param $itemCount - order of this item
 */
-function generateCriteriaRadio( $itemArray, $itemCount ) {
-	echo '<fieldset class="radio fieldset-' . $itemCount . '">';
+function generateCriteriaRadio($itemArray, $itemCount) {
+	echo '<fieldset class="radio check fieldset-' . $itemCount . '">';
 	echo '<label for="item-'. $itemCount . '">' . $itemArray[2] . '</label>';
 	
 	$responseCount = 1;
@@ -119,10 +119,10 @@ function generateCriteriaRadio( $itemArray, $itemCount ) {
 
 /**
 * Outputs a <fieldset> container for a label and textbox when initially creating rubric
-* @param $itemArray
-* @param $itemCount
+* @param $itemArray - tokens for textbox array
+* @param $itemCount - order of this item
 */
-function generateCriteriaTextbox( $itemArray, $itemCount ) {
+function generateCriteriaTextbox($itemArray, $itemCount) {
 	echo '<fieldset class="textbox fieldset-' . $itemCount . '">';
 	echo '<label for="item-'. $itemCount . '">' . $itemArray[2] . '</label>';
 	echo '<input type="text" name="item-' . $itemCount . '" />';
@@ -136,10 +136,10 @@ function generateCriteriaTextbox( $itemArray, $itemCount ) {
 
 /**
 * Saves Rubric to the database
-* @param $author
-* @param $title
-* @param $description
-* @param $content
+* @param $author - id of user that created this rubric
+* @param $title - title of rubric
+* @param $description - description of rubric
+* @param $content - delimited content of rubric
 */
 function saveRubricToDatabase($author, $title, $description, $content) {
 	$content = mysql_real_escape_string($content);
@@ -150,9 +150,11 @@ function saveRubricToDatabase($author, $title, $description, $content) {
 
 /**
 * Saves Rubric's individual Criteria to the database
-* @param $id
+* @param $id - id of rubric having criteria saved
 */
 function saveCriteriaToDatabase($id) {
+
+	// get rubric info
 	$result = mysql_query("SELECT * FROM rubric_form WHERE rubric_id = '$id';")  or die('There was an error saving: ' . mysql_error());
 	$count = mysql_num_rows($result);
 			
@@ -250,12 +252,13 @@ function saveCriteriaToDatabase($id) {
 
 /** 
 * Prints rubric for completion and editing
-* @param $id - integer ID of rubric to print
-* @param $editGrade - integer ID of grade if editing a grade and "false" means otherwise
-* @param $editRubric - "true" means a rubric is being edited and "false" means otherwise
+* @param $id -  id of rubric to print
+* @param $editGrade - id of grade if editing a grade and "false" means otherwise
 */
 
 function printRubric($id, $editGrade) {
+	
+	// get criteria info to print
 	$rubricID = $id;
 	$criteriaSet = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_live = '1' ORDER BY criteria_order;")  or die('Error: Cannot get criteria from this rubric. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaSet);
@@ -306,9 +309,8 @@ function printRubric($id, $editGrade) {
 
 /** 
 * Prints rubric criteria of type "title"
-* @param $id
+* @param $id - id of title criteria
 */
-
 function printTitle($id) {
 	$criteriaID = $id;
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Title criteria wanted. Contact admin for help: ' . mysql_error());
@@ -328,9 +330,8 @@ function printTitle($id) {
 
 /** 
 * Prints rubric criteria of type "plaintext"
-* @param $id
+* @param $id - id of text criteria
 */
-
 function printPlaintext($id) {
 	$criteriaID = $id;
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Plaintext criteria wanted. Contact admin for help: ' . mysql_error());
@@ -350,11 +351,12 @@ function printPlaintext($id) {
 
 /** 
 * Prints rubric criteria of type "radio"
-* @param $id
-* @param $order
+* @param $id - id of radio criteria
+* @param $order - order of this out of all criteria
 */
-
 function printRadio($id, $order) {
+
+	// get this radio criteria to print
 	$criteriaID = $id;
 	$radioTextOrder = $order;
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Radio criteria wanted. Contact admin for help: ' . mysql_error());
@@ -366,9 +368,10 @@ function printRadio($id, $order) {
 		
 			$radioLabel = $row['criteria_content'];
 			
-			echo '<fieldset class="rubric-radio criteria-' . $criteriaID . '">';
+			echo '<fieldset class="rubric-radio check criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
 
+			// get all the values of this radio criteria
 			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);
 			
@@ -396,11 +399,12 @@ function printRadio($id, $order) {
 
 /** 
 * Prints rubric criteria of type "textbox"
-* @param $id
-* @param $order
+* @param $id - id of textbox criteria
+* @param $order - order of this out of all criteria
 */
-
 function printTextbox($id, $order) {
+
+	// get this textbox criteria
 	$criteriaID = $id;
 	$radioTextOrder = $order;
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Textbox criteria wanted. Contact admin for help: ' . mysql_error());
@@ -411,7 +415,6 @@ function printTextbox($id, $order) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
 			$textboxLabel = $row['criteria_content'];
-			
 			echo '<fieldset class="rubric-textbox criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $textboxLabel . '</label>';
 			echo '<input type="text" name="textbox-' . $criteriaID . '" />';
@@ -427,11 +430,10 @@ function printTextbox($id, $order) {
 
 /** 
 * Prints rubric criteria of type "title" to be editable
-* @param $id
-* @param $order
+* @param $id - id of criteria title 
 */
-
 function printEditTitle($id) {
+	// get this title criteria
 	$criteriaID = $id;
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Title criteria wanted. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaRecord);
@@ -453,11 +455,10 @@ function printEditTitle($id) {
 
 /** 
 * Prints rubric criteria of type "plaintext" to be editable
-* @param $id
-* @param $order
+* @param $id - id of criteria text
 */
-
 function printEditPlaintext($id) {
+	// get this text criteria
 	$criteriaID = $id;
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Plaintext criteria wanted. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaRecord);
@@ -480,10 +481,11 @@ function printEditPlaintext($id) {
 
 /** 
 * Prints rubric criteria of type "radio" to be edited
-* @param $id
+* @param $id - id of criteria radio
 */
 
 function printEditRadio($id) {
+	// get this radio criteria
 	$criteriaID = $id;
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Radio criteria wanted. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaRecord);
@@ -500,7 +502,6 @@ function printEditRadio($id) {
 			echo 'Radio Label: <input type="text" name="content-' . $criteriaID . '" class="content radio" value="' . $criteriaContent . '" />';
 			
 			// get criteria values for this radio item
-			
 			$valueRecord = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1' ORDER BY value_order") or die('Error: Cannot get Radio Criteria Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($valueRecord);
 								
@@ -539,10 +540,10 @@ function printEditRadio($id) {
 
 /** 
 * Prints rubric criteria of type "textbox" to be edited
-* @param $id
+* @param $id - id of textbox criteria
 */
-
 function printEditTextbox($id) {
+	// get this textbox criteria
 	$criteriaID = $id;
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Textbox criteria wanted. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaRecord);
@@ -570,15 +571,16 @@ function printEditTextbox($id) {
 
 /** 
 * Prints rubric criteria of type "radio" to edit the grade
-* @param $id
-* @param $order
+* @param $id - id of this radio criteria
+* @param $order - order of this radio criteria out of all criteria
+* @param $grade - id of grade to get selected values
 */
-
 function printGradedRadio($id, $order, $grade) {
 	$criteriaID = $id;
 	$gradeID = $grade;
 	$radioTextOrder = $order;
 	
+	// get radio criteria
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Radio criteria wanted. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaRecord);
 	
@@ -590,7 +592,8 @@ function printGradedRadio($id, $order, $grade) {
 			
 			echo '<fieldset class="rubric-radio criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
-
+			
+			// get radio criteria's values
 			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);
 			
@@ -602,6 +605,7 @@ function printGradedRadio($id, $order, $grade) {
 					$valueContent = $valueRow['value_content'];
 					$valuePoints = $valueRow['value_points'];
 					
+					// get graded value of this radio criteria value
 					$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_comment = '0'");	
 					$gradeValueCount = mysql_num_rows($gradeValue);
 					
@@ -625,6 +629,7 @@ function printGradedRadio($id, $order, $grade) {
 			}
 			else echo "Error: No values for this radio-type criteria exist. Contact admin for help.";
 			
+			// get comment info for this criteria
 			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_comment = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
@@ -646,15 +651,16 @@ function printGradedRadio($id, $order, $grade) {
 
 /** 
 * Prints rubric criteria of type "textbox" to edit grade
-* @param $id
-* @param $order
+* @param $id - id of this textobx criteria
+* @param $order - order of this textbox criteria out of all criteria
+* @param $grade - id of grade to get submitted values
 */
-
 function printGradedTextbox($id, $order, $grade) {
 	$criteriaID = $id;
 	$gradeID = $grade;
 	$radioTextOrder = $order;
 	
+	// get textbox criteria
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Textbox criteria wanted. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaRecord);
 	
@@ -666,7 +672,8 @@ function printGradedTextbox($id, $order, $grade) {
 			
 			echo '<fieldset class="rubric-textbox criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $textboxLabel . '</label>';
-								
+			
+			// get graded value of this textbox 					
 			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_textbox = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
@@ -691,7 +698,7 @@ function printGradedTextbox($id, $order, $grade) {
 
 /**
 * Calculates and returns the total possible points for grades of a specific rubric
-* @param $rubricID
+* @param $rubricID - id of rubric to get the maximum number of points possible
 */
 function calculateTotalPossiblePoints( $rubricID ) {
 	$possiblePoints = 0;

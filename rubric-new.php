@@ -1,9 +1,7 @@
 <?php 
 /**
 *	Rubric Creator - Create New Rubric
-*	1. allows the user to paste their tab-delimited text and submit for form generation
-*	TO DO: help docs link
-*	TO DO: allow user to upload a csv file
+*	1. Gives options for user to create a new rubric
 *
 *	@author Jenn Schiffer
 *	@version 0.1

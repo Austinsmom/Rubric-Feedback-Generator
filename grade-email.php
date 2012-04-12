@@ -1,8 +1,7 @@
 <?php 
 /**
 *	Rubric Creator - Generate Email Grade
-*	 1. Generates grade email content
-*	 2. Lets user confirm the sending of grade email
+*	 1. Generates grade email content for user to confirm before sending
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -15,6 +14,7 @@ if(!isset($_COOKIE["user"])){
 
 require('includes/header.php'); 
 
+// get grade info
 $gradeID = $_POST['grade-choice'];
 $gradeQuery = mysql_query("SELECT * FROM rubric_grade WHERE grade_id = '$gradeID'");
 $gradeCount = mysql_num_rows($gradeQuery);					
@@ -28,6 +28,7 @@ else {
 	echo "Error - multiple grades with this ID exists. Contact admin for help.";
 }
 
+// get logged in user info for "from" address and nicename
 $userQuery = mysql_query("SELECT * FROM rubric_user WHERE user_login = '$username'");
 $userCount = mysql_num_rows($userQuery);					
 if ($userCount == 1 ) {
@@ -40,6 +41,7 @@ else {
 	echo "Error - multiple users with this username exists. Contact admin for help.";
 }
 
+// get assignment info for this grade
 $assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignmentID'");
 $assignmentCount = mysql_num_rows($assignmentQuery);					
 if ($assignmentCount == 1 ) {

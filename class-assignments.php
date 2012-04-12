@@ -36,7 +36,7 @@ $classTitle = $_POST['class-title'];
 		if ($count != 0) { ?>
 			
 			<form id="form-assignment" name="form-assignment" method="post">
-			 <fieldset>
+			 <fieldset class="check">
 				 <legend>Select an assignment to edit, grade, or view its grades:</legend>
 
 				<?php 

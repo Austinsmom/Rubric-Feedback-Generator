@@ -27,11 +27,13 @@ $emailContent = stripSlashes(gradeEmailContent($gradeID, $userNicename, $assignm
 
 <?php
 if(count($_POST)) {
+	// email header setup
 	$emailHeaders = 'MIME-Version: 1.0' . "\r\n";
 	$emailHeaders .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 	$emailHeaders .= 'To: ' . $emailTo . "\r\n";
 	$emailHeaders .= 'From: ' . $emailFrom . "\r\n";
 	
+	// send email
 	if ( @mail( $emailTo, $emailSubject, $emailContent, $emailHeaders) ) {
 		echo '<p>The grade was successfully sent via email. <a href="user-admin.php">Click here to go back to User Admin.</a></p>';
 	}

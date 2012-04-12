@@ -10,11 +10,9 @@
 
 /**
 * Saves Grade to the database
-* @param $student
-* @param $rubricID
-* @param $assignment
-* @param $content
-* @param $points
+* @param $student - email address of student this grade is for
+* @param $rubricID - id of rubric used to create this grade
+* @param $assignment - assignment this is a grade of
 */
 function saveGradeToDatabase( $student, $rubricID, $assignment ) {
 	mysql_query("INSERT INTO rubric_grade (grade_student, grade_rubric_id, grade_assignment_id) VALUES ('$student', '$rubricID', '$assignment')") or die('There was an error saving: ' . mysql_error());
@@ -22,9 +20,9 @@ function saveGradeToDatabase( $student, $rubricID, $assignment ) {
 
 /**
 * Returns content of grade email
-* @param $gradeID
-* @param $userNicename
-* @param $assignmentTitle
+* @param $gradeID - id of grade being emailed
+* @param $userNicename - nicename of user that created this grade
+* @param $assignmentTitle - title of assignment this is a grade of
 */
 function gradeEmailContent( $gradeID, $userNicename, $assignmentTitle ) {
 
@@ -42,17 +40,13 @@ function gradeEmailContent( $gradeID, $userNicename, $assignmentTitle ) {
 
 		// echo content of the email
 		return '<p>The following is the feedback and grade on your <strong>"' . $assignmentTitle . '"</strong> submission:
-		
-			<div style="margin:10px 0;">' . $gradeContent . '</div>
+				<div style="margin:10px 0;">' . $gradeContent . '</div>
 			
-			<p>###########################################################</p>  
-			
-			<p><span style="font-weight:bold;">Your Grade:</span> ' . $gradePoints . ' (out of ' . $possiblePoints . ' possible points)</p>
-			
-			<p>###########################################################</p>  
-			<p>Respond to this email if you have any questions.</p> <p>--</p>
-			<p>' . $userNicename . '<br /><em>Sent via Rubric Creator 9000XL Premium</em></p>';
-		
+				<p>###########################################################</p>  
+				<p><span style="font-weight:bold;">Your Grade:</span> ' . $gradePoints . ' (out of ' . $possiblePoints . ' possible points)</p>
+				<p>###########################################################</p>  
+				<p>Respond to this email if you have any questions.</p> <p>--</p>
+				<p>' . $userNicename . '<br /><em>Sent via Rubric Creator 9000XL Premium</em></p>';
 	}
 	else {
 		echo "Error - multiple grades with this ID exists. Contact admin for help.";
@@ -62,11 +56,12 @@ function gradeEmailContent( $gradeID, $userNicename, $assignmentTitle ) {
 
 /**
 * Calculates and returns the total points of a grade
-* @param $gradeID
+* @param $gradeID - id of grade having total calculated
 */
 function calculateGradeTotal( $gradeID ) {
 	$gradeTotal = 0;
 	
+	// get answers from a grade to get points
 	$answers = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_grade_id = '$gradeID' AND is_comment = '0' AND is_textbox = '0';");
 	$answersCount = mysql_num_rows($answers);
 	
@@ -74,7 +69,6 @@ function calculateGradeTotal( $gradeID ) {
 	
 		while ( $answersRow = mysql_fetch_array($answers) ) {
 			$answerID = $answersRow['answer_value'];
-			
 			$answerValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_id = '$answerID';");
 			$answerValuesCount = mysql_num_rows($answerValues);
 			
@@ -90,16 +84,16 @@ function calculateGradeTotal( $gradeID ) {
 	
 	}
 	else $gradeTotal = 0;
-	
 	return $gradeTotal;
 }
 
 /** 
-* Returns grade's answer content
-* @param $gradeID
+* Returns grade's answer content to be emailed
+* @param $gradeID - id of grade having content returned
 */
+function printGradeAnswers($gradeID) {
 
-function printGradeAnswers( $gradeID ) {
+	// get grade info
 	$gradeAnswers = "";
 	$gradeSet = mysql_query("SELECT * FROM rubric_grade WHERE grade_id = '$gradeID';");
 	$gradeCount = mysql_num_rows($gradeSet);
@@ -107,6 +101,7 @@ function printGradeAnswers( $gradeID ) {
 	if ( $gradeCount == 1 ) {
 		
 		while ( $gradeRow = mysql_fetch_array($gradeSet)) {
+			// get rubric info to output as grade
 			$rubricID = $gradeRow['grade_rubric_id'];
 			$rubricSet = mysql_query("SELECT * FROM rubric_form WHERE rubric_id = '$rubricID';");
 			$rubricCount = mysql_num_rows($rubricSet);
@@ -121,7 +116,8 @@ function printGradeAnswers( $gradeID ) {
 				if ( $criteriaCount != 0 ) {
 					
 					while ( $row = mysql_fetch_array($criteriaSet)) {
-					
+						
+						// get criteria info for various criteria
 						$criteriaID = $row['criteria_id'];
 						$criteriaType = $row['criteria_type'];
 						
@@ -163,7 +159,7 @@ function printGradeAnswers( $gradeID ) {
 
 /**
 * Returns title or plaintext for emailing feedback
-* @param $id
+* @param $id - id of rubric criteria to return
 */
 function getTextEmail($id) {
 	$criteriaID = $id;
@@ -181,13 +177,16 @@ function getTextEmail($id) {
 
 
 /**
-* Ruturns rubric criteria answers of type "radio" for emailing feedback
+* Returns rubric criteria answers of type "radio" for emailing feedback
+* @param $id - id of rubric radio criteria
+* @param $grade - id of grade for this rubric
 */
 function getGradedRadioEmail($id, $grade) {
 	$criteriaID = $id;
 	$gradeID = $grade;
 	$textboxEmail = "";
 	
+	// get criteria info
 	$criteriaRecord = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_ID = '$criteriaID'") or die('Error: Cannot get Radio criteria wanted. Contact admin for help: ' . mysql_error());
 	$criteriaCount = mysql_num_rows($criteriaRecord);
 	
@@ -195,6 +194,7 @@ function getGradedRadioEmail($id, $grade) {
 		
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
+			// output grade content
 			$radioEmail .= '<span style="font-weight:bold;">' . $row['criteria_content'] . '</span>: ';
 			
 			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_textbox = '0' AND is_comment='0'");	
@@ -245,8 +245,8 @@ function getGradedRadioEmail($id, $grade) {
 
 /** 
 * Returns rubric criteria answers of type "textbox" for emailing feedback
-* @param $id
-* @param $order
+* @param $id - id of rubric textbox criteria
+* @param $grade - id of grade for this rubric
 */
 
 function getGradedTextboxEmail($id, $grade) {

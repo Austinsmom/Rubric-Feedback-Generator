@@ -30,7 +30,7 @@ $assignmentTitle = $_POST['assignment-title'];
 		if ($count != 0) { ?>
 			
 			<form id="form-grade" name="form-grade" method="post">
-			 <fieldset>
+			 <fieldset class="check">
 				 <legend>Select a grade to edit or send to student:</legend>
 
 				<?php 
@@ -51,7 +51,7 @@ $assignmentTitle = $_POST['assignment-title'];
 							}
 						}
 						
-						echo '<p><input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' &bull; Total Points: ' . $gradeTotal . '</p>';
+						echo '<input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' &bull; Total Points: ' . $gradeTotal . '<br />';
 					}		
 				?>	
 			 </fieldset>	

@@ -1,8 +1,7 @@
 <?php 
 /**
 *	Rubric Creator - Edit Rubric
-*	 1. outputs form delimited content
-*	 2. allows the user to edit the submitted tab-delimited text and resubmit
+*	 1. outputs rubric to allow editing by user
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -15,10 +14,12 @@ if(!isset($_COOKIE["user"])){
 
 require('includes/header.php'); 
 
+// get info of rubric to be edited
 $rubricChoice = $_POST['rubric-choice'];
 $rubricRecords = mysql_query("SELECT * FROM rubric_form WHERE rubric_id='$rubricChoice'");
 $rubricCount = mysql_num_rows($rubricRecords);
 
+// get assignments attributed to this rubric
 $assignmentRecords = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_rubric_id='$rubricChoice'");
 $assignmentCount = mysql_num_rows($assignmentRecords);
 
@@ -34,25 +35,19 @@ $assignmentCount = mysql_num_rows($assignmentRecords);
 else {
 
   if ( $assignmentCount > 0 ) {
-  	// check if assignments are attributed to this rubric
-  	// if there are and they have grades, warn user
-  	
+  	// if assignments are attributed to this rubric, warn user that grades will change
   	$warning = '<div class="warning"><h3>WARNING</h3><p>You have assignments using this rubric, which may have grades on record already. If you edit this rubric, you will be changing those grades.</p><ul>';
-  
 	  	while ( $assignmentRow = mysql_fetch_array($assignmentRecords) ){
 	  		$assignmentID = $assignmentRow['assignment_id'];
 	  		$assignmentTitle = $assignmentRow['assignment_title'];
-	  		
 	  		$assignmentText = '<li>' . $assignmentTitle;
 	  		
 	  		$gradeRecords = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");
 	  		$gradeCount = mysql_num_rows($gradeRecords);
 	  		
 	  		$assignmentText .= ' [' . $gradeCount . ' grade(s) on record]</li>';
-	  		
 	  		$warning .= $assignmentText;
 		}
-	
 	$warning .= '</ul></div>';
 	echo $warning;
   }
@@ -70,13 +65,14 @@ else {
 		<fieldset>
 			<p>
 				<label for="form-title">Rubric Title:</label>
-				<input type="text" name="form-title" value="<?php echo $title; ?>" />
+				<input id="rubric-title" type="text" name="form-title" value="<?php echo $title; ?>" />
 			</p>
 			
 			<p>
 				<label for="form-description">Rubric Description:</label>
-				<textarea name="form-description"><?php echo stripSlashes($description); ?></textarea>
+				<textarea id="rubric-description" name="form-description"><?php echo stripSlashes($description); ?></textarea>
 			</p>
+			
 		</fieldset>
 		
 		<?php 
@@ -135,7 +131,7 @@ else {
 		</div>
 		
 		<input type="hidden" name="rubric-id" value="<?php echo $id; ?>" />
-		<input type="submit" value="submit edits" />
+		<input id="submit-form-edit" type="submit" value="submit edits" />
 	
 	</form>
 

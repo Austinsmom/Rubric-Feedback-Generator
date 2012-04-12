@@ -22,44 +22,44 @@ require('includes/header.php');
 	<h1>Grade Edit</h1>
 	
 	<?php  
+		// grab grade from the database
   		$gradeID = $_POST['grade-choice'];
-		$sql = "SELECT * FROM rubric_grade WHERE grade_id='$gradeID'";
-		$result = mysql_query($sql);
-		$count = mysql_num_rows($result);
+		$gradeQuery = mysql_query("SELECT * FROM rubric_grade WHERE grade_id='$gradeID'");
+		$gradeCount = mysql_num_rows($gradeQuery);
 
-		if ($count != 0) { 
+		if ($gradeCount != 0) { 
 		
-			while ( $row = mysql_fetch_array($result)) {
+			while ( $gradeRow = mysql_fetch_array($gradeQuery)) {
 				
-				$student = $row['grade_student'];
-				$assignmentID = $row['grade_assignment_id'];
+				// get grade student & assignment and print to screen
+				$student = $gradeRow['grade_student'];
+				$assignmentID = $gradeRow['grade_assignment_id'];
 				$assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignmentID';");
 				
 				while ( $assignmentRow = mysql_fetch_array($assignmentQuery)) {
 					$assignment = $assignmentRow['assignment_title'];
 				}
-				
-				
+		
 				echo '<p>Student: ' . $student . '<br />Assignment: ' . $assignment . '</p>';
 		?>
-				<form id="form-output-fill" name="form-output-fill" action="grade-edit-submit.php" method="post">
+				<form id="form-grade-edit" name="form-grade-edit" method="post">
 					
 					<div id="form-output">
 					<?php 
-						$rubricID = $row['grade_rubric_id'];
+						// print rubric with id $rubricID and answers from database
+						$rubricID = $gradeRow['grade_rubric_id'];
 						printRubric($rubricID, $gradeID); 
 					?>
 					</div>
 					
 					<div id="form-save">
 						<input type="hidden" name="grade-id" value="<?php echo $gradeID; ?>" />
-						<input class="save button" type="submit" value="Save Grade" />
+						<input id="submit-grade-edit" class="save button" type="submit" value="Save Grade" />
 					</div>
 				
 				</form>
 	<?php 	}
 		}
-		else { echo 'Error - No Grade with this ID!'; } ?>
-
+		else { echo 'Error - No Grade with this ID. Contact admin for help.'; } ?>
 
 <?php require('includes/footer.php'); ?>

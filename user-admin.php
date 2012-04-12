@@ -32,7 +32,7 @@ require('includes/header.php'); ?>
 		if ($count != 0) { ?>
 			
 			<form id="form-classes" name="form-classes" method="post">
-			 <fieldset>
+			 <fieldset class="check">
 			 	<legend>Select a class to complete or view assignments:</legend>
 				
 				<?php 
@@ -68,7 +68,7 @@ require('includes/header.php'); ?>
 		if ($count != 0) { ?>
 			
 			<form id="form-rubric" name="form-rubric" method="post">
-			 <fieldset>
+			 <fieldset class="check">
 				<legend>Select a rubric to complete or edit:</legend>
 				
 				<?php 
@@ -88,5 +88,11 @@ require('includes/header.php'); ?>
 			 <input type="submit" value="Edit this Rubric" id="edit-rubric" />
 			</form>		
 	<?php } else { /* no rubrics, do nothing */ } ?>
+	
+	<h2>Your account</h2>
+			
+	<ul>
+		<li><a href="user-edit.php">update your account info</a></li>
+	</ul>
 		
 <?php require('includes/footer.php'); ?>

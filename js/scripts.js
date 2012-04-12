@@ -13,10 +13,10 @@ jQuery(document).ready(function () {
 	*/
 	
 	// Allows tabs to be entered in textarea elements
-	$("textarea").tabby();
+	$("#form-delimited textarea").tabby();
 	
 	// Always have a form's first radio button selected by default
-	$("fieldset").each(function() {
+	$("fieldset.check").each(function() {
 		$(this).children("input:first").attr('checked', true);
 	});
 	
@@ -234,9 +234,148 @@ jQuery(document).ready(function () {
 		}
 		
 	});
+
+	/**
+	* Grades
+	*/
+	
+	// edit grade
+	$("#submit-grade-edit").click( function() {
+
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// go through each textarea item in the form to check for values
+		$("#form-grade-edit").find("textarea").each(function(){
+			if ( $(this).val().length == 0) {
+	     		 $(this).addClass('empty-input');
+	     		 validInput = false;
+			}
+		});
+		
+		// go through each input item in the form to check for values
+		$("#form-grade-edit").find("input").each(function(){		
+			if ( $(this).val().length == 0) {
+	     		 $(this).addClass('empty-input');
+	     		 validInput = false;
+			}
+		});
+
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$("#form-grade-edit").append('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-grade-edit").attr("action", "grade-edit-submit.php").submit();
+		}
+		
+	});
+
+	// submit grade
+	$("#submit-grade").click( function() {
+
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// go through each textarea item in the form to check for values
+		$("#form-grade-assignment").find("textarea").each(function(){
+			if ( $(this).val().length == 0) {
+	     		 $(this).addClass('empty-input');
+	     		 validInput = false;
+			}
+		});
+		
+		// go through each input item in the form to check for values
+		$("#form-grade-assignment").find("input").each(function(){		
+			if ( $(this).val().length == 0) {
+	     		 $(this).addClass('empty-input');
+	     		 validInput = false;
+			}
+		});
+
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$("#form-grade-assignment").append('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-grade-assignment").attr("action", "grade-submit.php").submit();
+		}
+	});
+
 	
 	/**
-	* User Admin Scripts
+	* Rubrics
+	*/
+	
+	// new rubric import via delimited form
+	$("#submit-form-delimited").click( function() {
+
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if delimited textarea is blank, warn user
+		if ( $("#delimited-text").val().length == 0) {
+     		 $("#delimited-text").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$("#form-delimited").append('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-delimited").attr("action", "rubric-delimited-verify.php").submit();
+		}
+		
+	});
+	
+	// verify new rubric import via delimited form
+	$("#submit-form-output").click( function() {
+
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if rubric title is blank, warn user
+		if ( $("#form-rubric-title").val().length == 0) {
+     		 $("#form-rubric-title").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if rubric description is blank, warn user
+		if ( $("#form-rubric-description").val().length == 0) {
+     		 $("#form-rubric-description").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$("#submit-form-output").after('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-output-save").attr("action", "rubric-delimited-save.php").submit();
+		}
+		
+	});
+	
+		
+	/**
+	* User Admin
 	*/
 	
 	// Determine whether user wants to edit class or view assignments based on submit
@@ -270,14 +409,82 @@ jQuery(document).ready(function () {
 	$("#email-grade").click( function(){
 		$("#form-grade").attr("action", "grade-email.php").submit();
 	});
+	
+	// verify user edit form
+	$("#submit-user-edit").click( function() {
+
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// if user nicename is blank, warn user
+		if ( $("#nicename").val().length == 0) {
+     		 $("#nicename").addClass('empty-input');
+     		 validInput = false;
+		}
+		
+		// if user email is blank, warn user
+		if ( $("#email").val().length == 0) {
+     		 $("#email").addClass('empty-input');
+     		 validInput = false;
+		}
+				
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$("#submit-user-edit").after('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-user-edit").attr("action", "user-validate.php").submit();
+		}
+		
+	});
+
 
 	
 	/**
-	* Edit Rubric Scripts
+	* Edit Rubric
 	*/
 	
 	var editInputCount = 1;
 	var radioValueCount = 1;
+	
+	$("#submit-form-edit").click( function() {
+
+		// first remove any already existing warning and validation markers
+		$("input").removeClass('empty-input');
+		$("#submit-warning").remove();
+		
+		var validInput = true;
+		
+		// go through each textarea item in the form to check for values
+		$("#form-edit").find("textarea").each(function(){
+			if ( $(this).val().length == 0 && $(this).parent('fieldset').hasClass('deleted') == false) {
+	     		 $(this).addClass('empty-input');
+	     		 validInput = false;
+			}
+		});
+		
+		// go through each input item in the form to check for values
+		$("#form-edit").find("input").each(function(){		
+			if ( $(this).val().length == 0 && $(this).parent('fieldset').hasClass('deleted') == false) {
+	     		 $(this).addClass('empty-input');
+	     		 validInput = false;
+			}
+		});
+		
+		// show warning if validInput == false, else submit
+		if ( validInput == false ) {
+			$("#submit-form-edit").after('<span id="submit-warning">Fields in red should not be blank!</span>');
+			return validInput;
+		}
+		else {
+			$("#form-edit").attr("action", "rubric-edit-save.php").submit();
+		}
+		
+	});
 
 	// returns the max value of all inputs with class="order"
 	function findMaxOrder() {

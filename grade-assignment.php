@@ -1,8 +1,7 @@
 <?php 
 /**
 *	Rubric Creator - Grade Assignment
-*	 1. Shows the rubric for the assignment to be graded
-*	 2. Lets user save form data to a grade database
+*	 1. Shows the rubric form for the assignment to be graded
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -38,15 +37,13 @@ require('includes/header.php');
 				$rubricID = $row['assignment_rubric_id'];
 			}
 		}
-
 ?>
 		
 		<h1>Grading Assignment: <em><?php echo $assignmentTitle; ?></em></h1>
 
-		<form id="form-output-fill" name="form-output-fill" action="grade-submit.php" method="post">
+		<form id="form-grade-assignment" name="form-grade-assignment" method="post">
 			
-			<fieldset>
-				
+			<fieldset class="check">
 				<p>
 					<label for="user-email">
 						Student's email address: 
@@ -59,11 +56,11 @@ require('includes/header.php');
 			</fieldset>
 			
 			<div id="form-output">
-			<?php printRubric($rubricID, false); ?>
+				<?php printRubric($rubricID, false); ?>
 			</div>
 			
 			<div id="form-save">
-				<input class="save button" type="submit" value="Save Grade" />
+				<input id="submit-grade" class="save button" type="submit" value="Save Grade" />
 			</div>
 		
 		</form>	

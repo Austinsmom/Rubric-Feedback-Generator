@@ -2,7 +2,6 @@
 /**
 *	Rubric Creator - Save Form
 *	 1. saves the form to database
-*	 2. allows the user to select form to start sending
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -19,7 +18,7 @@ $rubricTitle = $_POST['form-title'];
 $rubricDescription = addslashes($_POST['form-description']);
 $rubricContent = addslashes($_POST['finalDelimitedText']);
 
-/* if there is no rubric title, set default title */
+// if there is no rubric title, set default title 
 if ($rubricTitle == null) {
 	$rubricTitle = "Untitled Rubric";
 }
