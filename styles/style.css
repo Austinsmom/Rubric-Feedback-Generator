@@ -41,6 +41,9 @@ li.deleted { }
 ul.radio-options li { margin: 20px 0; }
 #add-items-panel { text-align: right; }
 
+/* ----- Assignments ------------------- */
+#no-rubrics.empty-input { border: 0px; background: #C66; padding: 10px; }
+
 /* ----- Form Output ------------------- */
 #form-output label { font-size: 1.2em; padding-bottom: 5px; }
 

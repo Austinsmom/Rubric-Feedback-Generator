@@ -18,8 +18,38 @@ require('includes/header.php'); ?>
 
 <h1>Rubric Creator - Create New Rubric</h1>
 
-<p>Here is where you will <em>soon</em> be able to create rubrics from scratch.</p>
 
-<p><a href="rubric-delimited-new.php">Click here to import new rubric.</a></p>
+<ul>
+	<li><a href="rubric-delimited-new.php">Click here to import new rubric.</a></li>
+</ul>
+
+
+<?php // blank slate form to create new rubric ?>
+
+<form id="form-edit" name="form-edit" method="post">
+
+	<fieldset>
+		<p>
+			<label for="form-title">Rubric Title:</label>
+			<input id="rubric-title" type="text" name="form-title" />
+		</p>
+		
+		<p>
+			<label for="form-description">Rubric Description:</label>
+			<textarea id="rubric-description" name="form-description"></textarea>
+		</p>
+		
+	</fieldset>
+	
+	<div id="add-items-panel">
+		<div id="add-title" class="button">Add Title</div>
+		<div id="add-plaintext" class="button">Add Plaintext</div>
+		<div id="add-textbox" class="button">Add Textbox Criteria</div>
+		<div id="add-radio" class="button">Add Radio Criteria</div>
+	</div>
+	
+	<input id="submit-form-new" type="submit" value="create new rubric" />
+
+</form>
 
 <?php require('includes/footer.php'); ?>

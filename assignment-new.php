@@ -45,7 +45,7 @@ $classTitle = $_POST['class-title'];
 			$count = mysql_num_rows($rubricRecords);
 		
 			if ( $count == 0 ) {
-				echo '[<strong>You have not created any rubrics. <a href="rubric-new.php">Click here to create one</a>.</strong>]';
+				echo '<div id="no-rubrics">[You have not created any rubrics. <a href="rubric-new.php">Click here to create one</a>.]</div>';
 			}
 			else {
 				echo '<select name="assignment-rubric">';
