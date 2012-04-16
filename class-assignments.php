@@ -61,8 +61,15 @@ $classTitle = $_POST['class-title'];
 			 <input type="submit" id="grade-assignment" value="Grade this Assignment" />
 			 <input type="submit" id="view-grades" value="View Grades for this Assignment" />
 			 <input type="submit" id="edit-assignment" value="Edit this Assignment" />
+			 <input type="submit" id="delete-assignment" value="Delete this Assignment" />
 			  
 			</form>		
 	<?php } else { /* no assignments, do nothing */ } ?>
+	
+<div id="delete-prompt">
+	Are you sure you want to delete this grade? 
+	<a class="button" id="cancel-assignment-delete">Cancel</a>
+	<a class="button" id="confirm-assignment-delete">Yes, Delete This Grade</a>
+</div>
 
 <?php require('includes/footer.php'); ?>

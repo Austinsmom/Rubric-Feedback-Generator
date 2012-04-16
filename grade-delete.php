@@ -1,7 +1,7 @@
 <?php 
 /**
 *	Rubric Creator - Grade Delete
-*	 1. Removes grade from the database after user edits
+*	 1. Removes grade from the database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
@@ -23,8 +23,6 @@ $gradeID = $_POST['grade-choice'];
 deleteGrade($gradeID);
 
 ?>
-
-<body id="save">
 
 <p>Your grade was deleted. <a href="user-admin.php">Click here to go back to User Admin.</a></p>
 

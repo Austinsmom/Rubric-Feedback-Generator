@@ -320,6 +320,22 @@ jQuery(document).ready(function () {
 		}
 		
 	});
+	
+	// delete assignment
+	$("#delete-assignment").click( function() {
+		$("#delete-prompt").css("display","block");
+		return false;
+	});
+	
+	$("#confirm-assignment-delete").click( function() {
+		$("#form-assignment").attr("action", "assignment-delete.php").submit();
+	});
+	
+	$("#cancel-assignment-delete").click( function() {
+		$("#delete-prompt").css("display","none");
+		return false;
+	});
+
 
 
 	/**
