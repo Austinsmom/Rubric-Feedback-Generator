@@ -37,9 +37,12 @@ input[type="submit"] { display: block; margin: 15px auto; }
 /* ----- Edit Rubric Form Elements ----- */
 fieldset.deleted, li.deleted { color: #aaa; font-style: italic; background: #efefef; }
 fieldset.deleted input, li.deleted input { color: #aaa; font-style: italic; background: #efefef; }
+li.deleted div.button.delete-new-value { display: none; }
+fieldset.deleted div.button.add-value.new-radio { display: none; }
 li.deleted { }
 ul.radio-options li { margin: 20px 0; }
 #add-items-panel { text-align: right; }
+
 
 /* ----- Assignments ------------------- */
 #no-rubrics.empty-input { border: 0px; background: #C66; padding: 10px; }

@@ -543,7 +543,7 @@ jQuery(document).ready(function () {
 			return validInput;
 		}
 		else {
-			//$("#form-new").attr("action", "rubric-edit-save.php").submit();
+			$("#form-edit").attr("action", "rubric-new-save.php").submit();
 		}
 		
 	});
@@ -641,12 +641,14 @@ jQuery(document).ready(function () {
 			$thisButton.text("Undo delete");
 			$thisButton.parent("fieldset").children("input.is-live").val("0");
 			$thisButton.parent("fieldset").addClass("deleted");
+			$thisButton.parent("fieldset").find("ul.radio-options li").addClass("deleted");
 		}
 		//else change is_live to 1 and value to "delete"
 		else {
 			$thisButton.text("Delete");
 			$thisButton.parent("fieldset").children('input.is-live').val("1");
 			$thisButton.parent("fieldset").removeClass("deleted");
+			$thisButton.parent("fieldset").find("ul.radio-options li").removeClass("deleted");
 		}
 	});
 	

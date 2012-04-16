@@ -145,7 +145,11 @@ function saveRubricToDatabase($author, $title, $description, $content) {
 	$content = mysql_real_escape_string($content);
 	mysql_query("INSERT INTO rubric_form (rubric_author, rubric_title, rubric_description, rubric_content) VALUES ('$author', '$title', '$description', '$content')") or die('There was an error saving: ' . mysql_error());
 	$latestRubric = mysql_insert_id();
-	saveCriteriaToDatabase($latestRubric);
+	
+	// only moves on if created with delimited content
+	if ( $content != "") {
+		saveCriteriaToDatabase($latestRubric);
+	}
 }
 
 /**
