@@ -398,6 +398,21 @@ jQuery(document).ready(function () {
 			$("#form-grade-assignment").attr("action", "grade-submit.php").submit();
 		}
 	});
+	
+	// delete grade
+	$("#delete-grade").click( function() {
+		$("#delete-prompt").css("display","block");
+		return false;
+	});
+	
+	$("#confirm-grade-delete").click( function() {
+		$("#form-grade").attr("action", "grade-delete.php").submit();
+	});
+	
+	$("#cancel-grade-delete").click( function() {
+		$("#delete-prompt").css("display","none");
+		return false;
+	});
 
 	
 	/**
@@ -463,8 +478,6 @@ jQuery(document).ready(function () {
 		}
 		
 	});
-	
-		
 
 	
 	/**

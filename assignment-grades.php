@@ -56,13 +56,24 @@ $assignmentTitle = $_POST['assignment-title'];
 				?>	
 			 </fieldset>	
 			
-			 <input type="submit" value="edit grade" id="edit-grade" />
-			 <input type="submit" value="email grade" id="email-grade" />
+			 <input type="submit" value="View/Edit Grade" id="edit-grade" />
+			 <input type="submit" value="Delete Grade" id="delete-grade" />
+			 <input type="submit" value="Email Grade" id="email-grade" />
 			</form>		
 	<?php } else { ?>
 
 			<p>You have no grades yet.</p>
 	
 		<?php } ?>
+		
+<div id="delete-prompt">
+
+Are you sure you want to delete this grade? 
+
+<a class="button" id="cancel-grade-delete">Cancel</a>
+
+<a class="button" id="confirm-grade-delete">Yes, Delete This Grade</a>
+
+</div>
 	 
 <?php require('includes/footer.php'); ?>

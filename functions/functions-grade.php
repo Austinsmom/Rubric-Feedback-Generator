@@ -281,4 +281,18 @@ function getGradedTextboxEmail($id, $grade) {
 	else return "Error: Multiple, or no, criteria with this ID exist. Contact admin for help.";
 }
 
+/** 
+* Deletes given grade from the database
+* @param $id - id of grade to be deleted
+*/
+
+function deleteGrade($id) {
+	// remove grade from database
+	mysql_query("DELETE FROM rubric_grade WHERE grade_id = '$id'") or die();	
+	
+	// remove graded answers from database
+	mysql_query("DELETE FROM rubric_grade_answers WHERE answer_grade_id = '$id'") or die();	
+}
+
+
 ?>

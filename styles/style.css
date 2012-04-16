@@ -18,6 +18,7 @@ h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
 .warning { padding: 20px; background: #c66; border: 1px solid #c66; }
 #submit-warning { display: block; padding: 10px; background: #c66; margin: 20px auto; }
 #footer-admin { background: #efefef; padding: 10px; margin: 20px auto; border: 1px solid #ddd; text-align: right; }
+#delete-prompt { background: #c66; padding: 10px; display: none; margin-top: -20px; }
 
 /* ----- Form Elements ----------------- */
 .button { display: inline-block; padding: 5px 10px; margin: 3px; background: #efefef; font-weight: bold; border: 1px solid #ccc; cursor: pointer; }
@@ -42,7 +43,6 @@ fieldset.deleted div.button.add-value.new-radio { display: none; }
 li.deleted { }
 ul.radio-options li { margin: 20px 0; }
 #add-items-panel { text-align: right; }
-
 
 /* ----- Assignments ------------------- */
 #no-rubrics.empty-input { border: 0px; background: #C66; padding: 10px; }
