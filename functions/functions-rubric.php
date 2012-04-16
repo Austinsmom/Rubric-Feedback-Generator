@@ -732,4 +732,30 @@ function calculateTotalPossiblePoints( $rubricID ) {
 	return $possiblePoints;
 }
 
+/** 
+* Deletes given rubric from the database
+* @param $id - id of rubric to be deleted
+*/
+function deleteRubric($id) {
+	// remove rubric from database
+	mysql_query("DELETE FROM rubric_form WHERE rubric_id = '$id'") or die();
+	
+	// get rubric_criteria where criteria_rubric_id = $id
+	$criteriaRecords = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$id'") or die();
+	$criteriaCount = mysql_num_rows($criteriaRecords);
+	
+	if ( $criteriaCount > 0 ) {
+		while ( $criteriaRow = mysql_fetch_array($criteriaRecords) ) {
+			// delete all records in rubric_criteria_values where value_criteria_id = criteria-id
+			$criteriaID = $criteriaRow['criteria_id'];
+			mysql_query("DELETE FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID'") or die();
+		}
+	}
+	else { /* there's no criteria, so there's nothing to do */ }
+	
+	// delete all criteria for this rubric
+	mysql_query("DELETE FROM rubric_criteria WHERE criteria_rubric_id = '$id'");
+}
+
+
 ?>

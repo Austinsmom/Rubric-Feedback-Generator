@@ -31,7 +31,7 @@ require('includes/header.php'); ?>
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-classes" name="form-classes" method="post">
+			<form id="form-class" name="form-class" method="post">
 			 <fieldset class="check">
 			 	<legend>Select a class to complete or view assignments:</legend>
 				
@@ -50,9 +50,17 @@ require('includes/header.php'); ?>
 			
 			 <input type="hidden" name="class-title" value="<?php echo $title; ?>" />
 			 <input type="submit" id="view-assignments" value="View Assignments for this Class" onclick ="choseViewAssignments()" />
-			 <input type="submit" id="edit-class" value="Edit this Class" onclick="choseEdit()" />
+			 <input type="submit" id="edit-class" value="Edit this Class" />
+			 <input type="submit" id="delete-class" value="Delete this Class" />
+			 
 			</form>		
-	<?php } else { /* no classes, do nothing */} ?>		 
+	<?php } else { /* no classes, do nothing */} ?>		
+	
+	<div id="delete-prompt" class="class">
+		Are you sure you want to delete this class? 
+		<a class="button" id="cancel-class-delete">Cancel</a>
+		<a class="button" id="confirm-class-delete">Yes, Delete This Class</a>
+	</div> 
 	 
 	 
 	 <h2>Your rubrics</h2>
@@ -85,9 +93,17 @@ require('includes/header.php'); ?>
 				?>
 			 </fieldset>	
 			
-			 <input type="submit" value="Edit this Rubric" id="edit-rubric" />
+			 <input type="submit" value="View/Edit this Rubric" id="edit-rubric" />
+			 <input type="submit" value="Delete this Rubric" id="delete-rubric" />
 			</form>		
+			
 	<?php } else { /* no rubrics, do nothing */ } ?>
+	
+	<div id="delete-prompt" class="rubric">
+		Are you sure you want to delete this rubric? 
+		<a class="button" id="cancel-rubric-delete">Cancel</a>
+		<a class="button" id="confirm-rubric-delete">Yes, Delete This Rubric</a>
+	</div> 
 	
 	<h2>Your account</h2>
 			

@@ -28,11 +28,11 @@ $gradeCount = mysql_num_rows($gradeRecords);
 // if no grades, delete assignment from database
 if ( $gradeCount == 0 ){
 	deleteAssignment($assignmentID);
-	echo '<p>Your assignment was deleted. ';
+	echo '<p>Your assignment was deleted. <a href="user-admin.php">Click here to go back to User Admin.</a></p>';
 }
 else {
 	// else, warn user that they cannot delete assignments with grades
-	echo '<p>You cannot delete this assignment, as there are ' . $gradeCount . ' grades associated with it. Delete those grades before deleting this assignment. <a href="user-admin.php">Click here to go back to User Admin.</a></p>';
+	echo '<p>You cannot delete this assignment, as there are grades associated with it (' . $gradeCount . ', to be exact).</p><p>Delete those grades before deleting this assignment. <a href="user-admin.php">Click here to go back to User Admin.</a></p>';
 }
 
 ?>

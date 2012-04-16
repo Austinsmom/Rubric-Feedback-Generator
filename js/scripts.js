@@ -106,10 +106,10 @@ jQuery(document).ready(function () {
 	
 	// Determine whether user wants to edit class or view assignments based on submit
 	$("#edit-class").click( function(){
-		$("#form-classes").attr("action", "class-edit.php").submit();
+		$("#form-class").attr("action", "class-edit.php").submit();
 	});
 	$("#view-assignments").click( function(){
-		$("#form-classes").attr("action", "class-assignments.php").submit();
+		$("#form-class").attr("action", "class-assignments.php").submit();
 	});
 	
 	// Determine whether user wants to edit assignment, grade assignment or view grades based on submit
@@ -238,6 +238,21 @@ jQuery(document).ready(function () {
 			$("#form-class-edit").attr("action", "class-edit-submit.php").submit();
 		}
 
+	});
+	
+	// delete class
+	$("#delete-class").click( function() {
+		$("#delete-prompt.class").css("display","block");
+		return false;
+	});
+	
+	$("#confirm-class-delete").click( function() {
+		$("#form-class").attr("action", "class-delete.php").submit();
+	});
+	
+	$("#cancel-class-delete").click( function() {
+		$("#delete-prompt.class").css("display","none");
+		return false;
 	});
 
 
@@ -737,5 +752,20 @@ jQuery(document).ready(function () {
 			$thisButton.parent("li").removeClass("deleted");
 		}
   	});
+  	
+  	// delete rubric
+	$("#delete-rubric").click( function() {
+		$("#delete-prompt.rubric").css("display","block");
+		return false;
+	});
+	
+	$("#confirm-rubric-delete").click( function() {
+		$("#form-rubric").attr("action", "rubric-delete.php").submit();
+	});
+	
+	$("#cancel-rubric-delete").click( function() {
+		$("#delete-prompt.rubric").css("display","none");
+		return false;
+	});
 
 });
