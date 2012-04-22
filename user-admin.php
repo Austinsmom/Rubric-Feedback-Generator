@@ -58,8 +58,8 @@ require('includes/header.php'); ?>
 	
 	<div id="delete-prompt" class="class">
 		Are you sure you want to delete this class? 
-		<a class="button" id="cancel-class-delete">Cancel</a>
-		<a class="button" id="confirm-class-delete">Yes, Delete This Class</a>
+		<input class="button" id="cancel-class-delete" value="Cancel" />
+		<input class="button" id="confirm-class-delete" value="Yes, Delete Class" />
 	</div> 
 	 
 	 
@@ -101,8 +101,8 @@ require('includes/header.php'); ?>
 	
 	<div id="delete-prompt" class="rubric">
 		Are you sure you want to delete this rubric? 
-		<a class="button" id="cancel-rubric-delete">Cancel</a>
-		<a class="button" id="confirm-rubric-delete">Yes, Delete This Rubric</a>
+		<input class="button" id="cancel-rubric-delete" value="Cancel" />
+		<input class="button" id="confirm-rubric-delete" value="Yes, Delete Rubric" />
 	</div> 
 	
 	<h2>Your account</h2>

@@ -20,6 +20,13 @@ jQuery(document).ready(function () {
 		$(this).children("input:first").attr('checked', true);
 	});
 	
+	// Validate email
+	function isValidEmailAddress(emailAddress) {
+    	var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+    	return pattern.test(emailAddress);
+	};
+
+
 	/**
 	* Login & Registration
 	*/
@@ -63,6 +70,7 @@ jQuery(document).ready(function () {
 		$("#submit-warning").remove();
 		
 		var validInput = true;
+		var validEmail = true;
 		
 		// if username is blank, warn user
 		if ( $("#username").val().length == 0) {
@@ -88,14 +96,24 @@ jQuery(document).ready(function () {
 			validInput = false;
 		}
 		
+		// if email is invalid, warn user
+		if ( !isValidEmailAddress($("#email").val()) ){
+			$("#email").addClass('invalid-email');
+			validEmail = false;
+		}
+		
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$(this).parent("form").append('<span id="submit-warning">Do not leave any fields blank!</span>');
 			return validInput;
 		}
-		else {
-			$("#form-register").attr("action", "user-validate.php").submit();
-		}
+		else if ( validEmail == false) {
+				$(this).parent("form").append('<span id="submit-warning" class="invalid-email">You must submit a valid email!</span>');
+				return validEmail;
+			}
+			else {
+				$("#form-register").attr("action", "user-validate.php").submit();
+			}
 
 	});
 	
@@ -145,6 +163,7 @@ jQuery(document).ready(function () {
 		$("#submit-warning").remove();
 		
 		var validInput = true;
+		var validEmail = true;
 		
 		// if user nicename is blank, warn user
 		if ( $("#nicename").val().length == 0) {
@@ -157,15 +176,25 @@ jQuery(document).ready(function () {
      		 $("#email").addClass('empty-input');
      		 validInput = false;
 		}
-				
+		
+		// if email is invalid, warn user
+		if ( !isValidEmailAddress($("#email").val()) ){
+			$("#email").addClass('invalid-email');
+			validEmail = false;
+		}
+	
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$("#submit-user-edit").after('<span id="submit-warning">Fields in red should not be blank!</span>');
 			return validInput;
 		}
-		else {
-			$("#form-user-edit").attr("action", "user-validate.php").submit();
-		}
+		else if ( validEmail == false) {
+				$("#submit-user-edit").after('<span id="submit-warning" class="invalid-email">You must submit a valid email!</span>');
+				return validEmail;
+			}
+			else {
+				$("#form-user-edit").attr("action", "user-validate.php").submit();
+			}
 		
 	});
 
@@ -366,7 +395,8 @@ jQuery(document).ready(function () {
 		$("#submit-warning").remove();
 		
 		var validInput = true;
-		
+		var validEmail = true;
+				
 		// go through each textarea item in the form to check for values
 		$("#form-grade-edit").find("textarea").each(function(){
 			if ( $(this).val().length == 0) {
@@ -382,15 +412,27 @@ jQuery(document).ready(function () {
 	     		 validInput = false;
 			}
 		});
+		
+		//check student email to see if it's a valid email
+		$("#form-grade-edit").find(".email").each(function(){
+			if ( !isValidEmailAddress($(this).val()) ){
+				validEmail = false;
+				$(this).addClass('invalid-email');
+			}
+		});
 
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$("#form-grade-edit").append('<span id="submit-warning">Fields in red should not be blank!</span>');
 			return validInput;
 		}
-		else {
-			$("#form-grade-edit").attr("action", "grade-edit-submit.php").submit();
-		}
+		else if ( validEmail == false ) {
+				$("#form-grade-edit").append('<span id="submit-warning" class="invalid-email">You must enter a valid email address!</span>');
+				return validEmail;
+			}
+			else {
+				$("#form-grade-edit").attr("action", "grade-edit-submit.php").submit();
+			}
 		
 	});
 
@@ -403,6 +445,7 @@ jQuery(document).ready(function () {
 		$("#submit-warning").remove();
 		
 		var validInput = true;
+		var validEmail = true;
 		
 		// go through each textarea item in the form to check for values
 		$("#form-grade-assignment").find("textarea").each(function(){
@@ -419,15 +462,27 @@ jQuery(document).ready(function () {
 	     		 validInput = false;
 			}
 		});
+		
+		//check student email to see if it's a valid email
+		$("#form-grade-assignment").find(".email").each(function(){
+			if ( !isValidEmailAddress($(this).val()) ){
+				validEmail = false;
+				$(this).addClass('invalid-email');
+			}
+		});
 
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$("#form-grade-assignment").append('<span id="submit-warning">Fields in red should not be blank!</span>');
 			return validInput;
 		}
-		else {
-			$("#form-grade-assignment").attr("action", "grade-submit.php").submit();
-		}
+		else if ( validEmail == false ) {
+				$("#form-grade-assignment").append('<span id="submit-warning" class="invalid-email">You must enter a valid email address!</span>');
+				return validEmail;
+			}
+			else {
+				$("#form-grade-assignment").attr("action", "grade-submit.php").submit();
+			}
 	});
 	
 	// delete grade
@@ -511,9 +566,7 @@ jQuery(document).ready(function () {
 	});
 
 	
-	/**
-	* Edit Rubric
-	*/
+	// New/Edit Rubric
 	
 	var editInputCount = 1;
 	var radioValueCount = 1;
@@ -527,6 +580,7 @@ jQuery(document).ready(function () {
 		$("#submit-warning").remove();
 		
 		var validInput = true;
+		var pointsValid = true;
 		
 		// go through each textarea item in the form to check for values
 		$("#form-edit").find("textarea").each(function(){
@@ -535,6 +589,7 @@ jQuery(document).ready(function () {
 	     		 validInput = false;
 			}
 		});
+
 		
 		// go through each input item in the form to check for values
 		$("#form-edit").find("input").each(function(){		
@@ -544,14 +599,27 @@ jQuery(document).ready(function () {
 			}
 		});
 		
+		// go through each value-points input and verify they are integers
+		$("#form-edit").find(".value-points").each(function(){
+			var points = $(this).val();
+			if ( isNaN(points) || points.indexOf('.') != -1 ) {
+				pointsValid = false;
+	     		$(this).addClass('invalid-points');
+			}
+		});
+				
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$("#submit-form-edit").after('<span id="submit-warning">Fields in red should not be blank!</span>');
-			return validInput;
+			return false;
 		}
-		else {
-			$("#form-edit").attr("action", "rubric-edit-save.php").submit();
-		}
+		else if ( pointsValid == false ) {
+				$("#submit-form-edit").after('<span id="submit-warning" class="invalid-points">Radio Criteria Points must be an Integer (-n...-1, 0, 1...n)</span>');	
+				return false;
+			}
+			else {
+				$("#form-edit").attr("action", "rubric-edit-save.php").submit();
+			}
 		
 	});
 	
@@ -564,6 +632,7 @@ jQuery(document).ready(function () {
 		$("#submit-warning").remove();
 		
 		var validInput = true;
+		var pointsValid = true;
 		
 		// go through each textarea item in the form to check for values
 		$("#form-edit").find("textarea").each(function(){
@@ -581,14 +650,27 @@ jQuery(document).ready(function () {
 			}
 		});
 		
+		// go through each value-points input and verify they are numbers
+		$("#form-edit").find(".value-points").each(function(){
+			var points = $(this).val();
+			if ( isNaN(points)  || points.indexOf('.') != -1 ) {
+				pointsValid = false;
+	     		$(this).addClass('invalid-points');
+			}
+		});
+		
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$("#submit-form-new").after('<span id="submit-warning">Fields in red should not be blank!</span>');
 			return validInput;
 		}
-		else {
-			$("#form-edit").attr("action", "rubric-new-save.php").submit();
-		}
+		else if ( pointsValid == false ) {
+				$("#submit-form-new").after('<span id="submit-warning" class="invalid-points">Radio Criteria Points must be an Integer (-n...-1, 0, 1...n)</span>');	
+				return false;
+			}
+			else {
+				$("#form-edit").attr("action", "rubric-new-save.php").submit();
+			}
 		
 	});
 

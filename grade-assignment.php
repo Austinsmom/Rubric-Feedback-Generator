@@ -47,7 +47,7 @@ require('includes/header.php');
 				<p>
 					<label for="user-email">
 						Student's email address: 
-						<input type="email" name="student" />
+						<input type="email" name="student" id="student-email" class="email" />
 					</label>
 				</p>
 				

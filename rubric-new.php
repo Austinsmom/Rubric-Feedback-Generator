@@ -42,10 +42,10 @@ require('includes/header.php'); ?>
 	</fieldset>
 	
 	<div id="add-items-panel">
-		<div id="add-title" class="button">Add Title</div>
-		<div id="add-plaintext" class="button">Add Plaintext</div>
-		<div id="add-textbox" class="button">Add Textbox Criteria</div>
-		<div id="add-radio" class="button">Add Radio Criteria</div>
+		<input id="add-title" class="button" value="Add Title" />
+		<input id="add-plaintext" class="button" value="Add Plaintext" /><br />
+		<input id="add-textbox" class="button" value="Add Textbox Criteria" />
+		<input id="add-radio" class="button" value="Add Radio Criteria" />
 	</div>
 	
 	<input id="submit-form-new" type="submit" value="create new rubric" />

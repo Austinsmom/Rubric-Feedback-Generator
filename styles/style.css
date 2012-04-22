@@ -17,13 +17,15 @@ textarea { width: 60%; min-width: 200px; height: 100px; }
 h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
 .warning { padding: 20px; background: #c66; border: 1px solid #c66; }
 #submit-warning { display: block; padding: 10px; background: #c66; margin: 20px auto; }
+#submit-warning.invalid-points, #submit-warning.invalid-email { background: #339999;}
 #footer-admin { background: #efefef; padding: 10px; margin: 20px auto; border: 1px solid #ddd; text-align: right; }
 #delete-prompt { background: #c66; padding: 10px; display: none; margin-top: -20px; }
 
 /* ----- Form Elements ----------------- */
-.button { display: inline-block; padding: 5px 10px; margin: 3px; background: #efefef; font-weight: bold; border: 1px solid #ccc; cursor: pointer; }
-.button:active { background: #ccc; border: 1px solid #bbb; }
-.button:hover { background: #dedede; }
+input.button { width: auto; width: 180px; }
+.button { display: inline-block; padding: 5px; margin: 5px; background: #ddd; border: 1px solid #ccc; cursor: pointer; text-align: center; font-weight: bold; }
+.button:active { background: #aaa; border: 1px solid #bbb; }
+.button:hover { background: #ccc; }
 .button.delete, .button.new-delete { position: absolute; bottom: 0; right: 0; margin: 15px; }
 .button.delete-value, .button.delete-new-value, .button.add-value { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
 .button.add-value { margin-left: 40px; }
@@ -60,6 +62,7 @@ ul.radio-options li { margin: 20px 0; }
 
 /* ----- Form Validation --------------- */
 .empty-input { border: 2px solid #C00; }
+.invalid-points, .invalid-email { border: 2px solid #339999; }
 
 /* ----- Misc. CSS Fixes --------------- */
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;}

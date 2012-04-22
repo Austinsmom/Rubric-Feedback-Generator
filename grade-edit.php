@@ -31,7 +31,7 @@ require('includes/header.php');
 		
 			while ( $gradeRow = mysql_fetch_array($gradeQuery)) {
 				
-				// get grade student & assignment and print to screen
+				// get grade student & assignment and print to form/screen
 				$student = $gradeRow['grade_student'];
 				$assignmentID = $gradeRow['grade_assignment_id'];
 				$assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignmentID';");
@@ -40,10 +40,20 @@ require('includes/header.php');
 					$assignment = $assignmentRow['assignment_title'];
 				}
 		
-				echo '<p>Student: ' . $student . '<br />Assignment: ' . $assignment . '</p>';
+				echo 'Assignment: ' . $assignment . '</p>';
 		?>
 				<form id="form-grade-edit" name="form-grade-edit" method="post">
-					
+				
+					<fieldset class="check">
+						<p>	
+							<label for="user-email">
+								Student's email address: 
+								<input type="email" name="student" id="student-email" class="email" value="<?php echo $student; ?>" />
+							</label>
+						</p>
+						
+					</fieldset>
+
 					<div id="form-output">
 					<?php 
 						// print rubric with id $rubricID and answers from database

@@ -20,6 +20,10 @@ require('includes/header.php');
 <?php 
 $gradeArray = $_POST;
 $gradeID = $_POST['grade-id'];
+$student = $_POST['student'];
+
+// update student email
+mysql_query("UPDATE rubric_grade SET grade_student = '$student' WHERE grade_id = '$gradeID'");
 
 while( list( $field, $value ) = each( $gradeArray )) {
 	 

@@ -68,8 +68,8 @@ $assignmentTitle = $_POST['assignment-title'];
 		
 <div id="delete-prompt">
 	Are you sure you want to delete this grade? 
-	<a class="button" id="cancel-grade-delete">Cancel</a>
-	<a class="button" id="confirm-grade-delete">Yes, Delete This Grade</a>
+	<input class="button" id="cancel-grade-delete" value="Cancel" />
+	<input class="button" id="confirm-grade-delete" value="Yes, Delete Grade" />
 </div>
 	 
 <?php require('includes/footer.php'); ?>
