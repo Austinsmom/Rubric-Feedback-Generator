@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -59,29 +59,29 @@ $emailSubject = '[' . $assignmentTitle . '] Assignment grade and feedback';
 
 <body id="grade-email">
 
-<h1>Email grade confirmation</h1>
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>Email grade confirmation</h2>
+	</div>
 
-<form id="form-email" name="form-email" action="grade-email-send.php" method="post">
-	<fieldset>
-	
-		<legend>Here is what the email message will look like.</legend>
-			
-				<div id="email-header">
-					<p>Sent to: <?php echo $student; ?></p>
-					<p>Sent from: <?php echo $userEmail; ?></p>
-					<p>Subject: <?php echo $emailSubject; ?></p>
-				</div>
+	<form id="form-email" name="form-email" action="grade-email-send.php" method="post">
+		<fieldset>
+			<legend>Here is what the email message will look like.</legend>
 				
-				<div id="email-content">
+			<div id="email-header">
+				<p>Sent to: <?php echo $student; ?></p>
+				<p>Sent from: <?php echo $userEmail; ?></p>
+				<p>Subject: <?php echo $emailSubject; ?></p>
+			</div>
+			
+			<div id="email-content">
 
-					<?php $emailContent = gradeEmailContent($gradeID, $userNicename, $assignmentTitle);
-						  echo $emailContent;
-					?>
-					
-				</div>
-		
+				<?php $emailContent = gradeEmailContent($gradeID, $userNicename, $assignmentTitle);
+					  echo $emailContent;
+				?>
+			</div>
 		</fieldset>
-		
+			
 		<input type="hidden" name="email-to" value="<?php echo $student; ?>" />
 		<input type="hidden" name="email-from" value="<?php echo $userEmail; ?>" />
 		<input type="hidden" name="email-nicename" value="<?php echo $userNicename; ?>" />
@@ -90,7 +90,6 @@ $emailSubject = '[' . $assignmentTitle . '] Assignment grade and feedback';
 		<input type="hidden" name="grade-id" value="<?php echo $gradeID; ?>" />
 		
 		<input type="submit" value="Send Email" id="send-email" />
-	
-</form>
+	</form>
 			
 <?php require('includes/footer.php'); ?>

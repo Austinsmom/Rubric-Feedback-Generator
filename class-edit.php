@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -18,7 +18,10 @@ require('includes/header.php');
 
 <body id="class-edit">
 
-	<h1>Edit Class</h1>
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>Edit Class</h2>
+	</div>
 	
 	<?php  
   		$classID = $_POST['class-choice'];

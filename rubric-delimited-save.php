@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 if(!isset($_COOKIE["user"])){
 	header("Location: index.php");

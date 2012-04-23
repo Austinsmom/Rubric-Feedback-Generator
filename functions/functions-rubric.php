@@ -7,7 +7,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 
@@ -69,12 +69,12 @@ function processCriteria($arrayToProcess) {
 }
 
 /**
-* Outputs an <h1>, meant to be used for form titles when initially creating rubric
+* Outputs an h1 tag, meant to be used for form titles when initially creating rubric
 * @param $itemArray - tokens for title array
 * @param $itemCount - order of this item
 */
 function generateTitle($itemArray, $itemCount) {
-	echo '<h1 class="title item-'. $itemCount . '">'. $itemArray[1] . '</h1>
+	echo '<h1 class="title item-'. $itemCount . '">'. $itemArray[1] . '</div>
 		  <input type="hidden" name="title" value="'. $itemArray[1] . '" />';
 }
 
@@ -112,7 +112,7 @@ function generateCriteriaRadio($itemArray, $itemCount) {
 		}
 		else { /* do nothing, because these are blank fields, most likely caused by a spreadsheet copy/paste job */ }
 	}
-	echo '<label for="comment-' . $itemCount . '">Comments:</label>';
+	echo '<label class="comment-label" for="comment-' . $itemCount . '">Comments:</label>';
 	echo '<textarea name="comment-' . $itemCount . '"></textarea>';
 	echo '</fieldset>';
 }
@@ -325,7 +325,7 @@ function printTitle($id) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
 			$criteriaContent = $row['criteria_content'];
-			echo '<h1 class="rubric-title criteria-' . $criteriaID . '">' . $criteriaContent . '</h1>';
+			echo '<h1 class="rubric-title criteria-' . $criteriaID . '">' . $criteriaContent . '</div>';
 
 		}
 	}
@@ -393,7 +393,7 @@ function printRadio($id, $order) {
 			}
 			else echo "Error: No values for this radio-type criteria exist. Contact admin for help.";
 			
-			echo '<label for="comment-' . $criteriaID . '">Comments:</label>';
+			echo '<label class="comment-label" for="comment-' . $criteriaID . '">Comments:</label>';
 			echo '<textarea name="comment-' . $criteriaID . '"></textarea>';
 			echo '</fieldset>';
 		}
@@ -526,13 +526,13 @@ function printEditRadio($id) {
 					echo 'Option Label: <input type="text" name="valueLabel-' . $valueID . '" class="value-label" value="' . $valueContent . '" />';
 					echo '<br />';
 					echo 'Option Points: <input type="text" name="valuePoints-' . $valueID . '" class="value-points" value="' . $valuePoints . '" />';
-					echo '<br /><div class="button delete-value">Delete this Option</div>';
+					echo '<br /><input type="submit" class="button delete-value" value="Delete this Option" />';
 					echo '<input type="hidden" name="valOn-' . $valueID . '" class="is-live" value="1" />';
 					echo '</li>';
 					
 				}
 				
-				echo '</ul><div class="button add-value existing-radio">Add Option</div>';
+				echo '</ul><input type="submit" class="button add-value existing-radio" value="Add Option" />';
 							
 			}
 			else echo "(There are no options/values for this Radio criteria.)";
@@ -645,7 +645,7 @@ function printGradedRadio($id, $order, $grade) {
 					$commentContent = $gradeValueRow['answer_value'];
 				}
 			}
-			echo '<label for="comment-' . $criteriaID . '">Comments:</label>';
+			echo '<label class="comment-label" for="comment-' . $criteriaID . '">Comments:</label>';
 			echo '<textarea name="comment-' . $criteriaID . '">'. $commentContent .'</textarea>';
 			echo '</fieldset>';
 		}

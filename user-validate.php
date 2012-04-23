@@ -7,7 +7,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 foreach (glob("functions/*.php") as $filename) { 

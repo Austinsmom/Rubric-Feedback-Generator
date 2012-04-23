@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 /**
@@ -123,7 +123,7 @@ function printGradeAnswers($gradeID) {
 						
 						if ( $criteriaType == 'title' ) {
 							$titleText = getTextEmail($criteriaID);
-							$gradeAnswers .= '<h1 style="font-size:20px;font-weight:bold;">' . $titleText . '</h1>';
+							$gradeAnswers .= '<h1 style="font-size:20px;font-weight:bold;">' . $titleText . '</div>';
 							$criteriaOrder++;
 						}
 						else if ( $criteriaType == 'plaintext' ) {

@@ -7,7 +7,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -18,16 +18,19 @@ require('includes/header.php'); ?>
 
 <body id="delimited">
 
-<h1>Create New Rubric</h1>
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>Create New Rubric</h2>
+	</div>
 
-<p>In the following form, paste the tab-delimited content needed to generate your rubric content.</p>
-
-<form id="form-delimited" name="form-delimited" method="post">
+	<p>In the following form, paste the tab-delimited content needed to generate your rubric content.</p>
 	
-	<label for="delimited-text">Enter your tab-delimited content here:</label>
-	<textarea id="delimited-text" name="delimited-text"></textarea>
-	
-	<input id="submit-form-delimited" type="submit" value="Submit" />
-</form>
+	<form id="form-delimited" name="form-delimited" method="post">
+		
+		<label for="delimited-text">Enter your tab-delimited content here:</label>
+		<textarea id="delimited-text" name="delimited-text"></textarea>
+		
+		<input id="submit-form-delimited" type="submit" value="Submit" />
+	</form>
 
 <?php require('includes/footer.php'); ?>

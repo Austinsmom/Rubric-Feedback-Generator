@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -22,7 +22,10 @@ $userCount = mysql_num_rows($userRecords);
 
 <body id="edit">
 
-<h1>Edit User</h1>
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>Edit User</h2>
+	</div>
 
 <?php if ($userCount != 1) {
 	echo 'Error - zero or more than one user with this ID. Contact admin for help.';

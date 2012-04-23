@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -16,9 +16,12 @@ require('includes/header.php'); ?>
 
 <body id="admin">
 	
-	<h1>User Admin: <em>Welcome, <?php echo $_COOKIE["user"]; ?>!</em></h1>
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>User Admin: <em>Welcome, <?php echo $_COOKIE["user"]; ?>!</em></h2>
+	</div>
 
-	<h2>Your classes</h2>
+	<h3>Your classes</h3>
 			
 	<ul>
 		<li><a href="class-new.php">create a new class</a></li>
@@ -32,7 +35,7 @@ require('includes/header.php'); ?>
 			
 			<form id="form-class" name="form-class" method="post" class="clearfix">
 			 <fieldset class="check">
-			 	<legend>Select a class to complete or view assignments:</legend>
+			 	<legend>Select a class to edit or view assignments:</legend>
 				
 				<?php 
 					while ( $row = mysql_fetch_array($resultClass)) {
@@ -63,12 +66,12 @@ require('includes/header.php'); ?>
 	
 	<div id="delete-prompt" class="class">
 		Are you sure you want to delete this class? 
-		<input class="button" id="cancel-class-delete" value="Cancel" />
-		<input class="button" id="confirm-class-delete" value="Yes, Delete Class" />
+		<input type="submit" class="button delete" id="cancel-class-delete" value="Cancel" />
+		<input type="submit" class="button delete" id="confirm-class-delete" value="Yes, Delete Class" />
 	</div> 
 	 
 	 
-	 <h2>Your rubrics</h2>
+	 <h3>Your rubrics</h3>
 	 
 	 <ul>
 		<li><a href="rubric-new.php">create a new rubric</a></li>
@@ -112,11 +115,11 @@ require('includes/header.php'); ?>
 	
 	<div id="delete-prompt" class="rubric">
 		Are you sure you want to delete this rubric? 
-		<input class="button" id="cancel-rubric-delete" value="Cancel" />
-		<input class="button" id="confirm-rubric-delete" value="Yes, Delete Rubric" />
+		<input type="submit" class="button delete" id="cancel-rubric-delete" value="Cancel" />
+		<input type="submit" class="button delete" id="confirm-rubric-delete" value="Yes, Delete Rubric" />
 	</div> 
 	
-	<h2>Your account</h2>
+	<h3>Your account</h3>
 			
 	<ul>
 		<li><a href="user-edit.php">update your account info</a></li>

@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -21,7 +21,10 @@ $classTitle = $_POST['class-title'];
 
 <body id="class-assignments">
 	
-	<h1>Assignments for Class: <?php echo $classTitle; ?></h1>
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>Assignments for Class: <?php echo $classTitle; ?></h2>
+	</div>
 	
 	<form id="create-new-assignment" action="assignment-new.php" method="post">
 		<input type="hidden" name="class-id" value="<?php echo $classID; ?>" />
@@ -73,8 +76,8 @@ $classTitle = $_POST['class-title'];
 	
 <div id="delete-prompt">
 	Are you sure you want to delete this grade? 
-	<input class="button" id="cancel-assignment-delete" value="Cancel" />
-	<input class="button" id="confirm-assignment-delete" value="Yes, Delete Assignment" />
+	<input type="submit" class="button delete" id="cancel-assignment-delete" value="Cancel" />
+	<input type="submit" class="button delete" id="confirm-assignment-delete" value="Yes, Delete Assignment" />
 </div>
 
 <?php require('includes/footer.php'); ?>

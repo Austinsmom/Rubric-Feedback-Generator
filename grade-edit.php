@@ -6,7 +6,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -19,7 +19,10 @@ require('includes/header.php');
 
 <body id="grade">
 
-	<h1>Grade Edit</h1>
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>Grade Edit</h2>
+	</div>
 	
 	<?php  
 		// grab grade from the database
@@ -40,18 +43,14 @@ require('includes/header.php');
 					$assignment = $assignmentRow['assignment_title'];
 				}
 		
-				echo 'Assignment: ' . $assignment . '</p>';
 		?>
 				<form id="form-grade-edit" name="form-grade-edit" method="post">
-				
+					
+					<?php echo '<h3>Assignment: ' . $assignment . '</h3>'; ?>
+
 					<fieldset class="check">
-						<p>	
-							<label for="user-email">
-								Student's email address: 
-								<input type="email" name="student" id="student-email" class="email" value="<?php echo $student; ?>" />
-							</label>
-						</p>
-						
+						<label for="user-email">Student's email address: </label>
+						<input type="email" name="student" id="student-email" class="email" value="<?php echo $student; ?>" />
 					</fieldset>
 
 					<div id="form-output">

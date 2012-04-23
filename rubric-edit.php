@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -27,7 +27,10 @@ $assignmentCount = mysql_num_rows($assignmentRecords);
 
 <body id="edit">
 
-<h1>Edit Form</h1>
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>Edit Form</h2>
+	</div>
 
 <?php if ($rubricCount != 1) {
 	echo 'Error - more than one rubric with this ID? That isn\'t right!';
@@ -45,7 +48,7 @@ else {
 	  		$gradeRecords = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");
 	  		$gradeCount = mysql_num_rows($gradeRecords);
 	  		
-	  		$assignmentText .= ' [' . $gradeCount . ' grade(s) on record]</li>';
+	  		$assignmentText .= ' &bull; ' . $gradeCount . ' grade(s) on record</li>';
 	  		$warning .= $assignmentText;
 		}
 	$warning .= '</ul></div>';
@@ -93,7 +96,7 @@ else {
 			if ( $criteriaType == "title" ) {
 				echo '<fieldset class="edit title" id="existing-'. $criteriaID .'">';
 				printEditTitle($criteriaID, $criteriaOrder );
-				echo '<div class="button delete">Delete</div>';
+				echo '<input type="submit" class="button delete" value="Delete" />';
 				echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
 				echo '</fieldset>';
 				
@@ -101,21 +104,21 @@ else {
 			else if ( $criteriaType == "plaintext" ) {
 					echo '<fieldset class="edit text" id="existing-'. $criteriaID .'">';
 					printEditPlaintext($criteriaID, $criteriaOrder );
-					echo '<div class="button delete">Delete</div>';
+					echo '<input type="submit" class="button delete" value="Delete" />';
 					echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
 					echo '</fieldset>';
 				}
 				else if ($criteriaType == "radio" ) {
 						echo '<fieldset class="edit radio" id="existing-'. $criteriaID .'">';
 						printEditRadio($criteriaID, $criteriaOrder );
-						echo '<div class="button delete">Delete</div>';
+						echo '<input type="submit" class="button delete" value="Delete" />';
 						echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
 						echo '</fieldset>';
 					}
 					else if ($criteriaType == "textbox" ) {
 							echo '<fieldset class="edit textbox" id="existing-'. $criteriaID .'">';
 							printEditTextbox($criteriaID, $criteriaOrder );
-							echo '<div class="button delete">Delete</div>';
+							echo '<input type="submit" class="button delete" value="Delete" />';
 							echo '<input type="hidden" name="live-' . $criteriaID . '" class="is-live" value="1" />';
 							echo '</fieldset>';
 						}
@@ -124,10 +127,10 @@ else {
 		?>
 		
 		<div id="add-items-panel">
-			<input id="add-title" class="button" value="Add Title" />
-			<input id="add-plaintext" class="button" value="Add Plaintext" /><br />
-			<input id="add-textbox" class="button" value="Add Textbox Criteria" />
-			<input id="add-radio" class="button" value="Add Radio Criteria" />
+			<input type="submit" id="add-title" class="button add" value="Add Title" />
+			<input type="submit" id="add-plaintext" class="button add" value="Add Plaintext" /><br />
+			<input type="submit" id="add-textbox" class="button add" value="Add Textbox Criteria" />
+			<input type="submit" id="add-radio" class="button add" value="Add Radio Criteria" />
 		</div>
 
 		

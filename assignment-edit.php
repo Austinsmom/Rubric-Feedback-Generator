@@ -5,7 +5,7 @@
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric-Feedback Generator
+*	@package rubric-feedback-generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -17,13 +17,17 @@ require('includes/header.php');
 		
 <body id="class-edit">
 
-	<h1>Edit Assignment:<br />
+	<div id="title-box">
+		<h1>Rubric-Feedback Generator</h1>
+		<h2>Edit Assignment:<br />
 	
 	<?php
 		$assignmentTitle = $_POST['assignment-title'];
 		$classTitle = $_POST['class-title'];
 
-		echo stripSlashes($assignmentTitle) . ' <em>for ' . stripSlashes($classTitle) . '</em>'; ?></h1>
+		echo stripSlashes($assignmentTitle) . ' <em>for ' . stripSlashes($classTitle) . '</em>'; ?></h2>
+		
+	</div>
 	
 	<?php  
 		$assignmentID = $_POST['assignment-choice'];
