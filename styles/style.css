@@ -48,6 +48,7 @@ fieldset.edit .button.delete, fieldset.edit .button.new-delete { width: 100px; }
 
 /* ----- Assignments ------------------- */
 #no-rubrics.empty-input { border: 0px; background: #C66; padding: 10px; }
+#ui-datepicker-div { -moz-box-shadow: 0 0 100px #000; -webkit-box-shadow: 0 0 100px #000; -o-box-shadow: 0 0 100px #000; box-shadow: 0 0 100px #000;}
 
 /* ----- Grade Email ------------------- */
 #email-header { max-width: 580px; padding: 10px; background: #efefef; border: 1px solid #ddd; margin: 10px auto; }

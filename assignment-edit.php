@@ -79,7 +79,7 @@ require('includes/header.php');
 					</p>
 					
 					<p>
-					<label for="assignment-duedate">Due Date (YYYY-MM-DD):</label>
+					<label for="assignment-duedate">Due Date (yyyy-mm-dd):</label>
 					<input type="text" name="assignment-duedate" id="assignment-duedate" class="text" value="<?php echo $date; ?>" />
 					</p>
 

@@ -52,7 +52,7 @@ $classTitle = $_POST['class-title'];
 					$dueDate = $row['assignment_duedate'];
 				
 					echo '<input type="radio" name="assignment-choice" id="assignment-'. 
-							$id . '" value="' . $id . '"> ' . $title .' <em>Due ' . $dueDate . '</em>
+							$id . '" value="' . $id . '"> ' . $title .' <em>Due: ' . date('l F d, Y', strtotime($dueDate)) . '</em>
 							<div class="description">'. $description .'</div>';
 					}
 				?>
