@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - rubric Delete
+*	Rubric-Feedback Generator - rubric Delete
 *	 1. Removes rubric from the database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

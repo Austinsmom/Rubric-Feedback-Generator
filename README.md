@@ -1,5 +1,5 @@
 # Master of Science Project
-## Rubric Creator
+## Rubric-Feedback Generator
 
 ### Jennifer Jean Schiffer
 
@@ -27,7 +27,7 @@ None of this would have been possible without the faculty of Montclair State Uni
 
 ### Implementation and Deployment
 
-### Using Rubric Creator
+### Using Rubric-Feedback Generator
 
 ### UML Diagram
 
@@ -65,9 +65,9 @@ Implementation goes here
 
 ---
 
-## Using Rubric Creator
+## Using Rubric-Feedback Generator
 
-Directions for using Rubric Creator goes here
+Directions for using Rubric-Feedback Generator goes here
 
 ---
 

@@ -1,13 +1,13 @@
 <?php 
 /**
-*	Rubric Creator - Functions: Rubric
+*	Rubric-Feedback Generator - Functions: Rubric
 *		1. Processes delimited content
 *		2. Generates rubric forms
 *		3. Saves Rubric to Database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 

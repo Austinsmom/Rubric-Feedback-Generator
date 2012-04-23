@@ -1,12 +1,12 @@
 <?php 
 /**
-*	Rubric Creator - Grade Submit
+*	Rubric-Feedback Generator - Grade Submit
 *	 1. Saves grade to database
 *	 2. Links user back to admin
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

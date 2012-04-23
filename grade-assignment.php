@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Grade Assignment
+*	Rubric-Feedback Generator - Grade Assignment
 *	 1. Shows the rubric form for the assignment to be graded
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Successful Register
+*	Rubric-Feedback Generator - Successful Register
 *	 1. Tells user they successfully registered
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 require('includes/header.php'); ?>

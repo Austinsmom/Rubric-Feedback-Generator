@@ -1,20 +1,20 @@
 <?php 
 /**
-*	Rubric Creator - User Register
+*	Rubric-Feedback Generator - User Register
 *	 1. Registration form
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 require('includes/header.php'); ?>
 
 <body id="register">
 
-<h1>Rubric Creator - Register</h1>
+<h1>Register</h1>
 
-<p>Fill out the following form to register for a Rubric Creator account.</p>
+<p>Fill out the following form to register for a Rubric-Feedback Generator account.</p>
 
 <form id="form-register" name="form-register" method="post">
 	<p>
@@ -38,7 +38,7 @@ require('includes/header.php'); ?>
 	</p>
 
 	<input type="hidden" name="form-origin" value="register">	
-	<input type="submit" value="submit" id="user-register" />
+	<input type="submit" value="Submit" id="user-register" />
 </form>
 
 <?php require('includes/footer.php'); ?>

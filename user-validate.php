@@ -1,13 +1,13 @@
 <?php 
 /**
-*	Rubric Creator - Form Validate
+*	Rubric-Feedback Generator - Form Validate
 *	 1. Authenticates login and registration forms
 *	 2. Notifies user if their authentication submissions failed
 *	 3. Creates sessions and changes header locations accordingly
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 foreach (glob("functions/*.php") as $filename) { 

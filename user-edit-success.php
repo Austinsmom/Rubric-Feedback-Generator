@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Successful User edit
+*	Rubric-Feedback Generator - Successful User edit
 *	 1. Tells user they successfully edited their info
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 require('includes/header.php'); ?>

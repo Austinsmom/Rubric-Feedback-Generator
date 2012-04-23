@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Functions: Grade
+*	Rubric-Feedback Generator - Functions: Grade
 *		1. Saves Grade to the database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 /**
@@ -46,7 +46,7 @@ function gradeEmailContent( $gradeID, $userNicename, $assignmentTitle ) {
 				<p><span style="font-weight:bold;">Your Grade:</span> ' . $gradePoints . ' (out of ' . $possiblePoints . ' possible points)</p>
 				<p>###########################################################</p>  
 				<p>Respond to this email if you have any questions.</p> <p>--</p>
-				<p>' . $userNicename . '<br /><em>Sent via Rubric Creator 9000XL Premium</em></p>';
+				<p>' . $userNicename . '<br /><em>Sent via Rubric-Feedback Generator 9000XL Premium</em></p>';
 	}
 	else {
 		echo "Error - multiple grades with this ID exists. Contact admin for help.";

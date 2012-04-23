@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Grade Delete
+*	Rubric-Feedback Generator - Grade Delete
 *	 1. Removes grade from the database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

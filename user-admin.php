@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - User Admin
+*	Rubric-Feedback Generator - User Admin
 *	 Admin page
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -17,7 +17,6 @@ require('includes/header.php'); ?>
 <body id="admin">
 	
 	<h1>User Admin: <em>Welcome, <?php echo $_COOKIE["user"]; ?>!</em></h1>
-		
 
 	<h2>Your classes</h2>
 			
@@ -31,7 +30,7 @@ require('includes/header.php'); ?>
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-class" name="form-class" method="post">
+			<form id="form-class" name="form-class" method="post" class="clearfix">
 			 <fieldset class="check">
 			 	<legend>Select a class to complete or view assignments:</legend>
 				
@@ -47,11 +46,17 @@ require('includes/header.php'); ?>
 					}
 				?>
 			 </fieldset>	
-			
+			 
 			 <input type="hidden" name="class-title" value="<?php echo $title; ?>" />
-			 <input type="submit" id="view-assignments" value="View Assignments for this Class" onclick ="choseViewAssignments()" />
-			 <input type="submit" id="edit-class" value="Edit this Class" />
-			 <input type="submit" id="delete-class" value="Delete this Class" />
+			
+			 <div class="buttons-left">
+			 	<input type="submit" id="view-assignments" value="View Assignments for this Class" onclick ="choseViewAssignments()" />
+			 </div>
+			 
+			 <div class="buttons-right">
+				<input type="submit" id="edit-class" value="Edit this Class" /><br />
+				<input type="submit" id="delete-class" value="Delete this Class" />
+			 </div>
 			 
 			</form>		
 	<?php } else { /* no classes, do nothing */} ?>		
@@ -75,7 +80,7 @@ require('includes/header.php'); ?>
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-rubric" name="form-rubric" method="post">
+			<form id="form-rubric" name="form-rubric" method="post" class="clearfix">
 			 <fieldset class="check">
 				<legend>Select a rubric to complete or edit:</legend>
 				
@@ -93,8 +98,14 @@ require('includes/header.php'); ?>
 				?>
 			 </fieldset>	
 			
-			 <input type="submit" value="View/Edit this Rubric" id="edit-rubric" />
-			 <input type="submit" value="Delete this Rubric" id="delete-rubric" />
+			 <div class="buttons-left">
+			 </div>
+			 
+			 <div class="buttons-right">
+				<input type="submit" value="View/Edit this Rubric" id="edit-rubric" /><br />
+				<input type="submit" value="Delete this Rubric" id="delete-rubric" />
+			 </div>
+			 
 			</form>		
 			
 	<?php } else { /* no rubrics, do nothing */ } ?>

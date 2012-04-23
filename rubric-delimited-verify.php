@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Verify Form Import
+*	Rubric-Feedback Generator - Verify Form Import
 *	 1. outputs the form generated from the submitted tab-delimited text
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -22,14 +22,14 @@ $delimitedTextItems = explode( '
 
 <body id="process">
 
-<h1>Rubric Creator - Verify Form Import</h1>
+<h1>Verify Form Import</h1>
 
 <form id="form-delimited" name="form-delimited" method="post">
 	
 	<label for="delimited-text">Here is what you entered. You can edit the text to resubmit.</label>
 	<textarea id="delimited-text" name="delimited-text"><?php echo $delimitedText; ?></textarea>
 	
-	<input id="submit-form-delimited" type="submit" value="submit edits" />
+	<input id="submit-form-delimited" type="submit" value="Submit Edits" />
 </form>
 
 
@@ -52,7 +52,7 @@ $delimitedTextItems = explode( '
 	<textarea id="form-rubric-description" name="form-description"></textarea>
 	
 	<div id="form-save">
-		<input id="submit-form-output" class="save button" type="submit" value="save to database" />
+		<input id="submit-form-output" class="save button" type="submit" value="Save New Rubric" />
 	</div>
 
 </form>

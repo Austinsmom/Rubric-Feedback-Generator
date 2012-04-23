@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Class Edit
+*	Rubric-Feedback Generator - Class Edit
 *	 1. Lets user edit Class and submit those edits
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -52,7 +52,7 @@ require('includes/header.php');
 					</p>
 					
 					<input type="hidden" name="class-id" value="<?php echo $classID; ?>" />
-					<input type="submit" id="submit-class-edit" value="Submit Changes" />
+					<input type="submit" id="submit-class-edit" value="Submit Class Edits" />
 									
 				</form>
 	<?php 	}

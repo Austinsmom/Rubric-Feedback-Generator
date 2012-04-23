@@ -1,9 +1,9 @@
 /**
-*	Rubric Creator - Scripts
+*	Rubric-Feedback Generator - Scripts
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 jQuery(document).ready(function () {

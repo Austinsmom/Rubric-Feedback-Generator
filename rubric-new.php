@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Create New Rubric
+*	Rubric-Feedback Generator - Create New Rubric
 *	1. Gives options for user to create a new rubric
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -16,7 +16,7 @@ require('includes/header.php'); ?>
 
 <body id="delimited">
 
-<h1>Rubric Creator - Create New Rubric</h1>
+<h1>Create New Rubric</h1>
 
 
 <ul>
@@ -48,7 +48,7 @@ require('includes/header.php'); ?>
 		<input id="add-radio" class="button" value="Add Radio Criteria" />
 	</div>
 	
-	<input id="submit-form-new" type="submit" value="create new rubric" />
+	<input id="submit-form-new" type="submit" value="Create New Rubric" />
 
 </form>
 

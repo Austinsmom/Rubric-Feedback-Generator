@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Save Form
+*	Rubric-Feedback Generator - Save Form
 *	 1. saves the form to database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 if(!isset($_COOKIE["user"])){
 	header("Location: index.php");

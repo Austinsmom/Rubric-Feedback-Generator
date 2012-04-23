@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>RUBRIC CREATOR 9000XL Premium</title>
+	<title>Rubric-Feedback Generator</title>
 	
 	<!-- global stylesheet -->
 	<link rel="stylesheet" type="text/css" href="styles/style.css" />

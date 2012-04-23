@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Generate Email Grade
+*	Rubric-Feedback Generator - Generate Email Grade
 *	 1. Generates grade email content for user to confirm before sending
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Assignment Grades List
+*	Rubric-Feedback Generator - Assignment Grades List
 *	 1. Lists grades from assignment user submitted to edit, grade, or view grades
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -29,7 +29,7 @@ $assignmentTitle = $_POST['assignment-title'];
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-grade" name="form-grade" method="post">
+			<form id="form-grade" name="form-grade" method="post" class="clearfix">
 			 <fieldset class="check">
 				 <legend>Select a grade to edit or send to student:</legend>
 
@@ -56,9 +56,16 @@ $assignmentTitle = $_POST['assignment-title'];
 				?>	
 			 </fieldset>	
 			
-			 <input type="submit" value="View/Edit Grade" id="edit-grade" />
-			 <input type="submit" value="Delete Grade" id="delete-grade" />
-			 <input type="submit" value="Email Grade" id="email-grade" />
+			 
+			 <div class="buttons-left">
+			 	<input type="submit" value="Email Grade" id="email-grade" />
+			  </div>
+			 
+			 <div class="buttons-right">
+				<input type="submit" value="View/Edit Grade" id="edit-grade" /><br />
+			 	<input type="submit" value="Delete Grade" id="delete-grade" />
+			 </div>
+			 
 			</form>		
 	<?php } else { ?>
 

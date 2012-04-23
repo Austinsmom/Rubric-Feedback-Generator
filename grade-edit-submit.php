@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Grade Edit Submit
+*	Rubric-Feedback Generator - Grade Edit Submit
 *	 1. Updates grade in the database after user edits
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

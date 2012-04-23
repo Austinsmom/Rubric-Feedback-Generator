@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Save Rubric Edits
+*	Rubric-Feedback Generator - Save Rubric Edits
 *	 1. saves the rubric edit to database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

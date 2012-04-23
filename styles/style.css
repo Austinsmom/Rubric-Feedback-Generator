@@ -1,8 +1,7 @@
 /**
-*	Rubric Creator
+*	Rubric-Feedback Generator
 *	Author: Jenn Schiffer
 *	Email: schifferj@mail.montclair.edu
-*	Updated: 03-25-2012
 */
 
 /* ----- Global ------------------------ */
@@ -15,11 +14,6 @@ form { padding: 20px 40px; background: #efefef; border: 1px solid #ddd; margin: 
 input.text { width: 60%; min-width: 200px; } 
 textarea { width: 60%; min-width: 200px; height: 100px; }
 h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
-.warning { padding: 20px; background: #c66; border: 1px solid #c66; }
-#submit-warning { display: block; padding: 10px; background: #c66; margin: 20px auto; }
-#submit-warning.invalid-points, #submit-warning.invalid-email { background: #339999;}
-#footer-admin { background: #efefef; padding: 10px; margin: 20px auto; border: 1px solid #ddd; text-align: right; }
-#delete-prompt { background: #c66; padding: 10px; display: none; margin-top: -20px; }
 
 /* ----- Form Elements ----------------- */
 input.button { width: auto; width: 180px; }
@@ -29,40 +23,37 @@ input.button { width: auto; width: 180px; }
 .button.delete, .button.new-delete { position: absolute; bottom: 0; right: 0; margin: 15px; }
 .button.delete-value, .button.delete-new-value, .button.add-value { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
 .button.add-value { margin-left: 40px; }
-input[type="submit"] { display: block; margin: 15px auto; }
-
-/* ----- User Admin Page ---------------- */
-#admin form input { margin: 15px 0 0; }
+input[type="submit"] { display: inline-block; margin: 5px auto; }
+.buttons-left { width: 45%; text-align: left; float: left; }
+.buttons-right { width: 45%; text-align: right; float: right; }
+div.description { padding: 10px; margin: 10px 20px 30px; background: #CCCCC1; border: 1px solid #AAA; }
 
 /* ----- Delimited Processsing Form ----- */
-#process textarea { width: 100%; height: 300px; margin: 10px 0; }
+#delimited-text { width: 100%; height: 300px; margin: 10px 0; }
 
 /* ----- Edit Rubric Form Elements ----- */
 fieldset.deleted, li.deleted { color: #aaa; font-style: italic; background: #efefef; }
 fieldset.deleted input, li.deleted input { color: #aaa; font-style: italic; background: #efefef; }
 fieldset.deleted div.button.add-value.new-radio { display: none; }
-li.deleted { }
 ul.radio-options li { margin: 20px 0; }
 #add-items-panel { text-align: right; }
 
 /* ----- Assignments ------------------- */
 #no-rubrics.empty-input { border: 0px; background: #C66; padding: 10px; }
 
-/* ----- Form Output ------------------- */
-#form-output label { font-size: 1.2em; padding-bottom: 5px; }
-
-/* ----- Grade Output ------------------ */
-.thead { font-weight: bold; }
-.table-grade { background: #efefef; }
-
 /* ----- Grade Email ------------------- */
 #email-header { max-width: 580px; padding: 10px; background: #efefef; border: 1px solid #ddd; margin: 10px auto; }
 #email-content { max-width: 600px; margin: 10px auto; }
 #email-content > div > h1 { font-family: Helvetica, Arial, sans-serif; }
 
-/* ----- Form Validation --------------- */
+/* ----- Form Validation and Prompts --------------- */
 .empty-input { border: 2px solid #C00; }
 .invalid-points, .invalid-email { border: 2px solid #339999; }
+.warning { padding: 20px; background: #c66; border: 1px solid #c66; }
+#submit-warning { display: block; padding: 10px; background: #c66; margin: 20px auto; }
+#submit-warning.invalid-points, #submit-warning.invalid-email { background: #339999;}
+#footer-admin { background: #efefef; padding: 10px; margin: 20px auto; border: 1px solid #ddd; text-align: right; }
+#delete-prompt { background: #c66; padding: 10px; display: none; margin-top: -20px; }
 
 /* ----- Misc. CSS Fixes --------------- */
 .clear{clear:both;display:block;overflow:hidden;visibility:hidden;width:0;height:0;}

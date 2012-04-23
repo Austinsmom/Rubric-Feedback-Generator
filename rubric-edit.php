@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Edit Rubric
+*	Rubric-Feedback Generator - Edit Rubric
 *	 1. outputs rubric to allow editing by user
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -27,7 +27,7 @@ $assignmentCount = mysql_num_rows($assignmentRecords);
 
 <body id="edit">
 
-<h1>Rubric Creator - Edit Form</h1>
+<h1>Edit Form</h1>
 
 <?php if ($rubricCount != 1) {
 	echo 'Error - more than one rubric with this ID? That isn\'t right!';
@@ -132,7 +132,7 @@ else {
 
 		
 		<input type="hidden" name="rubric-id" value="<?php echo $id; ?>" />
-		<input id="submit-form-edit" type="submit" value="submit edits" />
+		<input id="submit-form-edit" type="submit" value="Submit Rubric Edits" />
 	
 	</form>
 

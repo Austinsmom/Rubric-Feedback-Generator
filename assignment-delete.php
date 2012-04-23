@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Assignment Delete
+*	Rubric-Feedback Generator - Assignment Delete
 *	 1. Removes assignment from the database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

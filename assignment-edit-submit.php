@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Save Assignment Edits
+*	Rubric-Feedback Generator - Save Assignment Edits
 *	 1. saves the assignment edit to database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 if(!isset($_COOKIE["user"])){
 	header("Location: index.php");

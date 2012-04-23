@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Create Class
+*	Rubric-Feedback Generator - Create Class
 *	1. allows user to create a class
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -16,7 +16,7 @@ require('includes/header.php'); ?>
 
 <body id="assignment">
 
-<h1>Rubric Creator - Create New Class</h1>
+<h1>Create New Class</h1>
 
 <p>In the following form, enter the information about the class you're assigning assignments to:</p>
 
@@ -37,7 +37,7 @@ require('includes/header.php'); ?>
 	<textarea name="class-notes" class="textarea" id="class-notes"></textarea>
 	</p>
 	
-	<input type="submit" value="submit" id="new-class" />
+	<input type="submit" value="Save New Class" id="new-class" />
 </form>
 
 <?php require('includes/footer.php'); ?>

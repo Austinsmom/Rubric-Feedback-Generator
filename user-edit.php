@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Edit User
+*	Rubric-Feedback Generator - Edit User
 *	 1. outputs user info to allow editing by user
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -22,7 +22,7 @@ $userCount = mysql_num_rows($userRecords);
 
 <body id="edit">
 
-<h1>Rubric Creator - Edit User</h1>
+<h1>Edit User</h1>
 
 <?php if ($userCount != 1) {
 	echo 'Error - zero or more than one user with this ID. Contact admin for help.';
@@ -57,7 +57,7 @@ else {
 		
 			<input type="hidden" name="form-origin" value="edit" />
 			<input type="hidden" name="username" value="<?php echo $username; ?>" />	
-			<input type="submit" value="submit edits" id="submit-user-edit" />
+			<input type="submit" value="Submit User Edits" id="submit-user-edit" />
 		</form>
 
 <?php }

@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - User Login
+*	Rubric-Feedback Generator - User Login
 *	 1. Login form
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 require('includes/header.php'); 
@@ -14,7 +14,7 @@ require('includes/header.php');
 
 <body id="login">
 
-<h1>Rubric Creator - Login</h1>
+<h1>Login</h1>
 
 <p>Fill out the following form to log in. No login? <a href="user-register.php">Register for an account here.</a></p>
 

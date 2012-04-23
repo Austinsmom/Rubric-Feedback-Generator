@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Functions: User
+*	Rubric-Feedback Generator - Functions: User
 *	 1. Adds new users to database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 /**

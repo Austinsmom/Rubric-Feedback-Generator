@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Assignment Edit
+*	Rubric-Feedback Generator - Assignment Edit
 *	 1. Lets user edit assignment and submit those edits
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -80,7 +80,7 @@ require('includes/header.php');
 					</p>
 
 					<input type="hidden" name="assignment-id" value="<?php echo $assignmentID; ?>" />
-					<input type="submit" value="Submit Changes" id="submit-assignment-edit" />
+					<input type="submit" value="Submit Assignment Edits" id="submit-assignment-edit" />
 									
 				</form>
 	<?php 	}

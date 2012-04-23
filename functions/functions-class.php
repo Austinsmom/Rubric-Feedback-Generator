@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Functions: Class
+*	Rubric-Feedback Generator - Functions: Class
 *		1. Saves Class to the database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 /**

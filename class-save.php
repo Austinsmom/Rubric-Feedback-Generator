@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Class Save
+*	Rubric-Feedback Generator - Class Save
 *	 1. Saves new class to database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

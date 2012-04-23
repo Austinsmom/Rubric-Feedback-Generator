@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Class Delete
+*	Rubric-Feedback Generator - Class Delete
 *	 1. Removes class from the database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

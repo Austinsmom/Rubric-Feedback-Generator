@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Functions: Connect to MySQL
-*		1. Functions necessary to connect the database of the Rubric Creator
+*	Rubric-Feedback Generator - Functions: Connect to MySQL
+*		1. Functions necessary to connect the database of the Rubric-Feedback Generator
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 /**

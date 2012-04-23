@@ -1,12 +1,12 @@
 <?php 
 /**
-*	Rubric Creator - Grade Edit
+*	Rubric-Feedback Generator - Grade Edit
 *	 1. Repopulates Rubric from Grade content field content
 *	 2. Allows user to submit to save grade
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){

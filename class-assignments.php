@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Class Assignments List
+*	Rubric-Feedback Generator - Class Assignments List
 *	 1. Lists assignments from class user submited
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -35,7 +35,7 @@ $classTitle = $_POST['class-title'];
 			
 		if ($count != 0) { ?>
 			
-			<form id="form-assignment" name="form-assignment" method="post">
+			<form id="form-assignment" name="form-assignment" method="post" class="clearfix">
 			 <fieldset class="check">
 				 <legend>Select an assignment to edit, grade, or view its grades:</legend>
 
@@ -58,10 +58,15 @@ $classTitle = $_POST['class-title'];
 			 <input type="hidden" name="assignment-title" value="<?php echo $title; ?>" />
 			 <input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
 			 
-			 <input type="submit" id="grade-assignment" value="Grade this Assignment" />
-			 <input type="submit" id="view-grades" value="View Grades for this Assignment" />
-			 <input type="submit" id="edit-assignment" value="Edit this Assignment" />
-			 <input type="submit" id="delete-assignment" value="Delete this Assignment" />
+			 <div class="buttons-left">
+			 	<input type="submit" id="grade-assignment" value="Grade this Assignment" /><br />
+			 	<input type="submit" id="view-grades" value="View Grades for this Assignment" />
+			 </div>
+			 
+			 <div class="buttons-right">
+				<input type="submit" id="edit-assignment" value="Edit this Assignment" /><br />
+			 	<input type="submit" id="delete-assignment" value="Delete this Assignment" />
+			 </div>
 			  
 			</form>		
 	<?php } else { /* no assignments, do nothing */ } ?>

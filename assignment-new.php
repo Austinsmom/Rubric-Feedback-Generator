@@ -1,11 +1,11 @@
 <?php 
 /**
-*	Rubric Creator - Create Assignment
+*	Rubric-Feedback Generator - Create Assignment
 *	1. allows user to create an assignment
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 if(!isset($_COOKIE["user"])){
@@ -21,7 +21,7 @@ $classTitle = $_POST['class-title'];
 
 <body id="assignment">
 
-<h1>Rubric Creator - Create New Assignment for class <em><?php echo $classTitle; ?></em></h1>
+<h1>Create New Assignment for class <em><?php echo $classTitle; ?></em></h1>
 
 <p>In the following form, enter the information about the assignment you'll be completing rubrics for.</p>
 
@@ -69,7 +69,7 @@ $classTitle = $_POST['class-title'];
 	</p>
 	
 	<input type="hidden" name="assignment-class" value="<?php echo $classID; ?>" />
-	<input type="submit" value="create assignment" id="new-assignment" />
+	<input type="submit" value="Create New Assignment" id="new-assignment" />
 </form>
 
 <?php require('includes/footer.php'); ?>

@@ -1,11 +1,11 @@
 <?php
 /**
-*	Rubric Creator - Functions: Assignment
+*	Rubric-Feedback Generator - Functions: Assignment
 *		1. Saves Assignment to the database
 *
 *	@author Jenn Schiffer
 *	@version 0.1
-*	@package Rubric Creator
+*	@package Rubric-Feedback Generator
 */
 
 /**
