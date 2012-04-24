@@ -69,14 +69,29 @@ function calculateGradeTotal( $gradeID ) {
 	
 		while ( $answersRow = mysql_fetch_array($answers) ) {
 			$answerID = $answersRow['answer_value'];
-			$answerValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_id = '$answerID';");
+			$answerValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_id = '$answerID' AND value_is_live = '1'");
 			$answerValuesCount = mysql_num_rows($answerValues);
 			
 			if ( $answerValuesCount == 1 ) {
 				
 				while ( $valuesRow = mysql_fetch_array($answerValues) ) {
+					
 					$value = $valuesRow['value_points'];
-					$gradeTotal += $value;
+					
+					// only add value grades if criteria is live in rubric
+					$answerCriteriaID = $valuesRow['value_criteria_id'];
+					$answerCriteria = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_id = '$answerCriteriaID'");
+					$answerCriteriaCount = mysql_num_rows($answerCriteria);
+					if ( $answerCriteriaCount == 1 ) {
+						while ( $answerCriteriaRow = mysql_fetch_array($answerCriteria) ) {
+							$answerCriteriaLive = $answerCriteriaRow['criteria_live'];
+			
+							if ( $answerCriteriaLive == 1 ) {
+								$gradeTotal += $value;
+							}
+						}
+					}
+					else return "Error: Multiple criteria with this ID. Contact admin for help.";	
 				}
 			}
 			else return "Error: Multiple values exist with this ID. Contact admin for help.";
@@ -123,7 +138,7 @@ function printGradeAnswers($gradeID) {
 						
 						if ( $criteriaType == 'title' ) {
 							$titleText = getTextEmail($criteriaID);
-							$gradeAnswers .= '<h1 style="font-size:20px;font-weight:bold;">' . $titleText . '</div>';
+							$gradeAnswers .= '<h1 style="font-size:20px;font-weight:bold;">' . $titleText . '</h1>';
 							$criteriaOrder++;
 						}
 						else if ( $criteriaType == 'plaintext' ) {

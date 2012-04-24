@@ -76,9 +76,11 @@ $emailSubject = '[' . $assignmentTitle . '] Assignment grade and feedback';
 			
 			<div id="email-content">
 
-				<?php $emailContent = gradeEmailContent($gradeID, $userNicename, $assignmentTitle);
-					  echo $emailContent;
+				<?php 
+					$emailContent = gradeEmailContent($gradeID, $userNicename, $assignmentTitle);
+					echo $emailContent;
 				?>
+				
 			</div>
 		</fieldset>
 			

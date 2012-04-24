@@ -710,7 +710,7 @@ function printGradedTextbox($id, $order, $grade) {
 */
 function calculateTotalPossiblePoints( $rubricID ) {
 	$possiblePoints = 0;
-	$criteria = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_type = 'radio'");
+	$criteria = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_type = 'radio' AND criteria_live = '1'");
 	$criteriaCount = mysql_num_rows($criteria);
 	
 	if ( $criteriaCount > 0 ) {

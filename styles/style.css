@@ -11,7 +11,6 @@ label { display: block; margin-bottom: 10px; font-weight: bold; }
 fieldset { border: 1px solid #ddd; background: #fff; margin: 10px 0; padding: 20px; position: relative; }
 legend { border: 1px solid #ddd; background: #6cc; padding: 10px; }
 form { padding: 20px; background: #efefef; border: 1px solid #ddd; margin: 20px auto 40px; }
-input.text { width: 60%; min-width: 200px; } 
 textarea { width: 60%; min-width: 200px; height: 100px; }
 h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
 h2 { font-size: 1.3em; }
@@ -23,17 +22,20 @@ h2 { font-size: 1.3em; }
 /* ----- Form Elements ----------------- */
 input.button { width: auto; width: 180px; }
 .button { display: inline-block; padding: 5px; margin: 5px; background: #ddd; border: 1px solid #ccc; cursor: pointer; text-align: center; font-weight: bold; }
-.button:active { background: #aaa; border: 1px solid #bbb; }
 .button:hover { background: #ccc; }
+.button:active { background: #aaa; border: 1px solid #bbb; }
 .button.delete, .button.new-delete { position: absolute; bottom: 0; right: 0; margin: 15px; }
 .button.delete-value, .button.delete-new-value, .button.add-value { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
 .button.add-value { margin-left: 40px; }
+.button.add { background: #fff; }
 input[type="submit"] { display: inline-block; margin: 5px auto; }
 .buttons-left { width: 45%; text-align: left; float: left; min-width: 200px; }
 .buttons-right { width: 45%; text-align: right; float: right; min-width: 200px; }
 div.description { padding: 10px; margin: 10px 20px 30px; background: #ccccc1; border: 1px solid #ddd; }
 .comment-label { margin-top: 10px; }
 form h1 { font-size: 1.2em;}
+input.text, input.textbox, input.title { width: 60%; min-width: 200px; } 
+input.order { width: 30px; }
 
 /* ----- Delimited Processsing Form ----- */
 #delimited-text { width: 100%; height: 300px; margin: 10px 0; }
