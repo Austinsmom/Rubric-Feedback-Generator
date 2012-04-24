@@ -60,9 +60,13 @@ function processCriteria($arrayToProcess) {
 							$count++;
 						}
 						else { /* do nothing because there is an error - say this in error log */
-					 	  			echo '*** error: "' . $criteriaInputType . '" is not a valid criteria input type. Use <em>radio</em>.<br />'; }
+					 	  	echo '<div class="invalid-criteria">Error in row ' . $count . ': "' . $criteriaInputType . '" is not a valid criteria input type. Use <em>radio</em> or <em>textbox</em>. This row will be left out of your rubric.</div>'; }
+					 	  	$count++;
 			 	  }
-			 	  else { echo '*** error: "' . $criteriaType . '" is not a valid criteria type. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>.<br />'; }	
+			 	  else { 
+			 	  	echo '<div class="invalid-criteria">Error in row ' . $count . ': "' . $criteriaType . '" is not a valid criteria type. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>. This row will be left out of your rubric.</div>'; 	
+			 	  	$count++;
+			 	  }	
 	
 	}	
 	
@@ -238,11 +242,11 @@ function saveCriteriaToDatabase($id) {
 									$count++;										
 								}
 							 	else { 
-							 		echo '*** error: "' . $criteriaInputType . '" is not a valid criteria input type. Use <em>radio</em>.<br />'; 
+							 		echo '<div class="invalid-criteria">Error: "' . $criteriaInputType . '" is not a valid criteria input type. Use <em>radio</em> or <em>textbox</em>. This will be left out of your rubric.</div>'; 
 							 	}
 					 	}
 						else { 
-							echo '*** error: "' . $criteriaType . '" is not a valid criteria type. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>.<br />';
+							echo '<div class="invalid-criteria">Error: "' . $criteriaType . '" is not a valid criteria type. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>. This will be left out of your rubric.</div>';
 					 	}	
 			}	
 		}

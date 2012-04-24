@@ -56,11 +56,9 @@ fieldset.edit .button.delete, fieldset.edit .button.new-delete { width: 100px; }
 #email-content > div > h1 { font-family: Helvetica, Arial, sans-serif; }
 
 /* ----- Form Validation and Prompts --------------- */
-.empty-input { border: 2px solid #C00; }
-.invalid-points, .invalid-email, .invalid-date { border: 2px solid #339999; }
+.empty-input, .invalid-points, .invalid-email, .invalid-date { border: 2px solid #c66; }
 .warning { padding: 20px; background: #c66; border: 1px solid #c66; }
-#submit-warning { display: block; padding: 10px; background: #c66; margin: 20px auto; }
-#submit-warning.invalid-points, #submit-warning.invalid-email, #submit-warning.invalid-date { background: #339999;}
+#submit-warning, .invalid-criteria { display: block; padding: 10px; background: #c66; margin: 20px auto; border: 2px solid #c66; }
 #footer-admin { background: #efefef; padding: 10px; margin: 20px auto; border: 1px solid #ddd; text-align: right; }
 #delete-prompt { background: #c66; padding: 10px; display: none; margin-top: -20px; }
 #delete-prompt .button.delete { position: relative; margin: 0 10px;}

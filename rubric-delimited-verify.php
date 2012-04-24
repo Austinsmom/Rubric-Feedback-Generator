@@ -30,6 +30,7 @@ $delimitedTextItems = explode( '
 	<form id="form-delimited" name="form-delimited" method="post">
 		
 		<label for="delimited-text">Here is what you entered. You can edit the text to resubmit.</label>
+		<em>Clicking the [tab] key will enter a tab in this textarea. To leave this textarea via keyboard shortcut, click [ctrl] key.</em>
 		<textarea id="delimited-text" name="delimited-text"><?php echo $delimitedText; ?></textarea>
 		
 		<input id="submit-form-delimited" type="submit" value="Submit Edits" />
@@ -44,18 +45,22 @@ $delimitedTextItems = explode( '
 			<?php processCriteria($delimitedTextItems); ?>
 		</div>
 		
-		<p>Once you've finished generating your form, save it!</p>
+		<p>Once you've finished generating your form, enter the title and description and save. You can go back and make changes and/or fixes to this rubric later on from the User Admin page.</p>
 		
 		<input id="form-rubric-content" type="hidden" value="<?php echo $delimitedText; ?>" name="finalDelimitedText" />
 		
-		<label for="form-title">Rubric Title:</label> 
-		<input id="form-rubric-title" type="text" name="form-title" />
+		<p>
+			<label for="form-title">Rubric Title:</label> 
+			<input id="form-rubric-title" type="text" name="form-title" />
+		</p>
 		
-		<label for="form-description">Rubric Description:</label>
-		<textarea id="form-rubric-description" name="form-description"></textarea>
+		<p>
+			<label for="form-description">Rubric Description:</label>
+			<textarea id="form-rubric-description" name="form-description"></textarea>
+		</p>
 		
 		<div id="form-save">
-			<input id="submit-form-output" class="save button" type="submit" value="Save New Rubric" />
+			<input id="submit-form-output" class="save" type="submit" value="Save New Rubric" />
 		</div>
 	
 	</form>

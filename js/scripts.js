@@ -12,9 +12,6 @@ jQuery(document).ready(function () {
 	* Global Scripts
 	*/
 	
-	// Allows tabs to be entered in textarea elements
-	$("#form-delimited textarea").tabby();
-	
 	// Always have a form's first radio button selected by default
 	$("fieldset.check").each(function() {
 		$(this).children("input:first").attr('checked', true);
@@ -338,8 +335,7 @@ jQuery(document).ready(function () {
 			return validInput;
 		}
 		else if ( validDate == false ) {
-				$(this).parent("form").append('<span id="submit-warning">Date must be in yyyy-mm-dd format!</span>');	
-				alert("invalid date");
+				$(this).parent("form").append('<span id="submit-warning" class="invalid-date">Date must be in yyyy-mm-dd format!</span>');
 				return validDate;
 			} 
 			else if ( rubricExists == false ) {
@@ -534,6 +530,24 @@ jQuery(document).ready(function () {
 	/**
 	* Rubrics
 	*/
+	
+	// allow tabs in delimited form textarea
+	$("textarea#delimited-text").focus(function() {
+ 		$(this).keydown(function(event){
+			// if hit tab, enter tab instead of moving to next input
+			if(event.keyCode == 9) {
+				event.preventDefault();
+				$(this).val($(this).val() + "\t");
+				return false;
+			}
+			
+			// if hit ctrl, move to next input by default
+			if(event.keyCode == 17) {
+				$("#submit-form-delimited").focus();
+				return false;
+			}
+		});
+	});
 	
 	// new rubric import via delimited form
 	$("#submit-form-delimited").click( function() {

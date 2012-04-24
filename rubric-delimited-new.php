@@ -28,6 +28,7 @@ require('includes/header.php'); ?>
 	<form id="form-delimited" name="form-delimited" method="post">
 		
 		<label for="delimited-text">Enter your tab-delimited content here:</label>
+		<em>Clicking the [tab] key will enter a tab in this textarea. To leave this textarea via keyboard shortcut, click [ctrl] key.</em>
 		<textarea id="delimited-text" name="delimited-text"></textarea>
 		
 		<input id="submit-form-delimited" type="submit" value="Submit" />
