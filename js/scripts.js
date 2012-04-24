@@ -295,15 +295,8 @@ jQuery(document).ready(function () {
 	* Assignments
 	*/
 	
-	// assignment due date
-	//$("#assignment-duedate").datepicker( "option", "dateFormat", "yy-mm-dd" );
-	$("#assignment-duedate").datepicker({
-			changeMonth: true,
-			changeYear: true,
-			dateFormat: "yy-mm-dd"
-		});
-		
-	 // new assignment
+
+	// new assignment
 	$("#new-assignment").click( function() {
 
 		// first remove any already existing warning and validation markers
@@ -344,15 +337,16 @@ jQuery(document).ready(function () {
 			$(this).parent("form").append('<span id="submit-warning">Fields in red should not be blank!</span>');
 			return validInput;
 		}
-		else if ( rubricExists == false ) {
-				return rubricExists;
-			}
-			else if ( validDate == false ) {
-					$(this).parent("form").append('<span id="submit-warning" class="invalid-date">Date must be in yyyy-mm-dd format!</span>');
-					return validDate;
+		else if ( validDate == false ) {
+				$(this).parent("form").append('<span id="submit-warning">Date must be in yyyy-mm-dd format!</span>');	
+				alert("invalid date");
+				return validDate;
+			} 
+			else if ( rubricExists == false ) {
+					return rubricExists;
 				}
 				else {
-					$("#form-assignment").attr("action", "assignment-save.php").submit();
+						$("#form-assignment").attr("action", "assignment-save.php").submit();
 				}
 		
 	});

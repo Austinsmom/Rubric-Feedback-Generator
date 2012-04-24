@@ -29,9 +29,9 @@ None of this would have been possible without the faculty of Montclair State Uni
 
 ### Using Rubric-Feedback Generator
 
-### UML Diagram
-
 ### Source Code
+
+### Bibliography
 
 ---
 
@@ -71,9 +71,11 @@ Directions for using Rubric-Feedback Generator goes here
 
 ---
 
-## UML Diagram
+## Bibliography
 
-diagrams wowowo
+1. jQuery Docs
+2. PHP Cookbook
+3. Blackboard Docs
 
 ---
 
