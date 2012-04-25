@@ -63,7 +63,7 @@ require('includes/header.php');
 					
 					<div id="form-save">
 						<input type="hidden" name="grade-id" value="<?php echo $gradeID; ?>" />
-						<input id="submit-grade-edit" class="save button" type="submit" value="Save Grade" />
+						<input id="submit-grade-edit" class="save" type="submit" value="Save Grade" />
 					</div>
 				
 				</form>

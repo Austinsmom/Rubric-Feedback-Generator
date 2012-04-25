@@ -40,13 +40,20 @@ function gradeEmailContent( $gradeID, $userNicename, $assignmentTitle ) {
 
 		// echo content of the email
 		return '<p>The following is the feedback and grade on your <strong>"' . $assignmentTitle . '"</strong> submission:
-				<div style="margin:10px 0;">' . $gradeContent . '</div>
+				<div style="margin:20px 0; padding: 10px;">' 
+				
+				. $gradeContent . '
 			
-				<p>###########################################################</p>  
+				<p><hr /></p>  
+				
 				<p><span style="font-weight:bold;">Your Grade:</span> ' . $gradePoints . ' (out of ' . $possiblePoints . ' possible points)</p>
-				<p>###########################################################</p>  
+				
+				<p><hr /></p>
+				
+				</div> 
+				 
 				<p>Respond to this email if you have any questions.</p> <p>--</p>
-				<p>' . $userNicename . '<br /><em>Sent via Rubric-Feedback Generator 9000XL Premium</em></p>';
+				<p>' . $userNicename . '<br /><em>Sent via Rubric-Feedback Generator</em></p>';
 	}
 	else {
 		echo "Error - multiple grades with this ID exists. Contact admin for help.";

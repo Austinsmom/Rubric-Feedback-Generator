@@ -84,7 +84,7 @@ while ( $row = mysql_fetch_array($result)) {
 			</div>
 			
 			<div id="form-save">
-				<input class="save button" type="submit" value="Save Grade" />
+				<input class="save" type="submit" value="Save Grade" />
 			</div>
 		
 		</form>

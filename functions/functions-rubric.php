@@ -642,7 +642,7 @@ function printGradedRadio($id, $order, $grade) {
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
 			if ( $gradeValueCount == 0 ) {
-				$commentContent = "No comment.";
+				$commentContent = "";
 			}
 			else {
 				while ( $gradeValueRow = mysql_fetch_array($gradeValue) ) {

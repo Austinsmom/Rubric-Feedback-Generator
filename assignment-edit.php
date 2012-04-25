@@ -57,23 +57,33 @@ require('includes/header.php');
 					<label for="assignment-rubric">Rubric</label>
 					
 						<?php 
-							// get rubrics to choose for this assignment
-							$rubricRecord = mysql_query("SELECT * FROM rubric_form WHERE rubric_author='$username'");
-							$count = mysql_num_rows($rubricRecord);
 						
-							if ( $count == 0 ) {
-								// if there are no rubrics, tell user to make one
-								echo '[<strong>You have not created any rubrics. <a href="rubric-new.php">Click here to create one</a>.</strong>]';
+							// see if there are grades for this assignment already
+							$assignmentGrades = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");
+							$assignmentGradesCount = mysql_num_rows($assignmentGrades);
+							
+							if ( $assignmentGradesCount != 0 ) {
+								echo '[<em>You already have ' . $assignmentGradesCount . ' grade(s) for this assignment. You cannot change the rubric unless you delete them.</em>]';							
 							}
 							else {
-								// if there are rubrics, let user select one for this assignment
-								echo '<select name="assignment-rubric">';
-								while ( $rubricRow = mysql_fetch_array($rubricRecord)) {
-									$rubricID = $rubricRow['rubric_id'];
-									$rubricTitle = $rubricRow['rubric_title'];
-									echo '<option value="' . $rubricID . '">' . $rubricTitle . '</option>';
+								// get rubrics to choose for this assignment
+								$rubricRecord = mysql_query("SELECT * FROM rubric_form WHERE rubric_author='$username'");
+								$count = mysql_num_rows($rubricRecord);
+							
+								if ( $count == 0 ) {
+									// if there are no rubrics, tell user to make one
+									echo '[<em>You have not created any rubrics. <a href="rubric-new.php">Click here to create one</a>.</em>]';
 								}
-								echo '</select>';
+								else {
+									// if there are rubrics, let user select one for this assignment
+									echo '<select name="assignment-rubric">';
+									while ( $rubricRow = mysql_fetch_array($rubricRecord)) {
+										$rubricID = $rubricRow['rubric_id'];
+										$rubricTitle = $rubricRow['rubric_title'];
+										echo '<option value="' . $rubricID . '">' . $rubricTitle . '</option>';
+									}
+									echo '</select>';
+								}
 							}						
 						?>
 					</p>

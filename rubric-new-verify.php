@@ -49,7 +49,7 @@ $delimitedTextItems = explode( '
 		<textarea name="form-description"></textarea></label>
 		
 		<div id="form-save">
-			<input class="save button" type="submit" value="save to database" />
+			<input class="save" type="submit" value="save to database" />
 		</div>
 	
 	</form>
