@@ -155,13 +155,13 @@ function printGradeAnswers($gradeID) {
 							}
 							else if ( $criteriaType == 'radio') {
 									$radioText = getGradedRadioEmail($criteriaID, $gradeID);
-									$gradeAnswers .= '<div style="margin:20px auto;">' . $radioText . '</div>';
+									$gradeAnswers .= '<div style="margin:20px auto;padding:10px;border:1px solid #ddd;background:#efefef;">' . $radioText . '</div>';
 									$radioTextOrder++;
 									$criteriaOrder++;
 								}
 								else if ( $criteriaType == 'textbox') {
 										$textboxText = getGradedTextboxEmail($criteriaID, $gradeID);
-										$gradeAnswers .= '<div style="margin:20px auto;">' . $textboxText . '</div>';
+										$gradeAnswers .= '<div style="margin:20px auto;padding:10px;border:1px solid #ddd;background:#efefef;">' . $textboxText . '</div>';
 										$radioTextOrder++;
 										$criteriaOrder++;					
 									}

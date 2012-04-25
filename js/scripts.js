@@ -70,6 +70,7 @@ jQuery(document).ready(function () {
 				
 		// first remove any already existing warning and validation markers
 		$("input").removeClass('empty-input');
+		$("input").removeClass('invalid-email');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
@@ -163,6 +164,7 @@ jQuery(document).ready(function () {
 		// first remove any already existing warning and validation markers
 		$("input").removeClass('empty-input');
 		$("textarea").removeClass('empty-input');
+		$("input").removeClass('invalid-email');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
@@ -299,6 +301,7 @@ jQuery(document).ready(function () {
 		// first remove any already existing warning and validation markers
 		$("input").removeClass('empty-input');
 		$("textarea").removeClass('empty-input');
+		$("input").removeClass('invalid-date');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
@@ -312,7 +315,7 @@ jQuery(document).ready(function () {
 		}
 		
 		// if no rubrics exist, warn user
-		if ( $('select > [selected]').length == 0 ) {
+		if ( $('select > [selected]').length != 0 ) {
 			$("#no-rubrics").addClass('empty-input');
 			rubricExists = false;
 		}
@@ -353,6 +356,7 @@ jQuery(document).ready(function () {
 		// first remove any already existing warning and validation markers
 		$("input").removeClass('empty-input');
 		$("textarea").removeClass('empty-input');
+		$("input").removeClass('invalid-date');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
@@ -418,6 +422,7 @@ jQuery(document).ready(function () {
 		// first remove any already existing warning and validation markers
 		$("input").removeClass('empty-input');
 		$("textarea").removeClass('empty-input');
+		$("input").removeClass('invalid-email');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
@@ -468,6 +473,7 @@ jQuery(document).ready(function () {
 		// first remove any already existing warning and validation markers
 		$("input").removeClass('empty-input');
 		$("textarea").removeClass('empty-input');
+		$("input").removeClass('invalid-email');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
@@ -620,7 +626,8 @@ jQuery(document).ready(function () {
 
 		// first remove any already existing warning and validation markers
 		$("input").removeClass('empty-input');
-		$("textarea").removeClass('empty-input');
+		$("textarea").removeClass('empty-input');		
+		$("input").removeClass('invalid-points');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
@@ -672,6 +679,7 @@ jQuery(document).ready(function () {
 		// first remove any already existing warning and validation markers
 		$("input").removeClass('empty-input');
 		$("textarea").removeClass('empty-input');
+		$("input").removeClass('invalid-points');
 		$("#submit-warning").remove();
 		
 		var validInput = true;

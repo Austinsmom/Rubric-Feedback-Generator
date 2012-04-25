@@ -425,7 +425,7 @@ function printTextbox($id, $order) {
 			$textboxLabel = $row['criteria_content'];
 			echo '<fieldset class="rubric-textbox criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $textboxLabel . '</label>';
-			echo '<input type="text" name="textbox-' . $criteriaID . '" />';
+			echo '<input type="text" class="text" name="textbox-' . $criteriaID . '" />';
 			echo '</fieldset>';
 		}
 	}
@@ -693,7 +693,7 @@ function printGradedTextbox($id, $order, $grade) {
 					$textboxContent = $gradeValueRow['answer_value'];
 				}
 			}
-			echo '<input type="text" name="textbox-' . $criteriaID . '" value="' . $textboxContent . '" />';
+			echo '<input type="text" class="text" name="textbox-' . $criteriaID . '" value="' . $textboxContent . '" />';
 			echo '</fieldset>';
 		}
 	}
@@ -709,31 +709,42 @@ function printGradedTextbox($id, $order, $grade) {
 * @param $rubricID - id of rubric to get the maximum number of points possible
 */
 function calculateTotalPossiblePoints( $rubricID ) {
-	$possiblePoints = 0;
+	$totalPoints = 0;
+	
+	// get live criteria for this rubric
 	$criteria = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_type = 'radio' AND criteria_live = '1'");
 	$criteriaCount = mysql_num_rows($criteria);
 	
 	if ( $criteriaCount > 0 ) {
+	
 		while ( $criteriaRow = mysql_fetch_array($criteria) ) {
 			$criteriaID = $criteriaRow['criteria_id'];
 			
-			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1';");
+			// get live criteria values for this rubric's criteria
+			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1'");
 			$criteriaValuesCount = mysql_num_rows($criteriaValues);
 			
 			if ($criteriaValuesCount > 0) {
+			
+				$possiblePoints = 0;
+				
+				// get max possible points for this criteria value
 				while ( $criteriaValuesRow = mysql_fetch_array($criteriaValues) ) {
 					$valuePoints = $criteriaValuesRow['value_points'];
+					
 					if ( $valuePoints > $possiblePoints ) {
 						$possiblePoints = $valuePoints;
 					}
 				}
+				
 			}
 			else $possiblePoints = 0;
+			
+			$totalPoints += $possiblePoints;
 		}
 	}
-	else $possiblePoints = 0;
 	
-	return $possiblePoints;
+	return $totalPoints;
 }
 
 /** 

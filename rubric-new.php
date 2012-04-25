@@ -32,7 +32,7 @@ require('includes/header.php'); ?>
 		<fieldset>
 			<p>
 				<label for="form-title">Rubric Title:</label>
-				<input id="rubric-title" type="text" name="form-title" />
+				<input id="rubric-title" type="text" name="form-title" class="text" />
 			</p>
 			
 			<p>

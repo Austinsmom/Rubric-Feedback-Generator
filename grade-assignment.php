@@ -48,7 +48,7 @@ require('includes/header.php');
 			
 			<fieldset class="check">
 					<label for="user-email">Student's email address: </label>
-					<input type="email" name="student" id="student-email" class="email" />
+					<input type="email" name="student" id="student-email" class="email text" />
 				
 				<input type="hidden" name="rubric-assignment" value="<?php echo $assignmentID; ?>" />
 				<input type="hidden" name="rubric-id" value="<?php echo $rubricID; ?>" />
