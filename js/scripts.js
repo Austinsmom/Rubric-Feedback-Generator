@@ -12,9 +12,15 @@ jQuery(document).ready(function () {
 	* Global Scripts
 	*/
 	
+	// Things to initially hide from screen - better than using CSS
+	$("#form-email").css("display","none");
+	$("#delete-prompt").css("display","none");
+	$("#delete-prompt.rubric").css("display","none");
+	$("fieldset.deleted div.button.add-value.new-radio").css("display","none");
+	
 	// Always have a form's first radio button selected by default
 	$("fieldset.check").each(function() {
-		$(this).children("input:first").attr('checked', true);
+		$(this).find("input:first").attr('checked', true);
 	});
 	
 	// Validate email
@@ -531,7 +537,50 @@ jQuery(document).ready(function () {
 		$("#delete-prompt").css("display","none");
 		return false;
 	});
+	
+	// select batch email screen
+	$("#email-batch").click( function() {
+		$("#form-grade").css("display","none");
+		$("#form-email").css("display","block");
+		return false;
+	});
+	
+	// select edit/email individual grade (default) menu
+	$("#grade-view-edit").click( function() {
+		$("#form-email").css("display","none");
+		$("#form-grade").css("display","block");
+		return false;
+	});
+	
+	// select all checkboxes for batch email
+	$("#select-all").click( function() {
+		$("input.checkbox").attr('checked', true);
+		return false;
+	});
+	
+	// unselect all checkboxes for batch email
+	$("#select-none").click( function() {
+		$("input.checkbox").attr('checked', false);
+		return false;
+	});
+	
+	// batch email grades ###
+	$("#batch-email-grades").click( function() {
+		$("#submit-warning").remove();
 
+		// check and make sure at least one checkbox is selected
+		if ($('#grade-choice :checkbox:checked').length > 0) {
+			validSelection = true;
+			$("#form-email").attr("action", "grade-email-batch.php").submit();
+		}
+		else {
+			validSelection = false;
+			$("#form-email").after('<span id="submit-warning">You must select at least one grade to email.</span>');
+			
+		}
+		return validSelection;
+	});
+	
 	
 	/**
 	* Rubrics
@@ -809,7 +858,7 @@ jQuery(document).ready(function () {
 	$("#add-radio").click(function(){ 
 		var order = findMaxOrder();
 		$('#form-edit fieldset').last()
-			.after('<fieldset class="edit radio ' + editInputCount + '" id="' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" value="' + order + '" /><br />Radio Label: <input type="text" name="new-radio-' + editInputCount + '" class="content textbox" /><p>Options:</p><ul class="radio-options"><li>Option Order: <input type="text" name="new-' + editInputCount + '-valueChron-' + radioValueCount + '" class="value-order" value="1" /><br />Option Label: <input type="text" name="new-' + editInputCount + '-valueLabel-' + radioValueCount + '" class="value-label" /><br />Option Points: <input type="text" name="new-' + editInputCount + '-valuePoints-' + radioValueCount + '" class="value-points" /><br /><input type="submit" class="button delete-new-value" value="Delete this Option" /><input type="hidden" name="new-' + editInputCount + '-valueOn-' + radioValueCount + '" class="is-live" value="1" /></li></ul><div type="submit" class="button add-value new-radio">Add Option</div><input type="submit" class="button new-delete" value="Delete" /><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
+			.after('<fieldset class="edit radio ' + editInputCount + '" id="' + editInputCount + '">Order: <input type="text" name="new-order-' + editInputCount + '" class="order" value="' + order + '" /><br />Radio Label: <input type="text" name="new-radio-' + editInputCount + '" class="content textbox" /><p>Options:</p><ul class="radio-options"><li>Option Order: <input type="text" name="new-' + editInputCount + '-valueChron-' + radioValueCount + '" class="value-order" value="1" /><br />Option Label: <input type="text" name="new-' + editInputCount + '-valueLabel-' + radioValueCount + '" class="value-label" /><br />Option Points: <input type="text" name="new-' + editInputCount + '-valuePoints-' + radioValueCount + '" class="value-points" /><br /><input type="submit" class="button delete-new-value" value="Delete this Option" /><input type="hidden" name="new-' + editInputCount + '-valueOn-' + radioValueCount + '" class="is-live" value="1" /></li></ul><input type="submit" class="button add-value new-radio" value="Add Option" /><input type="submit" class="button new-delete" value="Delete" /><input type="hidden" name="new-live-' + editInputCount + '" class="is-live" value="1" /></fieldset>');
 			editInputCount++;
 			radioValueCount++;
 			return false;

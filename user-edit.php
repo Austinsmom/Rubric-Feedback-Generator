@@ -40,11 +40,11 @@ else {
 		  <form id="form-user-edit" method="post">
 			<p>
 				<label for="username">Username:</label>
-				<strong><?php echo $username; ?></strong>
+				<em><?php echo $username; ?></em>
 			</p>
 			
 			<p>
-				<label for="password">New password (optional - leave blank to keep the same):</label>
+				<label for="password">New password <em>(optional - leave blank to keep the same)</em>:</label>
 				<input class="text" type="password" name="password" id="password" />
 			</p>
 			

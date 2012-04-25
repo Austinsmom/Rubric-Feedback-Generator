@@ -44,8 +44,8 @@ require('includes/header.php'); ?>
 					$meeting = $row['class_meetingtime'];
 					$notes = $row['class_notes'];
 				
-					echo '<input type="radio" name="class-choice" id="class-'. 
-							$id . '" value="' .$id. '"> ' . $title .' <em>' . $meeting . '</em> <div class="description">'. $notes .'</div>';
+					echo '<p><input type="radio" name="class-choice" id="class-'. 
+							$id . '" value="' .$id. '"> ' . $title .' <em>' . $meeting . '</em> <div class="description">'. $notes .'</div></p>';
 					}
 				?>
 			 </fieldset>	
@@ -95,8 +95,8 @@ require('includes/header.php'); ?>
 					$title = $row['rubric_title'];
 					$description = stripslashes($row['rubric_description']);
 				
-					echo '<input type="radio" name="rubric-choice" id="rubric-'. 
-							$id . '" value="' .$id. '"> ' . $title .'<div class="description">'. $description .'</div>';
+					echo '<p><input type="radio" name="rubric-choice" id="rubric-'. 
+							$id . '" value="' .$id. '"> ' . $title .'<div class="description">'. $description .'</div></p>';
 					}
 				?>
 			 </fieldset>	

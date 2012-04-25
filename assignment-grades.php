@@ -28,13 +28,16 @@ $assignmentTitle = $_POST['assignment-title'];
 			
 	 <?php
 		$resultGrade = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");
+		$resultGradeEmails = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");;
 		$count = mysql_num_rows($resultGrade);
 			
 		if ($count != 0) { ?>
 			
+			
+			<?php /* Form for sending/editing individually grades. Shown by default! */ ?>
 			<form id="form-grade" name="form-grade" method="post" class="clearfix">
 			 <fieldset class="check">
-				 <legend>Select a grade to edit or send to student:</legend>
+				 <legend>Select an individual grade to edit or email:</legend>
 
 				<?php 
 					while ( $row = mysql_fetch_array($resultGrade)) {
@@ -54,7 +57,7 @@ $assignmentTitle = $_POST['assignment-title'];
 							}
 						}
 						
-						echo '<input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' &bull; Total Points: ' . $gradeTotal . '<br />';
+						echo '<p><input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' &bull; Total Points: ' . $gradeTotal . '</p>';
 					}		
 				?>	
 			 </fieldset>	
@@ -69,7 +72,52 @@ $assignmentTitle = $_POST['assignment-title'];
 			 	<input type="submit" value="Delete Grade" id="delete-grade" />
 			 </div>
 			 
+			 <input type="submit" value="Batch Email Grades" id="email-batch" class="button email" />
+			 
+			</form>
+			
+			<?php /* Form for sending batch emails. Initially hidden! */ ?>
+			<form id="form-email" name="form-email" method="post" class="clearfix">
+			 <fieldset id="grade-choice">
+				 <legend>Select multiple grades to email to students:</legend>
+
+				<?php 
+					while ( $rowEmails = mysql_fetch_array($resultGradeEmails)) {
+						// list each grade so the user can edit or email
+						$id = $rowEmails['grade_id'];
+						$student = $rowEmails['grade_student'];
+						$rubric = $rowEmails['grade_rubric_id'];
+						$assignment = $rowEmails['grade_assignment_id'];
+						$gradeTotal = calculateGradeTotal($id);
+						
+						$assignmentEmailsQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignment'");
+						$assignmentEmailsCount = mysql_num_rows($assignmentEmailsQuery);
+						
+						if ($assignmentEmailsCount != 0 ) {
+							while ($assignmentEmailsRow = mysql_fetch_array($assignmentEmailsQuery)) {
+								$assignment = $assignmentEmailsRow['assignment_title'];
+							}
+						}
+						echo '<p><input type="checkbox" class="checkbox" name="grades[]" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' &bull; Total Points: ' . $gradeTotal . '</p>';
+					}		
+				?>	
+			 </fieldset>	
+			
+			 
+			 <div class="buttons-left">
+			 	<input type="submit" value="Email Selected Grades" id="batch-email-grades" />
+			  </div>
+			 
+			 <div class="buttons-right">
+				<input type="submit" class="button select" id="select-all" value="Select All" />
+				<input type="submit" class="button select" id="select-none" value="Unselect All" />
+			 </div>
+			 
+			 <input type="submit" value="View/Edit Grade Menu" id="grade-view-edit" class="button" />
+			
+			 
 			</form>		
+					
 	<?php } else { ?>
 
 			<p>You have no grades yet.</p>

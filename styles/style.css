@@ -10,14 +10,18 @@ body { width: 90%; max-width: 800px; margin: 20px auto; }
 label { display: block; margin-bottom: 10px; font-weight: bold; }
 fieldset { border: 1px solid #ddd; background: #fff; margin: 10px 0; padding: 20px; position: relative; }
 legend { border: 1px solid #ddd; background: #6cc; padding: 10px; }
-form { padding: 20px; background: #efefef; border: 1px solid #ddd; margin: 20px auto 40px; }
+form { padding: 20px; background: #efefef; border: 1px solid #ddd; margin: 20px auto; }
 textarea { width: 60%; min-width: 200px; height: 100px; }
 h1,h2,h3,h4,h5,h6,legend { font-family: Monaco, monospace; }
 h2 { font-size: 1.3em; }
 
 /* ----- Header ------------------------ */
-#title-box {  background: #efefef; padding: 10px; margin: 20px auto; border: 1px solid #ddd; }
-#title-box h1 { font-family: Helvetica, Arial, sans-serif; }
+#title-box {  background: #efefef; padding: 20px; margin: 20px auto; border: 1px solid #ddd; }
+#title-box h1 { font-family: Helvetica, Arial, sans-serif; margin-top: 0; }
+#title-box h2 { margin-bottom: 0; }
+
+/* ----- Footer ------------------------ */
+#footer-admin { background: #efefef; padding: 20px; margin: 20px auto; border: 1px solid #ddd; text-align: right; }
 
 /* ----- Form Elements ----------------- */
 input.button { width: auto; width: 180px; }
@@ -28,6 +32,7 @@ input.button { width: auto; width: 180px; }
 .button.delete-value, .button.delete-new-value, .button.add-value { padding: 3px 5px; margin: 5px 0; font-size: .9em;}
 .button.add-value { margin-left: 40px; }
 .button.add { background: #fff; }
+.button.select { width: 80px; display: inline; }
 input[type="submit"] { display: inline-block; margin: 5px auto; }
 .buttons-left { width: 45%; text-align: left; float: left; min-width: 200px; }
 .buttons-right { width: 45%; text-align: right; float: right; min-width: 200px; }
@@ -43,7 +48,6 @@ input.order { width: 30px; }
 /* ----- Edit Rubric Form Elements ----- */
 fieldset.deleted, li.deleted { color: #aaa; font-style: italic; background: #efefef; }
 fieldset.deleted input, li.deleted input { color: #aaa; font-style: italic; background: #efefef; }
-fieldset.deleted div.button.add-value.new-radio { display: none; }
 ul.radio-options li { margin: 20px 0; }
 #add-items-panel { text-align: right; }
 fieldset.edit .button.delete, fieldset.edit .button.new-delete { width: 100px; }
@@ -53,6 +57,8 @@ fieldset.edit .button.delete, fieldset.edit .button.new-delete { width: 100px; }
 #ui-datepicker-div { -moz-box-shadow: 0 0 100px #000; -webkit-box-shadow: 0 0 100px #000; -o-box-shadow: 0 0 100px #000; box-shadow: 0 0 100px #000;}
 
 /* ----- Grade Email ------------------- */
+#form-email, #form-grade { position: relative; }
+#email-batch, #grade-view-edit { position: absolute; top: 10px; right: 20px; }
 #email-header { max-width: 580px; padding: 10px; background: #efefef; border: 1px solid #ddd; margin: 10px auto; }
 #email-content { max-width: 600px; margin: 10px auto; }
 #email-content > div > h1 { font-family: Helvetica, Arial, sans-serif; }
@@ -61,8 +67,7 @@ fieldset.edit .button.delete, fieldset.edit .button.new-delete { width: 100px; }
 .empty-input, .invalid-points, .invalid-email, .invalid-date { border: 2px solid #c66; }
 .warning { padding: 20px; background: #c66; border: 1px solid #c66; }
 #submit-warning, .invalid-criteria { display: block; padding: 10px; background: #c66; margin: 20px auto; border: 2px solid #c66; }
-#footer-admin { background: #efefef; padding: 10px; margin: 20px auto; border: 1px solid #ddd; text-align: right; }
-#delete-prompt { background: #c66; padding: 10px; display: none; margin-top: -20px; }
+#delete-prompt { background: #c66; padding: 10px; margin-top: -20px; }
 #delete-prompt .button.delete { position: relative; margin: 0 10px;}
 
 /* ----- Misc. CSS Fixes --------------- */
