@@ -40,7 +40,7 @@ function gradeEmailContent( $gradeID, $userNicename, $assignmentTitle ) {
 
 		// echo content of the email
 		return '<p>The following is the feedback and grade on your <strong>"' . $assignmentTitle . '"</strong> submission:
-				<div style="margin:20px 0; padding: 10px;">' 
+				<div style="margin:20px 0;padding: 10px;border:1px solid #ddd;">' 
 				
 				. $gradeContent . '
 			

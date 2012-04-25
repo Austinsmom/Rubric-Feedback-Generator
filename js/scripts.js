@@ -13,7 +13,7 @@ jQuery(document).ready(function () {
 	*/
 	
 	// Things to initially hide from screen - better than using CSS
-	$("#form-email").css("display","none");
+	$("#form-batch").css("display","none");
 	$("#delete-prompt").css("display","none");
 	$("#delete-prompt.rubric").css("display","none");
 	$("fieldset.deleted div.button.add-value.new-radio").css("display","none");
@@ -541,14 +541,14 @@ jQuery(document).ready(function () {
 	// select batch email screen
 	$("#email-batch").click( function() {
 		$("#form-grade").css("display","none");
-		$("#form-email").css("display","block");
+		$("#form-batch").css("display","block");
 		return false;
 	});
 	
 	// select edit/email individual grade (default) menu
 	$("#grade-view-edit").click( function() {
 		$("#form-email").css("display","none");
-		$("#form-grade").css("display","block");
+		$("#form-batch").css("display","block");
 		return false;
 	});
 	
@@ -564,18 +564,18 @@ jQuery(document).ready(function () {
 		return false;
 	});
 	
-	// batch email grades ###
+	// batch email grades
 	$("#batch-email-grades").click( function() {
 		$("#submit-warning").remove();
 
 		// check and make sure at least one checkbox is selected
 		if ($('#grade-choice :checkbox:checked').length > 0) {
 			validSelection = true;
-			$("#form-email").attr("action", "grade-email-batch.php").submit();
+			$("#form-batch").attr("action", "grade-email-batch.php").submit();
 		}
 		else {
 			validSelection = false;
-			$("#form-email").after('<span id="submit-warning">You must select at least one grade to email.</span>');
+			$("#form-batch").after('<span id="submit-warning">You must select at least one grade to email.</span>');
 			
 		}
 		return validSelection;

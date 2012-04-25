@@ -77,7 +77,7 @@ $assignmentTitle = $_POST['assignment-title'];
 			</form>
 			
 			<?php /* Form for sending batch emails. Initially hidden! */ ?>
-			<form id="form-email" name="form-email" method="post" class="clearfix">
+			<form id="form-batch" name="form-batch" method="post" class="clearfix">
 			 <fieldset id="grade-choice">
 				 <legend>Select multiple grades to email to students:</legend>
 
