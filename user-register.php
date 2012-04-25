@@ -22,22 +22,22 @@ require('includes/header.php'); ?>
 	<form id="form-register" name="form-register" method="post">
 		<p>
 			<label for="username">Username:</label>
-			<input type="text" name="username" id="username" />
+			<input type="text" name="username" id="username" class="text" />
 		</p>
 		
 		<p>
 			<label for="password">Password:</label>
-			<input type="password" name="password" id="password" />
+			<input type="password" name="password" id="password" class="text" />
 		</p>
 		
 		<p>
 			<label for="nicename">Display Name:</label>
-			<input type="text" name="nicename" id="nicename" />
+			<input type="text" name="nicename" id="nicename" class="text" />
 		</p>
 			
 		<p>
 			<label for="email">Email Address:</label>
-			<input type="email" name="email" id="email" />
+			<input type="email" name="email" id="email" class="text" />
 		</p>
 	
 		<input type="hidden" name="form-origin" value="register">	

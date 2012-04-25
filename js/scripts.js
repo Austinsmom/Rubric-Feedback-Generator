@@ -547,8 +547,8 @@ jQuery(document).ready(function () {
 	
 	// select edit/email individual grade (default) menu
 	$("#grade-view-edit").click( function() {
-		$("#form-email").css("display","none");
-		$("#form-batch").css("display","block");
+		$("#form-batch").css("display","none");
+		$("#form-grade").css("display","block");
 		return false;
 	});
 	
