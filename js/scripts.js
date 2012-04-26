@@ -14,6 +14,7 @@ jQuery(document).ready(function () {
 	
 	// Things to initially hide from screen - better than using CSS
 	$("#form-batch").css("display","none");
+	$("#grade-view-edit").css("display","none");
 	$("#delete-prompt").css("display","none");
 	$("#delete-prompt.rubric").css("display","none");
 	$("fieldset.deleted div.button.add-value.new-radio").css("display","none");
@@ -540,6 +541,9 @@ jQuery(document).ready(function () {
 	
 	// select batch email screen
 	$("#email-batch").click( function() {
+		$("#submit-warning").remove();
+		$("#grade-view-edit").css("display","block");
+		$("#email-batch").css("display","none");
 		$("#form-grade").css("display","none");
 		$("#form-batch").css("display","block");
 		return false;
@@ -547,6 +551,9 @@ jQuery(document).ready(function () {
 	
 	// select edit/email individual grade (default) menu
 	$("#grade-view-edit").click( function() {
+		$("#submit-warning").remove();
+		$("#grade-view-edit").css("display","none");
+		$("#email-batch").css("display","block");
 		$("#form-batch").css("display","none");
 		$("#form-grade").css("display","block");
 		return false;
@@ -793,7 +800,7 @@ jQuery(document).ready(function () {
 			
 		//if button value = delete, then change is_live to 0 and value to "undo delete"
 		if ( $thisButton.val() == "Delete") {
-			$thisButton.val("Undo delete");
+			$thisButton.val("Undelete");
 			$thisButton.parent("fieldset").children("input.is-live").val("0");
 			$thisButton.parent("fieldset").addClass("deleted");
 		}
@@ -813,7 +820,7 @@ jQuery(document).ready(function () {
 			
 		//if button value = Delete this Option, then change is_live to 0 and value to "undo delete"
 		if ( $thisButton.val() == "Delete this Option") {
-			$thisButton.val("Undo delete");
+			$thisButton.val("Undelete Option");
 			$thisButton.parent("li").children("input.is-live").val("0");
 			$thisButton.parent("li").addClass("deleted");
 		}
@@ -870,7 +877,7 @@ jQuery(document).ready(function () {
 			
 		//if button value = delete, then change is_live to 0 and value to "undo delete"
 		if ( $thisButton.val() == "Delete") {
-			$thisButton.val("Undo delete");
+			$thisButton.val("Undelete");
 			$thisButton.parent("fieldset").children("input.is-live").val("0");
 			$thisButton.parent("fieldset").addClass("deleted");
 			$thisButton.parent("fieldset").find("ul.radio-options li").addClass("deleted");
@@ -932,7 +939,7 @@ jQuery(document).ready(function () {
 			
 		//if button value = Delete this Option, then change is_live to 0 and value to "undo delete"
 		if ( $thisButton.val() == "Delete this Option") {
-			$thisButton.val("Undo delete");
+			$thisButton.val("Undelete Option");
 			$thisButton.parent("li").children("input.is-live").val("0");
 			$thisButton.parent("li").addClass("deleted");
 		}

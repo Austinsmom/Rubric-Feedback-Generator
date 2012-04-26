@@ -53,7 +53,7 @@ require('includes/header.php'); ?>
 			 <input type="hidden" name="class-title" value="<?php echo $title; ?>" />
 			
 			 <div class="buttons-left">
-			 	<input type="submit" id="view-assignments" value="View Assignments for this Class" onclick ="choseViewAssignments()" />
+			 	<input type="submit" id="view-assignments" value="View Assignments" onclick ="choseViewAssignments()" />
 			 </div>
 			 
 			 <div class="buttons-right">
@@ -65,8 +65,8 @@ require('includes/header.php'); ?>
 	<?php } else { /* no classes, do nothing */} ?>		
 	
 	<div id="delete-prompt" class="class">
-		Are you sure you want to delete this class? 
-		<input type="submit" class="button delete" id="cancel-class-delete" value="Cancel" />
+		<p>Are you sure you want to delete this class? </p>
+		<input type="submit" class="button delete cancel" id="cancel-class-delete" value="Cancel" />
 		<input type="submit" class="button delete" id="confirm-class-delete" value="Yes, Delete Class" />
 	</div> 
 	 
@@ -114,8 +114,8 @@ require('includes/header.php'); ?>
 	<?php } else { /* no rubrics, do nothing */ } ?>
 	
 	<div id="delete-prompt" class="rubric">
-		Are you sure you want to delete this rubric? 
-		<input type="submit" class="button delete" id="cancel-rubric-delete" value="Cancel" />
+		<p>Are you sure you want to delete this rubric? </p>
+		<input type="submit" class="button delete cancel" id="cancel-rubric-delete" value="Cancel" />
 		<input type="submit" class="button delete" id="confirm-rubric-delete" value="Yes, Delete Rubric" />
 	</div> 
 	

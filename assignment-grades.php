@@ -35,6 +35,9 @@ $assignmentTitle = $_POST['assignment-title'];
 			
 			
 			<?php /* Form for sending/editing individually grades. Shown by default! */ ?>
+			
+			<input type="submit" value="Go To 'Batch Email' Menu" id="email-batch" class="button email" />
+			
 			<form id="form-grade" name="form-grade" method="post" class="clearfix">
 			 <fieldset class="check">
 				 <legend>Select an individual grade to edit or email:</legend>
@@ -72,11 +75,13 @@ $assignmentTitle = $_POST['assignment-title'];
 			 	<input type="submit" value="Delete Grade" id="delete-grade" />
 			 </div>
 			 
-			 <input type="submit" value="Batch Email Grades" id="email-batch" class="button email" />
+			</form> 
 			 
-			</form>
 			
 			<?php /* Form for sending batch emails. Initially hidden! */ ?>
+			
+			<input type="submit" value="Go To Main Grade Menu" id="grade-view-edit" class="button" />
+			
 			<form id="form-batch" name="form-batch" method="post" class="clearfix">
 			 <fieldset id="grade-choice">
 				 <legend>Select multiple grades to email to students:</legend>
@@ -113,10 +118,9 @@ $assignmentTitle = $_POST['assignment-title'];
 				<input type="submit" class="button select" id="select-none" value="Unselect All" />
 			 </div>
 			 
-			 <input type="submit" value="View/Edit Grade Menu" id="grade-view-edit" class="button" />
-			
 			 
 			</form>		
+			
 					
 	<?php } else { ?>
 
@@ -125,8 +129,8 @@ $assignmentTitle = $_POST['assignment-title'];
 		<?php } ?>
 		
 <div id="delete-prompt">
-	Are you sure you want to delete this grade? 
-	<input type="submit" class="button delete" id="cancel-grade-delete" value="Cancel" />
+	<p>Are you sure you want to delete this grade?</p>
+	<input type="submit" class="button delete cancel" id="cancel-grade-delete" value="Cancel" />
 	<input type="submit" class="button delete" id="confirm-grade-delete" value="Yes, Delete Grade" />
 </div>
 	 

@@ -75,8 +75,8 @@ $classTitle = $_POST['class-title'];
 	<?php } else { /* no assignments, do nothing */ } ?>
 	
 <div id="delete-prompt">
-	Are you sure you want to delete this grade? 
-	<input type="submit" class="button delete" id="cancel-assignment-delete" value="Cancel" />
+	<p>Are you sure you want to delete this grade? </p>
+	<input type="submit" class="button delete cancel" id="cancel-assignment-delete" value="Cancel" />
 	<input type="submit" class="button delete" id="confirm-assignment-delete" value="Yes, Delete Assignment" />
 </div>
 

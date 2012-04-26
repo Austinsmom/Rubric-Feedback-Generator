@@ -507,7 +507,7 @@ function printEditRadio($id) {
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
 			echo '<br />';
-			echo 'Radio Label: <input type="text" name="content-' . $criteriaID . '" class="content radio" value="' . $criteriaContent . '" />';
+			echo 'Radio Label: <input type="text" name="content-' . $criteriaID . '" class="content radio text" value="' . $criteriaContent . '" />';
 			
 			// get criteria values for this radio item
 			$valueRecord = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1' ORDER BY value_order") or die('Error: Cannot get Radio Criteria Values wanted. Contact admin for help: ' . mysql_error());
