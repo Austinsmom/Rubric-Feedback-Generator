@@ -47,13 +47,26 @@ $assignmentCount = mysql_num_rows($assignmentQuery);
 if ($assignmentCount == 1 ) {
 	while ( $assignmentRow = mysql_fetch_array($assignmentQuery) ) {
 		$assignmentTitle = $assignmentRow['assignment_title'];
+		$classID = $assignmentRow['assignment_class_id'];
+		
+		// get class title for this class
+		$classQuery = mysql_query("SELECT * FROM rubric_class WHERE class_id = '$classID'");
+		$classCount = mysql_num_rows($classQuery);					
+		if ($classCount == 1 ) {
+			while ( $classRow = mysql_fetch_array($classQuery) ) {
+				$classTitle = $classRow['class_title'];
+			}
+		}
+		else {
+			echo "Error - multiple classes with this ID exists. Contact admin for help.";
+		}
 	}
 }
 else {
 	echo "Error - multiple assignments with this ID exists. Contact admin for help.";
 }
 
-$emailSubject = '[' . $assignmentTitle . '] Assignment grade and feedback';
+$emailSubject = '[' . $classTitle . '] Assignment grade and feedback for ' . $assignmentTitle;
 
 ?>
 
