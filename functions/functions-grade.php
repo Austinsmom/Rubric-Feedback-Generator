@@ -69,7 +69,7 @@ function calculateGradeTotal( $gradeID ) {
 	$gradeTotal = 0;
 	
 	// get answers from a grade to get points
-	$answers = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_grade_id = '$gradeID' AND is_comment = '0' AND is_textbox = '0';");
+	$answers = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_grade_id = '$gradeID' AND answer_is_comment = '0' AND answer_is_textbox = '0';");
 	$answersCount = mysql_num_rows($answers);
 	
 	if ( $answersCount > 0 ) {
@@ -91,7 +91,7 @@ function calculateGradeTotal( $gradeID ) {
 					$answerCriteriaCount = mysql_num_rows($answerCriteria);
 					if ( $answerCriteriaCount == 1 ) {
 						while ( $answerCriteriaRow = mysql_fetch_array($answerCriteria) ) {
-							$answerCriteriaLive = $answerCriteriaRow['criteria_live'];
+							$answerCriteriaLive = $answerCriteriaRow['criteria_is_live'];
 			
 							if ( $answerCriteriaLive == 1 ) {
 								$gradeTotal += $value;
@@ -130,7 +130,7 @@ function printGradeAnswers($gradeID) {
 			
 			if ( $rubricCount == 1 ) {
 						
-				$criteriaSet = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_live = '1' ORDER BY criteria_order;")  or die('Error: Cannot get criteria from this rubric. Contact admin for help: ' . mysql_error());
+				$criteriaSet = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_is_live = '1' ORDER BY criteria_order;")  or die('Error: Cannot get criteria from this rubric. Contact admin for help: ' . mysql_error());
 				$criteriaCount = mysql_num_rows($criteriaSet);
 				$criteriaOrder = 1;
 				$radioTextOrder = 1;
@@ -219,10 +219,10 @@ function getGradedRadioEmail($id, $grade) {
 			// output grade content
 			$radioEmail .= '<span style="font-weight:bold;">' . $row['criteria_content'] . '</span>: ';
 			
-			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_textbox = '0' AND is_comment='0'");	
+			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_textbox = '0' AND answer_is_comment='0'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
-			$gradeValueComment = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id='$gradeID' AND is_textbox = '0' AND is_comment = '1'");
+			$gradeValueComment = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id='$gradeID' AND answer_is_textbox = '0' AND answer_is_comment = '1'");
 			$gradeValueCommentCount = mysql_num_rows($gradeValueComment);
 					
 			if ( $gradeValueCount == 0 ) {
@@ -285,7 +285,7 @@ function getGradedTextboxEmail($id, $grade) {
 		
 			$textboxEmail .= '<span style="font-weight:bold;">' . $row['criteria_content'] . '</span>: ';
 			
-			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_textbox = '1'");	
+			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_textbox = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
 			if ( $gradeValueCount == 0 ) {

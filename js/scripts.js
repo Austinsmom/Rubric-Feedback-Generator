@@ -793,18 +793,18 @@ jQuery(document).ready(function () {
 		return tempMax + 1;
 	}
 	
-	// Change criteria is_live on click of "delete" button, and undo delete
+	// Change criteria is-live on click of "delete" button, and undo delete
 	$("fieldset.edit input.button.delete").click(function(){ 
 		
 		var $thisButton = $(this);
 			
-		//if button value = delete, then change is_live to 0 and value to "undo delete"
+		//if button value = delete, then change is-live to 0 and value to "undo delete"
 		if ( $thisButton.val() == "Delete") {
 			$thisButton.val("Undelete");
 			$thisButton.parent("fieldset").children("input.is-live").val("0");
 			$thisButton.parent("fieldset").addClass("deleted");
 		}
-		//else change is_live to 1 and value to "delete"
+		//else change is-live to 1 and value to "delete"
 		else {
 			$thisButton.val("Delete");
 			$thisButton.parent("fieldset").children('input.is-live').val("1");
@@ -813,18 +813,18 @@ jQuery(document).ready(function () {
 		return false;
 	});
 	
-	// Change radio criteria value is_live on click of "delete" button, and undo delete
+	// Change radio criteria value is-live on click of "delete" button, and undo delete
 	$("fieldset.edit input.button.delete-value").click(function(){ 
 		
 		var $thisButton = $(this);
 			
-		//if button value = Delete this Option, then change is_live to 0 and value to "undo delete"
+		//if button value = Delete this Option, then change is-live to 0 and value to "undo delete"
 		if ( $thisButton.val() == "Delete this Option") {
 			$thisButton.val("Undelete Option");
 			$thisButton.parent("li").children("input.is-live").val("0");
 			$thisButton.parent("li").addClass("deleted");
 		}
-		//else change is_live to 1 and value to "Delete this Option"
+		//else change is-live to 1 and value to "Delete this Option"
 		else {
 			$thisButton.val("Delete this Option");
 			$thisButton.parent("li").children('input.is-live').val("1");
@@ -875,14 +875,14 @@ jQuery(document).ready(function () {
 	$("fieldset.edit input.button.new-delete").live("click", function(){
   		var $thisButton = $(this);
 			
-		//if button value = delete, then change is_live to 0 and value to "undo delete"
+		//if button value = delete, then change is-live to 0 and value to "undo delete"
 		if ( $thisButton.val() == "Delete") {
 			$thisButton.val("Undelete");
 			$thisButton.parent("fieldset").children("input.is-live").val("0");
 			$thisButton.parent("fieldset").addClass("deleted");
 			$thisButton.parent("fieldset").find("ul.radio-options li").addClass("deleted");
 		}
-		//else change is_live to 1 and value to "delete"
+		//else change is-live to 1 and value to "delete"
 		else {
 			$thisButton.val("Delete");
 			$thisButton.parent("fieldset").children('input.is-live').val("1");
@@ -937,13 +937,13 @@ jQuery(document).ready(function () {
   	
 		var $thisButton = $(this);
 			
-		//if button value = Delete this Option, then change is_live to 0 and value to "undo delete"
+		//if button value = Delete this Option, then change is-live to 0 and value to "undo delete"
 		if ( $thisButton.val() == "Delete this Option") {
 			$thisButton.val("Undelete Option");
 			$thisButton.parent("li").children("input.is-live").val("0");
 			$thisButton.parent("li").addClass("deleted");
 		}
-		//else change is_live to 1 and value to "Delete this Option"
+		//else change is-live to 1 and value to "Delete this Option"
 		else {
 			$thisButton.val("Delete this Option");
 			$thisButton.parent("li").children('input.is-live').val("1");

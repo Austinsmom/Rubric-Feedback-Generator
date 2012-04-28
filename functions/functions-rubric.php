@@ -268,7 +268,7 @@ function printRubric($id, $editGrade) {
 	
 	// get criteria info to print
 	$rubricID = $id;
-	$criteriaSet = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_live = '1' ORDER BY criteria_order;")  or die('Error: Cannot get criteria from this rubric. Contact admin for help: ' . mysql_error());
+	$criteriaSet = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_is_live = '1' ORDER BY criteria_order;")  or die('Error: Cannot get criteria from this rubric. Contact admin for help: ' . mysql_error());
 	$count = mysql_num_rows($criteriaSet);
 	$criteriaOrder = 1;
 	$radioTextOrder = 1;
@@ -451,7 +451,7 @@ function printEditTitle($id) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 			$criteriaOrder = $row['criteria_order'];
 			$criteriaContent = $row['criteria_content'];
-			$criteriaLove = $row['criteria_live'];
+			$criteriaLove = $row['criteria_is_live'];
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
 			echo '<br />';
@@ -476,7 +476,7 @@ function printEditPlaintext($id) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {	
 			$criteriaOrder = $row['criteria_order'];
 			$criteriaContent = $row['criteria_content'];
-			$criteriaLove = $row['criteria_live'];
+			$criteriaLove = $row['criteria_is_live'];
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
 			echo '<br />';
@@ -503,7 +503,7 @@ function printEditRadio($id) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {	
 			$criteriaOrder = $row['criteria_order'];
 			$criteriaContent = $row['criteria_content'];
-			$criteriaLove = $row['criteria_live'];
+			$criteriaLove = $row['criteria_is_live'];
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
 			echo '<br />';
@@ -561,7 +561,7 @@ function printEditTextbox($id) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {	
 			$criteriaOrder = $row['criteria_order'];
 			$criteriaContent = $row['criteria_content'];
-			$criteriaLove = $row['criteria_live'];
+			$criteriaLove = $row['criteria_is_live'];
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
 			echo '<br />';
@@ -614,7 +614,7 @@ function printGradedRadio($id, $order, $grade) {
 					$valuePoints = $valueRow['value_points'];
 					
 					// get graded value of this radio criteria value
-					$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_comment = '0'");	
+					$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_comment = '0'");	
 					$gradeValueCount = mysql_num_rows($gradeValue);
 					
 					if ( $gradeValueCount == 0 ) {
@@ -638,7 +638,7 @@ function printGradedRadio($id, $order, $grade) {
 			else echo "Error: No values for this radio-type criteria exist. Contact admin for help.";
 			
 			// get comment info for this criteria
-			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_comment = '1'");	
+			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_comment = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
 			if ( $gradeValueCount == 0 ) {
@@ -682,7 +682,7 @@ function printGradedTextbox($id, $order, $grade) {
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $textboxLabel . '</label>';
 			
 			// get graded value of this textbox 					
-			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND is_textbox = '1'");	
+			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_textbox = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
 			if ( $gradeValueCount == 0 ) {
@@ -712,7 +712,7 @@ function calculateTotalPossiblePoints( $rubricID ) {
 	$totalPoints = 0;
 	
 	// get live criteria for this rubric
-	$criteria = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_type = 'radio' AND criteria_live = '1'");
+	$criteria = mysql_query("SELECT * FROM rubric_criteria WHERE criteria_rubric_id = '$rubricID' AND criteria_type = 'radio' AND criteria_is_live = '1'");
 	$criteriaCount = mysql_num_rows($criteria);
 	
 	if ( $criteriaCount > 0 ) {

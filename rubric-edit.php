@@ -80,7 +80,7 @@ else {
 		
 		<?php 
 		
-		$arrayQuery = mysql_query("SELECT criteria_id, criteria_type, criteria_order, criteria_content, criteria_live FROM rubric_criteria WHERE criteria_rubric_id = '$id' AND criteria_live = '1' ORDER BY criteria_order;");
+		$arrayQuery = mysql_query("SELECT criteria_id, criteria_type, criteria_order, criteria_content, criteria_is_live FROM rubric_criteria WHERE criteria_rubric_id = '$id' AND criteria_is_live = '1' ORDER BY criteria_order;");
 		
 		$newCriteriaArray;
 		$arrayCount = 0;

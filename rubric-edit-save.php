@@ -90,7 +90,7 @@ while( list( $field, $value ) = each( $postArray )) {
 				
 				// add this new title to the database if isLive = 1
 				if ($isLive == 1) {
-					mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
+					mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_is_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
 				}
 			}
 			else if ( strpos($field, 'plaintext') !== false ) {
@@ -116,7 +116,7 @@ while( list( $field, $value ) = each( $postArray )) {
 					
 					// add this new plaintext to the database if isLive = 1
 					if ($isLive == 1) {
-						mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
+						mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_is_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
 					}
 				}
 				else if ( strpos($field, 'textbox') !== false ) {
@@ -142,7 +142,7 @@ while( list( $field, $value ) = each( $postArray )) {
 						
 						// add this new textbox to the database if isLive = 1
 						if ($isLive == 1) {
-							mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
+							mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_is_live) VALUES ('$rubricID', '$type', '$order', '$content', '$isLive')") or die('There was an error saving: ' . mysql_error());
 						}
 					}
 					else if ( strpos($field, 'radio') !== false ) {
@@ -168,7 +168,7 @@ while( list( $field, $value ) = each( $postArray )) {
 							
 							// add this new radio to the database if isLive = 1
 							if ($isLive == 1) {
-								mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_live) VALUES ('$rubricID', '$type', '$order', '$radioContent', '$isLive')") or die('There was an error saving: ' . mysql_error()); 
+								mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content, criteria_is_live) VALUES ('$rubricID', '$type', '$order', '$radioContent', '$isLive')") or die('There was an error saving: ' . mysql_error()); 
 											
 								// get latest radio id
 								$radioID = mysql_insert_id();
@@ -236,7 +236,7 @@ while( list( $field, $value ) = each( $postArray )) {
 					else if ( strpos($field, 'live') !== false ) {
 							// sets is_live
 				 			$rubricCriteriaID = substr($field,5);
-				 			mysql_query("UPDATE rubric_criteria SET criteria_live = '$value' WHERE criteria_id = '$rubricCriteriaID'");
+				 			mysql_query("UPDATE rubric_criteria SET criteria_is_live = '$value' WHERE criteria_id = '$rubricCriteriaID'");
 						}
 						else if ( strpos($field, 'valueChron') !== false ) {
 								// saves radio value order
