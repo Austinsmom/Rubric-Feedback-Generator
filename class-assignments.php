@@ -25,13 +25,7 @@ $classTitle = $_POST['class-title'];
 		<h1>Rubric-Feedback Generator</h1>
 		<h2>Assignments for Class: <?php echo $classTitle; ?></h2>
 	</div>
-	
-	<form id="create-new-assignment" action="assignment-new.php" method="post">
-		<input type="hidden" name="class-id" value="<?php echo $classID; ?>" />
-		<input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
-		<input type="submit" name="create-new-assignment" value="Create New Assignment" />
-	</form>
-		
+
 	 <?php
 		$resultAssignment = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_class_id='$classID'");
 		$count = mysql_num_rows($resultAssignment);
@@ -62,13 +56,13 @@ $classTitle = $_POST['class-title'];
 			 <input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
 			 
 			 <div class="buttons-left">
-			 	<input type="submit" id="grade-assignment" value="Grade this Assignment" /><br />
-			 	<input type="submit" id="view-grades" value="View Grades for this Assignment" />
+			 	<input type="submit" id="grade-assignment" value="Grade Assignment" /><br />
+			 	<input type="submit" id="view-grades" value="View Grades" />
 			 </div>
 			 
 			 <div class="buttons-right">
-				<input type="submit" id="edit-assignment" value="Edit this Assignment" /><br />
-			 	<input type="submit" id="delete-assignment" value="Delete this Assignment" />
+				<input type="submit" id="edit-assignment" value="Edit Assignment" /><br />
+			 	<input type="submit" id="delete-assignment" value="Delete Assignment" />
 			 </div>
 			  
 			</form>		
@@ -79,5 +73,13 @@ $classTitle = $_POST['class-title'];
 	<input type="submit" class="button delete cancel" id="cancel-assignment-delete" value="Cancel" />
 	<input type="submit" class="button delete" id="confirm-assignment-delete" value="Yes, Delete Assignment" />
 </div>
+
+	
+<form id="create-new-assignment" action="assignment-new.php" method="post">
+	<input type="hidden" name="class-id" value="<?php echo $classID; ?>" />
+	<input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
+	<input type="submit" name="create-new-assignment" value="Create New Assignment" />
+</form>
+		
 
 <?php require('includes/footer.php'); ?>

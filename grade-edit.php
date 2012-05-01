@@ -1,6 +1,6 @@
 <?php 
 /**
-*	Rubric-Feedback Generator - Grade Edit
+*	Rubric-Feedback Generator - Edit Grade
 *	 1. Repopulates Rubric from Grade content field content
 *	 2. Allows user to submit to save grade
 *
@@ -21,7 +21,7 @@ require('includes/header.php');
 
 	<div id="title-box">
 		<h1>Rubric-Feedback Generator</h1>
-		<h2>Grade Edit</h2>
+		<h2>Edit Grade</h2>
 	</div>
 	
 	<?php  

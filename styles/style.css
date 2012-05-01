@@ -33,7 +33,7 @@ input.button { width: auto; }
 .button.add-value { margin-left: 40px; }
 .button.add { background: #fff; }
 .button.select { display: inline; }
-input[type="submit"] { display: inline-block; margin: 5px 0; }
+input[type="submit"] { display: inline-block; margin: 5px 0; text-transform: capitalize; }
 .buttons-left { width: 45%; text-align: left; float: left; min-width: 200px; }
 .buttons-right { width: 45%; text-align: right; float: right; min-width: 200px; }
 div.description { padding: 10px; margin: 10px 20px 30px; background: #ccccc1; border: 1px solid #ddd; }

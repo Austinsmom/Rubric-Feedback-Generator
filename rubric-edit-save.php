@@ -62,7 +62,7 @@ while( list( $field, $value ) = each( $postArray )) {
 				}
 				// add this radio value to the database if isLive = 1
 				if ($isLive == 1) {
-					mysql_query("INSERT INTO rubric_criteria_values (value_criteria_id, value_order, value_content, value_points, value_is_live) VALUES ('$radioID', '$order', '$content', '$points', '$isLive')") or die('There was an error saving: ' . mysql_error());
+					mysql_query("INSERT INTO rubric_criteria_option (option_criteria_id, option_order, option_content, option_points, option_is_live) VALUES ('$radioID', '$order', '$content', '$points', '$isLive')") or die('There was an error saving: ' . mysql_error());
 				}
 			}		
 		}
@@ -207,7 +207,7 @@ while( list( $field, $value ) = each( $postArray )) {
 										}
 										
 										// add this radio value to the database
-										mysql_query("INSERT INTO rubric_criteria_values (value_criteria_id, value_order, value_content, value_points, value_is_live) VALUES ('$radioID', '$order', '$content', '$points', '$isLive')") or die('There was an error saving: ' . mysql_error());
+										mysql_query("INSERT INTO rubric_criteria_option (option_criteria_id, option_order, option_content, option_points, option_is_live) VALUES ('$radioID', '$order', '$content', '$points', '$isLive')") or die('There was an error saving: ' . mysql_error());
 									}
 								}
 							}
@@ -241,22 +241,22 @@ while( list( $field, $value ) = each( $postArray )) {
 						else if ( strpos($field, 'valueChron') !== false ) {
 								// saves radio value order
 					 			$valueID = substr($field,11);
-					 			mysql_query("UPDATE rubric_criteria_values SET value_order = '$value' WHERE value_id = '$valueID'");
+					 			mysql_query("UPDATE rubric_criteria_option SET option_order = '$value' WHERE option_id = '$valueID'");
 							} 
 							else if ( strpos($field, 'valueLabel') !== false ) {
 									// saves radio value content
 						 			$valueID = substr($field,11);
-						 			mysql_query("UPDATE rubric_criteria_values SET value_content = '$value' WHERE value_id = '$valueID'");
+						 			mysql_query("UPDATE rubric_criteria_option SET option_content = '$value' WHERE option_id = '$valueID'");
 								} 
 								else if ( strpos($field, 'valuePoints') !== false ) {
 										// saves radio value points
 							 			$valueID = substr($field,12);
-							 			mysql_query("UPDATE rubric_criteria_values SET value_points = '$value' WHERE value_id = '$valueID'");
+							 			mysql_query("UPDATE rubric_criteria_option SET option_points = '$value' WHERE option_id = '$valueID'");
 									}
 									else if ( strpos($field, 'valOn') !== false ) {
 											// sets is_live for value
 											$valueID = substr($field, 6);
-											mysql_query("UPDATE rubric_criteria_values SET value_is_live = '$value' WHERE value_id = '$valueID'");
+											mysql_query("UPDATE rubric_criteria_option SET option_is_live = '$value' WHERE option_id = '$valueID'");
 									}
 }
 		

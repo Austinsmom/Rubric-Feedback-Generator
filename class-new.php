@@ -26,7 +26,7 @@ require('includes/header.php'); ?>
 	<form id="form-class" name="form-class" method="post">
 		
 		<p>
-		<label for="">* Class Section (ex. CMPT109-02):</label>
+		<label for="">* Class Title (ex. CMPT109-02):</label>
 		<input type="text" name="class-title" class="text" id="class-title" />
 		</p>
 		

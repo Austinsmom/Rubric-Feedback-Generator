@@ -20,7 +20,7 @@ require('includes/header.php'); ?>
 
 	<div id="title-box">
 		<h1>Rubric-Feedback Generator</h1>
-		<h2>Create New Rubric</h2>
+		<h2>Import Rubric</h2>
 	</div>
 
 	<p>In the following form, paste the tab-delimited content needed to generate your rubric content.</p>

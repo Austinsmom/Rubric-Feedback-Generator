@@ -64,7 +64,7 @@ function processCriteria($arrayToProcess) {
 					 	  	$count++;
 			 	  }
 			 	  else { 
-			 	  	echo '<div class="invalid-criteria">Error in row ' . $count . ': "' . $criteriaType . '" is not a valid criteria type. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>. This row will be left out of your rubric.</div>'; 	
+			 	  	echo '<div class="invalid-criteria">Error in row ' . $count . ': "' . $criteriaType . '" is not a valid Rubric object. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>. This row will be left out of your rubric.</div>'; 	
 			 	  	$count++;
 			 	  }	
 	
@@ -225,7 +225,7 @@ function saveCriteriaToDatabase($id) {
 										
 										// odd number count => response. even # count => point value.
 										if ( $responseCount % 2 ) {
-											mysql_query("INSERT INTO rubric_criteria_values (value_criteria_id, value_order, value_content, value_points) VALUES ('$criteriaID', '$valueOrder', '$valueContent', '$valuePoints')") or die('There was an error saving: ' . mysql_error());	
+											mysql_query("INSERT INTO rubric_criteria_option (option_criteria_id, option_order, option_content, option_points) VALUES ('$criteriaID', '$valueOrder', '$valueContent', '$valuePoints')") or die('There was an error saving: ' . mysql_error());	
 											$valueOrder++;
 										}
 									}
@@ -246,7 +246,7 @@ function saveCriteriaToDatabase($id) {
 							 	}
 					 	}
 						else { 
-							echo '<div class="invalid-criteria">Error: "' . $criteriaType . '" is not a valid criteria type. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>. This will be left out of your rubric.</div>';
+							echo '<div class="invalid-criteria">Error: "' . $criteriaType . '" is not a valid Rubric object. Use <em>title</em>, <em>plaintext</em>, or <em>criteria</em>. This will be left out of your rubric.</div>';
 					 	}	
 			}	
 		}
@@ -380,16 +380,16 @@ function printRadio($id, $order) {
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
 
 			// get all the values of this radio criteria
-			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
+			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_option WHERE option_criteria_id = '$criteriaID' AND option_is_live = '1' ORDER BY option_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);
 			
 			if ( $valueCount != 0 ) {
 			
 				while ( $valueRow = mysql_fetch_array($criteriaValues)) {
 				
-					$valueID = $valueRow['value_id'];
-					$valueContent = $valueRow['value_content'];
-					$valuePoints = $valueRow['value_points'];
+					$valueID = $valueRow['option_id'];
+					$valueContent = $valueRow['option_content'];
+					$valuePoints = $valueRow['option_points'];
 				
 					echo '<input type="radio" name="criteria-' . $criteriaID . '" value="' . $valueID . '" />' . $valueContent . ' (' . $valuePoints . ' points)<br />';
 				
@@ -480,7 +480,7 @@ function printEditPlaintext($id) {
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
 			echo '<br />';
-			echo 'Text Content: <input type="text" name="content-' . $criteriaID . '" class="content text" value="' . $criteriaContent . '" />';
+			echo 'Plaintext Content: <input type="text" name="content-' . $criteriaID . '" class="content text" value="' . $criteriaContent . '" />';
 
 		}
 	}
@@ -510,7 +510,7 @@ function printEditRadio($id) {
 			echo 'Radio Label: <input type="text" name="content-' . $criteriaID . '" class="content radio text" value="' . $criteriaContent . '" />';
 			
 			// get criteria values for this radio item
-			$valueRecord = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1' ORDER BY value_order") or die('Error: Cannot get Radio Criteria Values wanted. Contact admin for help: ' . mysql_error());
+			$valueRecord = mysql_query("SELECT * FROM rubric_criteria_option WHERE option_criteria_id = '$criteriaID' AND option_is_live = '1' ORDER BY option_order") or die('Error: Cannot get Radio Criteria Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($valueRecord);
 								
 			if ( $valueCount > 0 ){
@@ -519,10 +519,10 @@ function printEditRadio($id) {
 				echo '<ul class="radio-options">';
 			
 				while ( $rowValue = mysql_fetch_array($valueRecord)) {
-					$valueID = $rowValue['value_id'];
-					$valueOrder = $rowValue['value_order'];
-					$valueContent = $rowValue['value_content'];
-					$valuePoints = $rowValue['value_points'];
+					$valueID = $rowValue['option_id'];
+					$valueOrder = $rowValue['option_order'];
+					$valueContent = $rowValue['option_content'];
+					$valuePoints = $rowValue['option_points'];
 					
 					echo '<li>';
 					echo 'Option Order: <input type="text" name="valueChron-' . $valueID . '" class="value-order" value="' . $valueOrder . '" />';
@@ -530,7 +530,7 @@ function printEditRadio($id) {
 					echo 'Option Label: <input type="text" name="valueLabel-' . $valueID . '" class="value-label" value="' . $valueContent . '" />';
 					echo '<br />';
 					echo 'Option Points: <input type="text" name="valuePoints-' . $valueID . '" class="value-points" value="' . $valuePoints . '" />';
-					echo '<br /><input type="submit" class="button delete-value" value="Delete this Option" />';
+					echo '<br /><input type="submit" class="button delete-value" value="Delete Option" />';
 					echo '<input type="hidden" name="valOn-' . $valueID . '" class="is-live" value="1" />';
 					echo '</li>';
 					
@@ -602,19 +602,19 @@ function printGradedRadio($id, $order, $grade) {
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
 			
 			// get radio criteria's values
-			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' ORDER BY value_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
+			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_option WHERE option_criteria_id = '$criteriaID' ORDER BY option_order") or die('Error: Cannot get radio Values wanted. Contact admin for help: ' . mysql_error());
 			$valueCount = mysql_num_rows($criteriaValues);
 			
 			if ( $valueCount != 0 ) {
 			
 				while ( $valueRow = mysql_fetch_array($criteriaValues)) {
 				
-					$valueID = $valueRow['value_id'];
-					$valueContent = $valueRow['value_content'];
-					$valuePoints = $valueRow['value_points'];
+					$valueID = $valueRow['option_id'];
+					$valueContent = $valueRow['option_content'];
+					$valuePoints = $valueRow['option_points'];
 					
 					// get graded value of this radio criteria value
-					$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_comment = '0'");	
+					$gradeValue = mysql_query("SELECT * FROM rubric_grade_answer WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_comment = '0'");	
 					$gradeValueCount = mysql_num_rows($gradeValue);
 					
 					if ( $gradeValueCount == 0 ) {
@@ -638,7 +638,7 @@ function printGradedRadio($id, $order, $grade) {
 			else echo "Error: No values for this radio-type criteria exist. Contact admin for help.";
 			
 			// get comment info for this criteria
-			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_comment = '1'");	
+			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answer WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_comment = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
 			if ( $gradeValueCount == 0 ) {
@@ -682,7 +682,7 @@ function printGradedTextbox($id, $order, $grade) {
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $textboxLabel . '</label>';
 			
 			// get graded value of this textbox 					
-			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answers WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_textbox = '1'");	
+			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answer WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_textbox = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
 			
 			if ( $gradeValueCount == 0 ) {
@@ -721,7 +721,7 @@ function calculateTotalPossiblePoints( $rubricID ) {
 			$criteriaID = $criteriaRow['criteria_id'];
 			
 			// get live criteria values for this rubric's criteria
-			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID' AND value_is_live = '1'");
+			$criteriaValues = mysql_query("SELECT * FROM rubric_criteria_option WHERE option_criteria_id = '$criteriaID' AND option_is_live = '1'");
 			$criteriaValuesCount = mysql_num_rows($criteriaValues);
 			
 			if ($criteriaValuesCount > 0) {
@@ -730,7 +730,7 @@ function calculateTotalPossiblePoints( $rubricID ) {
 				
 				// get max possible points for this criteria value
 				while ( $criteriaValuesRow = mysql_fetch_array($criteriaValues) ) {
-					$valuePoints = $criteriaValuesRow['value_points'];
+					$valuePoints = $criteriaValuesRow['option_points'];
 					
 					if ( $valuePoints > $possiblePoints ) {
 						$possiblePoints = $valuePoints;
@@ -761,9 +761,9 @@ function deleteRubric($id) {
 	
 	if ( $criteriaCount > 0 ) {
 		while ( $criteriaRow = mysql_fetch_array($criteriaRecords) ) {
-			// delete all records in rubric_criteria_values where value_criteria_id = criteria-id
+			// delete all records in rubric_criteria_option where option_criteria_id = criteria-id
 			$criteriaID = $criteriaRow['criteria_id'];
-			mysql_query("DELETE FROM rubric_criteria_values WHERE value_criteria_id = '$criteriaID'") or die();
+			mysql_query("DELETE FROM rubric_criteria_option WHERE option_criteria_id = '$criteriaID'") or die();
 		}
 	}
 	else { /* there's no criteria, so there's nothing to do */ }

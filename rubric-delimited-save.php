@@ -1,7 +1,7 @@
 <?php 
 /**
-*	Rubric-Feedback Generator - Save Form
-*	 1. saves the form to database
+*	Rubric-Feedback Generator - Save Rubric
+*	 1. saves the rubric to database
 *
 *	@author Jenn Schiffer
 *	@version 0.1

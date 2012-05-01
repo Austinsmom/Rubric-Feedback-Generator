@@ -25,7 +25,7 @@ $assignmentTitle = $_POST['assignment-title'];
 		<h1>Rubric-Feedback Generator</h1>
 		<h2>Grades for Assignment:<br /> <?php echo stripSlashes($assignmentTitle); ?></h2>
 	</div>
-			
+	
 	 <?php
 		$resultGrade = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");
 		$resultGradeEmails = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");;
@@ -133,5 +133,12 @@ $assignmentTitle = $_POST['assignment-title'];
 	<input type="submit" class="button delete cancel" id="cancel-grade-delete" value="Cancel" />
 	<input type="submit" class="button delete" id="confirm-grade-delete" value="Yes, Delete Grade" />
 </div>
+
+<form id="grade-assignment" action="grade-assignment.php" method="post">
+	<input type="hidden" name="assignment-choice" value="<?php echo $assignmentID; ?>" />
+	<input type="submit" name="grade-assignment" value="Grade Assignment" />
+</form>
+		
+
 	 
 <?php require('includes/footer.php'); ?>

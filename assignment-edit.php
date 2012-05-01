@@ -40,6 +40,7 @@ require('includes/header.php');
 				$title = $assignmentRow['assignment_title'];
 				$description = $assignmentRow['assignment_description'];
 				$date = $assignmentRow['assignment_duedate'];
+				$rubric = $assignmentRow['assignment_rubric_id'];
 		?>
 				<form id="form-assignment-edit" name="form-assignment-edit" method="post">
 					
@@ -75,12 +76,18 @@ require('includes/header.php');
 									echo '[<em>You have not created any rubrics. <a href="rubric-new.php">Click here to create one</a>.</em>]';
 								}
 								else {
-									// if there are rubrics, let user select one for this assignment
+									// select current rubric, let user select other options
 									echo '<select name="assignment-rubric">';
 									while ( $rubricRow = mysql_fetch_array($rubricRecord)) {
 										$rubricID = $rubricRow['rubric_id'];
 										$rubricTitle = $rubricRow['rubric_title'];
-										echo '<option value="' . $rubricID . '">' . $rubricTitle . '</option>';
+										
+										if ( $rubric == $rubricID ){
+											echo '<option value="' . $rubricID . '" selected>' . $rubricTitle . '</option>';
+										}
+										else {
+											echo '<option value="' . $rubricID . '">' . $rubricTitle . '</option>';
+										}
 									}
 									echo '</select>';
 								}

@@ -12,12 +12,8 @@ require('includes/header.php'); ?>
 
 <body id="user-edit">
 
-	<div id="title-box">
-		<h1>Rubric-Feedback Generator</h1>
-		<h2>Success!</h2>
-	</div>
 
-	<p>Your information has been updated.</p>
+	<p>Your information has been updated. <a href="user-admin.php">Click here to go back to User Admin.</a></p>
 
 
 <?php require('includes/footer.php'); ?>

@@ -29,7 +29,7 @@ $assignmentCount = mysql_num_rows($assignmentRecords);
 
 	<div id="title-box">
 		<h1>Rubric-Feedback Generator</h1>
-		<h2>Edit Form</h2>
+		<h2>Edit Rubric</h2>
 	</div>
 
 <?php if ($rubricCount != 1) {

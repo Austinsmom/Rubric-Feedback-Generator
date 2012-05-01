@@ -57,8 +57,8 @@ require('includes/header.php'); ?>
 			 </div>
 			 
 			 <div class="buttons-right">
-				<input type="submit" id="edit-class" value="Edit this Class" /><br />
-				<input type="submit" id="delete-class" value="Delete this Class" />
+				<input type="submit" id="edit-class" value="Edit Class" /><br />
+				<input type="submit" id="delete-class" value="Delete Class" />
 			 </div>
 			 
 			</form>		
@@ -105,8 +105,8 @@ require('includes/header.php'); ?>
 			 </div>
 			 
 			 <div class="buttons-right">
-				<input type="submit" value="View/Edit this Rubric" id="edit-rubric" /><br />
-				<input type="submit" value="Delete this Rubric" id="delete-rubric" />
+				<input type="submit" value="Edit Rubric" id="edit-rubric" /><br />
+				<input type="submit" value="Delete Rubric" id="delete-rubric" />
 			 </div>
 			 
 			</form>		
@@ -119,10 +119,10 @@ require('includes/header.php'); ?>
 		<input type="submit" class="button delete" id="confirm-rubric-delete" value="Yes, Delete Rubric" />
 	</div> 
 	
-	<h3>Your account</h3>
+	<h3>Your User Information</h3>
 			
 	<ul>
-		<li><a href="user-edit.php">update your account info</a></li>
+		<li><a href="user-edit.php">update your user information</a></li>
 	</ul>
 		
 <?php require('includes/footer.php'); ?>
