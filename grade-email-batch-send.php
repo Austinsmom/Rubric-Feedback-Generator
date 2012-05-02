@@ -17,9 +17,9 @@ require('includes/header.php');
 $gradeArray = unserialize(stripslashes($_POST['grade-array']));
 
 $emailFrom = $_POST['email-from'];
-$assignment = $_POST['email-assignment'];
-$emailSubject = stripSlashes($_POST['email-subject']);
-$userNicename = $_POST['email-nicename'];
+$assignment = stripslashes($_POST['email-assignment']);
+$emailSubject = stripslashes($_POST['email-subject']);
+$userNicename = stripslashes($_POST['email-nicename']);
 
 ?>
 
@@ -43,7 +43,7 @@ $userNicename = $_POST['email-nicename'];
 		}
 		
 		// get email content for this individual email
-		$emailContent = stripSlashes(gradeEmailContent($gradeID, $userNicename, $assignment));
+		$emailContent = gradeEmailContent($gradeID, $userNicename, $assignment);
 
 		// email header setup
 		$emailHeaders = 'MIME-Version: 1.0' . "\r\n";

@@ -14,7 +14,7 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php'); 
 
 $rubricAuthor = $username;
-$rubricTitle = $_POST['form-title'];
+$rubricTitle = addslashes($_POST['form-title']);
 $rubricDescription = addslashes($_POST['form-description']);
 $rubricContent = addslashes($_POST['finalDelimitedText']);
 

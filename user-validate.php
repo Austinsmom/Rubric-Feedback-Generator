@@ -39,7 +39,7 @@ else if ($formOrigin == 'register') {
 		$username = $_POST['username'];
 		$password = md5($_POST['password']);
 		$email = $_POST['email'];
-		$nicename = $_POST['nicename'];
+		$nicename = addslashes($_POST['nicename']);
 		$role = "instructor";
 		
 		$result = mysql_query("SELECT * FROM rubric_user WHERE user_login='$username'");
@@ -60,7 +60,7 @@ else if ($formOrigin == 'register') {
 			$username = $_POST['username'];
 			$submittedPassword = $_POST['password'];
 			$email = $_POST['email'];
-			$nicename = $_POST['nicename'];
+			$nicename = addslashes($_POST['nicename']);
 			$role = "instructor";
 			
 			// if password is blank, then don't update password

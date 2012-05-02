@@ -40,15 +40,18 @@ $gradeID = mysql_insert_id();
 while( list( $field, $value ) = each( $gradeArray )) {
 	if ( (strpos($field, 'criteria') !== false) && is_numeric($value) ) {
 	 	$gradeCriteriaID = substr($field,9);
-	 	mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '0','0')") or die('There was an error saving: ' . mysql_error());
+		$criteriaValue = addslashes($value);
+	 	mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$criteriaValue', '0','0')") or die('There was an error saving: ' . mysql_error());
 	} 
 	else if ( (strpos($field, 'comment') !== false) ) {
 		 	$gradeCriteriaID = substr($field,8);
-		 	mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '1','0')") or die('There was an error saving: ' . mysql_error());
+			$criteriaValue = addslashes($value);
+		 	mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$criteriaValue', '1','0')") or die('There was an error saving: ' . mysql_error());
 		} 
 		else if ( (strpos($field, 'textbox') !== false) ) {
 			 	$gradeCriteriaID = substr($field,8);
-			 	mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '0', '1')") or die('There was an error saving: ' . mysql_error());
+			 	$criteriaValue = addslashes($value);
+			 	mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$criteriaValue', '0', '1')") or die('There was an error saving: ' . mysql_error());
 			}
 }				
 

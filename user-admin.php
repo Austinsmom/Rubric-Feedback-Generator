@@ -40,9 +40,9 @@ require('includes/header.php'); ?>
 				<?php 
 					while ( $row = mysql_fetch_array($resultClass)) {
 					$id = $row['class_id'];
-					$title = $row['class_title'];
-					$meeting = $row['class_meetingtime'];
-					$notes = $row['class_notes'];
+					$title = stripslashes($row['class_title']);
+					$meeting = stripslashes($row['class_meetingtime']);
+					$notes = stripslashes($row['class_notes']);
 				
 					echo '<p><input type="radio" name="class-choice" id="class-'. 
 							$id . '" value="' .$id. '"> ' . $title .' <em>' . $meeting . '</em> <div class="description">'. $notes .'</div></p>';
@@ -50,7 +50,7 @@ require('includes/header.php'); ?>
 				?>
 			 </fieldset>	
 			 
-			 <input type="hidden" name="class-title" value="<?php echo $title; ?>" />
+			 <input type="hidden" name="class-title" value="<?php echo addslashes($title); ?>" />
 			
 			 <div class="buttons-left">
 			 	<input type="submit" id="view-assignments" value="View Assignments" onclick ="choseViewAssignments()" />
@@ -92,7 +92,7 @@ require('includes/header.php'); ?>
 					while ( $row = mysql_fetch_array($resultRubric)) {
 					/* go through each rubric record and print a list to choose from */
 					$id = $row['rubric_id'];
-					$title = $row['rubric_title'];
+					$title = stripslashes($row['rubric_title']);
 					$description = stripslashes($row['rubric_description']);
 				
 					echo '<p><input type="radio" name="rubric-choice" id="rubric-'. 

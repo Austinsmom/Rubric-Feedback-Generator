@@ -191,12 +191,12 @@ function saveCriteriaToDatabase($id) {
 				$criteriaType = strtolower($criteriaItem[0]);
 				
 				if ($criteriaType == 'title' ) {	
-					$content = $criteriaItem[1];					
+					$content = addslashes($criteriaItem[1]);					
 					mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content) VALUES ('$id', '$criteriaType', '$count', '$content')") or die('There was an error saving: ' . mysql_error());
 					$count++;
 				}
 				else if ($criteriaType == 'plaintext' ) {				
-						$content = $criteriaItem[1];					
+						$content = addslashes($criteriaItem[1]);					
 						mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content) VALUES ('$id', '$criteriaType', '$count', '$content')") or die('There was an error saving: ' . mysql_error());
 						$count++;
 					 }
@@ -208,7 +208,7 @@ function saveCriteriaToDatabase($id) {
 							if ($criteriaType == 'radio' ) {
 							
 								// 1. save label of radio fieldset
-								$content = $criteriaItem[2];
+								$content = addslashes($criteriaItem[2]);
 								mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content) VALUES ('$id', '$criteriaType', '$count', '$content')") or die('There was an error saving: ' . mysql_error());
 								$criteriaID = mysql_insert_id();
 								
@@ -220,7 +220,7 @@ function saveCriteriaToDatabase($id) {
 								
 								for ($i = $responseStart; $i <= $responseLength; $i++) {
 									if ( $criteriaItem[$i] != '' ) {
-										$valueContent = $criteriaItem[$i];
+										$valueContent = addslashes($criteriaItem[$i]);
 										$valuePoints = $criteriaItem[$i + 1];
 										
 										// odd number count => response. even # count => point value.
@@ -237,7 +237,7 @@ function saveCriteriaToDatabase($id) {
 							else if ($criteriaType == 'textbox' ) {
 							
 									// save label of textbox fieldset
-									$content = $criteriaItem[2];					
+									$content = addslashes($criteriaItem[2]);					
 									mysql_query("INSERT INTO rubric_criteria (criteria_rubric_id, criteria_type, criteria_order, criteria_content) VALUES ('$id', '$criteriaType', '$count', '$content')") or die('There was an error saving: ' . mysql_error());
 									$count++;										
 								}
@@ -328,7 +328,7 @@ function printTitle($id) {
 	
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
-			$criteriaContent = $row['criteria_content'];
+			$criteriaContent = stripslashes($row['criteria_content']);
 			echo '<h1 class="rubric-title criteria-' . $criteriaID . '">' . $criteriaContent . '</div>';
 
 		}
@@ -349,7 +349,7 @@ function printPlaintext($id) {
 	
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
-			$criteriaContent = $row['criteria_content'];
+			$criteriaContent = stripslashes($row['criteria_content']);
 			echo '<div class="rubric-plaintext criteria-'. $criteriaID . '">' . $criteriaContent . '</div>';
 
 		}
@@ -374,7 +374,7 @@ function printRadio($id, $order) {
 		
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
-			$radioLabel = $row['criteria_content'];
+			$radioLabel = stripslashes($row['criteria_content']);
 			
 			echo '<fieldset class="rubric-radio check criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
@@ -388,7 +388,7 @@ function printRadio($id, $order) {
 				while ( $valueRow = mysql_fetch_array($criteriaValues)) {
 				
 					$valueID = $valueRow['option_id'];
-					$valueContent = $valueRow['option_content'];
+					$valueContent = stripslashes($valueRow['option_content']);
 					$valuePoints = $valueRow['option_points'];
 				
 					echo '<input type="radio" name="criteria-' . $criteriaID . '" value="' . $valueID . '" />' . $valueContent . ' (' . $valuePoints . ' points)<br />';
@@ -422,7 +422,7 @@ function printTextbox($id, $order) {
 		
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
-			$textboxLabel = $row['criteria_content'];
+			$textboxLabel = stripslashes($row['criteria_content']);
 			echo '<fieldset class="rubric-textbox criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $textboxLabel . '</label>';
 			echo '<input type="text" class="text" name="textbox-' . $criteriaID . '" />';
@@ -450,7 +450,7 @@ function printEditTitle($id) {
 	
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 			$criteriaOrder = $row['criteria_order'];
-			$criteriaContent = $row['criteria_content'];
+			$criteriaContent = htmlspecialchars(stripslashes($row['criteria_content']));
 			$criteriaLove = $row['criteria_is_live'];
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
@@ -475,7 +475,7 @@ function printEditPlaintext($id) {
 	
 		while ( $row = mysql_fetch_array($criteriaRecord)) {	
 			$criteriaOrder = $row['criteria_order'];
-			$criteriaContent = $row['criteria_content'];
+			$criteriaContent = htmlspecialchars(stripslashes($row['criteria_content']));
 			$criteriaLove = $row['criteria_is_live'];
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
@@ -502,7 +502,7 @@ function printEditRadio($id) {
 	
 		while ( $row = mysql_fetch_array($criteriaRecord)) {	
 			$criteriaOrder = $row['criteria_order'];
-			$criteriaContent = $row['criteria_content'];
+			$criteriaContent = htmlspecialchars(stripslashes($row['criteria_content']));
 			$criteriaLove = $row['criteria_is_live'];
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
@@ -521,7 +521,7 @@ function printEditRadio($id) {
 				while ( $rowValue = mysql_fetch_array($valueRecord)) {
 					$valueID = $rowValue['option_id'];
 					$valueOrder = $rowValue['option_order'];
-					$valueContent = $rowValue['option_content'];
+					$valueContent = htmlspecialchars(stripslashes($rowValue['option_content']));
 					$valuePoints = $rowValue['option_points'];
 					
 					echo '<li>';
@@ -560,7 +560,7 @@ function printEditTextbox($id) {
 	
 		while ( $row = mysql_fetch_array($criteriaRecord)) {	
 			$criteriaOrder = $row['criteria_order'];
-			$criteriaContent = $row['criteria_content'];
+			$criteriaContent = htmlspecialchars(stripslashes($row['criteria_content']));
 			$criteriaLove = $row['criteria_is_live'];
 			
 			echo 'Order: <input type="text" name="order-' . $criteriaID . '" class="order" value="' . $criteriaOrder . '" />';
@@ -596,7 +596,7 @@ function printGradedRadio($id, $order, $grade) {
 		
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
-			$radioLabel = $row['criteria_content'];
+			$radioLabel = stripslashes($row['criteria_content']);
 			
 			echo '<fieldset class="rubric-radio criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $radioLabel . '</label>';
@@ -610,7 +610,7 @@ function printGradedRadio($id, $order, $grade) {
 				while ( $valueRow = mysql_fetch_array($criteriaValues)) {
 				
 					$valueID = $valueRow['option_id'];
-					$valueContent = $valueRow['option_content'];
+					$valueContent = stripslashes($valueRow['option_content']);
 					$valuePoints = $valueRow['option_points'];
 					
 					// get graded value of this radio criteria value
@@ -646,7 +646,7 @@ function printGradedRadio($id, $order, $grade) {
 			}
 			else {
 				while ( $gradeValueRow = mysql_fetch_array($gradeValue) ) {
-					$commentContent = $gradeValueRow['answer_value'];
+					$commentContent = stripslashes($gradeValueRow['answer_value']);
 				}
 			}
 			echo '<label class="comment-label" for="comment-' . $criteriaID . '">Comments:</label>';
@@ -676,7 +676,7 @@ function printGradedTextbox($id, $order, $grade) {
 		
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
-			$textboxLabel = $row['criteria_content'];
+			$textboxLabel = stripslashes($row['criteria_content']);
 			
 			echo '<fieldset class="rubric-textbox criteria-' . $criteriaID . '">';
 			echo '<label for="criteria-' . $criteriaID . '">' . $radioTextOrder . ". " . $textboxLabel . '</label>';
@@ -690,7 +690,7 @@ function printGradedTextbox($id, $order, $grade) {
 			}
 			else {
 				while ( $gradeValueRow = mysql_fetch_array($gradeValue) ) {
-					$textboxContent = $gradeValueRow['answer_value'];
+					$textboxContent = htmlspecialchars(stripslashes($gradeValueRow['answer_value']));
 				}
 			}
 			echo '<input type="text" class="text" name="textbox-' . $criteriaID . '" value="' . $textboxContent . '" />';

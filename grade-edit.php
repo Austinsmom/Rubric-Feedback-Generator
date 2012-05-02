@@ -40,7 +40,7 @@ require('includes/header.php');
 				$assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignmentID';");
 				
 				while ( $assignmentRow = mysql_fetch_array($assignmentQuery)) {
-					$assignment = $assignmentRow['assignment_title'];
+					$assignment = stripslashes($assignmentRow['assignment_title']);
 				}
 		
 		?>
@@ -50,7 +50,7 @@ require('includes/header.php');
 
 					<fieldset class="check">
 						<label for="user-email">Student's email address: </label>
-						<input type="email" name="student" id="student-email" class="email" value="<?php echo $student; ?>" />
+						<input type="email" name="student" id="student-email" class="email" value="<?php echo htmlspecialchars($student); ?>" />
 					</fieldset>
 
 					<div id="form-output">

@@ -15,9 +15,9 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php'); 
 
 $author = $username;
-$title = $_POST['class-title'];
-$time = $_POST['class-time'];
-$notes = $_POST['class-notes'];
+$title = addslashes($_POST['class-title']);
+$time = addslashes($_POST['class-time']);
+$notes = addslashes($_POST['class-notes']);
 
 // saves new class to the database
 saveClassToDatabase($title, $author, $time, $notes);

@@ -189,7 +189,7 @@ function getTextEmail($id) {
 	$count = mysql_num_rows($criteriaRecord);
 	if ( $count == 1 ) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
-			$criteriaContent = $row['criteria_content'];
+			$criteriaContent = stripslashes($row['criteria_content']);
 			$textEmail = $criteriaContent;
 		}
 		return $textEmail;
@@ -217,7 +217,7 @@ function getGradedRadioEmail($id, $grade) {
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
 			// output grade content
-			$radioEmail .= '<span style="font-weight:bold;">' . $row['criteria_content'] . '</span>: ';
+			$radioEmail .= '<span style="font-weight:bold;">' . stripslashes($row['criteria_content']) . '</span>: ';
 			
 			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answer WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_textbox = '0' AND answer_is_comment='0'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);
@@ -240,7 +240,7 @@ function getGradedRadioEmail($id, $grade) {
 					}
 					else {
 						while ( $answerValueRow = mysql_fetch_array($answerValue) ) {
-							$answerLabel = $answerValueRow['option_content'];
+							$answerLabel = stripslashes($answerValueRow['option_content']);
 							$answerPoints = $answerValueRow['option_points'];
 							
 							$radioEmail .= ' ' . $answerLabel . ', [' . $answerPoints . ' points]';
@@ -254,7 +254,7 @@ function getGradedRadioEmail($id, $grade) {
 			}
 			else {
 				while ( $gradeValueCommentRow = mysql_fetch_array($gradeValueComment) ) {
-					$answerCommentContent = $gradeValueCommentRow['answer_value'];
+					$answerCommentContent = stripslashes($gradeValueCommentRow['answer_value']);
 					$radioEmail .= '<br /><span style="font-weight:bold;">Grader\'s Comments:</span> ' . $answerCommentContent;
 				}
 			}
@@ -283,7 +283,7 @@ function getGradedTextboxEmail($id, $grade) {
 		
 		while ( $row = mysql_fetch_array($criteriaRecord)) {
 		
-			$textboxEmail .= '<span style="font-weight:bold;">' . $row['criteria_content'] . '</span>: ';
+			$textboxEmail .= '<span style="font-weight:bold;">' . stripslashes($row['criteria_content']) . '</span>: ';
 			
 			$gradeValue = mysql_query("SELECT * FROM rubric_grade_answer WHERE answer_criteria_id = '$criteriaID' AND answer_grade_id = '$gradeID' AND answer_is_textbox = '1'");	
 			$gradeValueCount = mysql_num_rows($gradeValue);

@@ -42,7 +42,7 @@ else {
   	$warning = '<div class="warning"><h3>WARNING</h3><p>You have assignments using this rubric, which may have grades on record already. If you edit this rubric, you will be changing those grades.</p><ul>';
 	  	while ( $assignmentRow = mysql_fetch_array($assignmentRecords) ){
 	  		$assignmentID = $assignmentRow['assignment_id'];
-	  		$assignmentTitle = $assignmentRow['assignment_title'];
+	  		$assignmentTitle = stripslashes($assignmentRow['assignment_title']);
 	  		$assignmentText = '<li>' . $assignmentTitle;
 	  		
 	  		$gradeRecords = mysql_query("SELECT * FROM rubric_grade WHERE grade_assignment_id = '$assignmentID'");
@@ -58,8 +58,8 @@ else {
   while ( $rubricRow = mysql_fetch_array($rubricRecords)) {
 	
 	$id = $rubricRow['rubric_id'];
-	$title = $rubricRow['rubric_title'];
-	$description = $rubricRow['rubric_description'];
+	$title = stripslashes($rubricRow['rubric_title']);
+	$description = stripslashes($rubricRow['rubric_description']);
 	
 	} ?>
 	
@@ -68,12 +68,12 @@ else {
 		<fieldset>
 			<p>
 				<label for="form-title">Rubric Title:</label>
-				<input id="rubric-title" type="text" name="form-title" value="<?php echo $title; ?>" />
+				<input id="rubric-title" type="text" name="form-title" value="<?php echo htmlspecialchars($title); ?>" />
 			</p>
 			
 			<p>
 				<label for="form-description">Rubric Description:</label>
-				<textarea id="rubric-description" name="form-description"><?php echo stripSlashes($description); ?></textarea>
+				<textarea id="rubric-description" name="form-description"><?php echo $description; ?></textarea>
 			</p>
 			
 		</fieldset>
@@ -90,7 +90,7 @@ else {
 				$criteriaID = $criteriaArray[0];
 				$criteriaType = $criteriaArray[1];
 				$criteriaOrder = $criteriaArray[2];
-				$criteriaContent = $criteriaArray[3];
+				$criteriaContent = stripslashes($criteriaArray[3]);
 				$criteriaLive = $criteriaArray[4];
 			
 			if ( $criteriaType == "title" ) {

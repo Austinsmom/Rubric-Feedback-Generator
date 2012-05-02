@@ -14,9 +14,9 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php'); 
 
 $classID = $_POST['class-id'];
-$classTitle = $_POST['class-title'];
-$classTime = $_POST['class-time'];
-$classNotes = $_POST['class-notes'];
+$classTitle = addslashes($_POST['class-title']);
+$classTime = addslashes($_POST['class-time']);
+$classNotes = addslashes($_POST['class-notes']);
 
 mysql_query("UPDATE rubric_class SET class_title = '$classTitle', class_meetingtime = '$classTime', class_notes = '$classNotes'  WHERE class_id = '$classID'");	 	
 

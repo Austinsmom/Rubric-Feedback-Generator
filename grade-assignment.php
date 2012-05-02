@@ -33,7 +33,7 @@ require('includes/header.php');
 		else {
 			
 			while ( $row = mysql_fetch_array($result) ) {
-				$assignmentTitle = $row['assignment_title'];
+				$assignmentTitle = stripslashes($row['assignment_title']);
 				$rubricID = $row['assignment_rubric_id'];
 			}
 		}

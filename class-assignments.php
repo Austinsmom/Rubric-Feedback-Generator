@@ -15,7 +15,7 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php');
 
 $classID = $_POST['class-choice'];
-$classTitle = $_POST['class-title'];
+$classTitle = stripslashes($_POST['class-title']);
 	
 ?>
 
@@ -41,8 +41,8 @@ $classTitle = $_POST['class-title'];
 					
 					/* go through each assignment record and print a list to choose from */
 					$id = $row['assignment_id'];
-					$title = $row['assignment_title'];
-					$description = $row['assignment_description'];
+					$title = stripslashes($row['assignment_title']);
+					$description = stripslashes($row['assignment_description']);
 					$dueDate = $row['assignment_duedate'];
 				
 					echo '<input type="radio" name="assignment-choice" id="assignment-'. 
@@ -52,8 +52,8 @@ $classTitle = $_POST['class-title'];
 				?>
 			 </fieldset>	
 			
-			 <input type="hidden" name="assignment-title" value="<?php echo $title; ?>" />
-			 <input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
+			 <input type="hidden" name="assignment-title" value="<?php echo addslashes($title); ?>" />
+			 <input type="hidden" name="class-title" value="<?php echo addslashes($classTitle); ?>" />
 			 
 			 <div class="buttons-left">
 			 	<input type="submit" id="grade-assignment" value="Grade Assignment" /><br />
@@ -77,7 +77,7 @@ $classTitle = $_POST['class-title'];
 	
 <form id="create-new-assignment" action="assignment-new.php" method="post">
 	<input type="hidden" name="class-id" value="<?php echo $classID; ?>" />
-	<input type="hidden" name="class-title" value="<?php echo $classTitle; ?>" />
+	<input type="hidden" name="class-title" value="<?php echo addslashes($classTitle); ?>" />
 	<input type="submit" name="create-new-assignment" value="Create New Assignment" />
 </form>
 		

@@ -14,8 +14,8 @@ if(!isset($_COOKIE["user"])){
 
 require('includes/header.php');
 
-$assignmentID = $_POST['assignment-choice'];
-$assignmentTitle = $_POST['assignment-title'];
+$assignmentID = stripslashes($_POST['assignment-choice']);
+$assignmentTitle = stripslashes($_POST['assignment-title']);
 
 ?>
 
@@ -23,7 +23,7 @@ $assignmentTitle = $_POST['assignment-title'];
 	
 	<div id="title-box">
 		<h1>Rubric-Feedback Generator</h1>
-		<h2>Grades for Assignment:<br /> <?php echo stripSlashes($assignmentTitle); ?></h2>
+		<h2>Grades for Assignment:<br /> <?php echo $assignmentTitle; ?></h2>
 	</div>
 	
 	 <?php
@@ -50,15 +50,6 @@ $assignmentTitle = $_POST['assignment-title'];
 						$rubric = $row['grade_rubric_id'];
 						$assignment = $row['grade_assignment_id'];
 						$gradeTotal = calculateGradeTotal($id);
-						
-						$assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignment'");
-						$assignmentCount = mysql_num_rows($assignmentQuery);
-						
-						if ($assignmentCount != 0 ) {
-							while ($assignmentRow = mysql_fetch_array($assignmentQuery)) {
-								$assignment = $assignmentRow['assignment_title'];
-							}
-						}
 						
 						echo '<p><input type="radio" name="grade-choice" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' &bull; Total Points: ' . $gradeTotal . '</p>';
 					}		
@@ -94,15 +85,7 @@ $assignmentTitle = $_POST['assignment-title'];
 						$rubric = $rowEmails['grade_rubric_id'];
 						$assignment = $rowEmails['grade_assignment_id'];
 						$gradeTotal = calculateGradeTotal($id);
-						
-						$assignmentEmailsQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment_id = '$assignment'");
-						$assignmentEmailsCount = mysql_num_rows($assignmentEmailsQuery);
-						
-						if ($assignmentEmailsCount != 0 ) {
-							while ($assignmentEmailsRow = mysql_fetch_array($assignmentEmailsQuery)) {
-								$assignment = $assignmentEmailsRow['assignment_title'];
-							}
-						}
+							
 						echo '<p><input type="checkbox" class="checkbox" name="grades[]" id="grade-' . $id . '" value="' .$id. '"> Student: ' . $student . ' &bull; Total Points: ' . $gradeTotal . '</p>';
 					}		
 				?>	

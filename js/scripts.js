@@ -165,7 +165,7 @@ jQuery(document).ready(function () {
 		$("#form-grade").attr("action", "grade-email.php").submit();
 	});
 	
-	// verify user edit rubric
+	// verify user edit
 	$("#submit-user-edit").click( function() {
 
 		// first remove any already existing warning and validation markers
@@ -322,7 +322,7 @@ jQuery(document).ready(function () {
 		}
 		
 		// if no rubrics exist, warn user
-		if ( $('select > [selected]').length == 0 ) {
+		if ( $('select').length == 0 ) {
 			$("#no-rubrics").addClass('empty-input');
 			rubricExists = false;
 		}
@@ -349,6 +349,7 @@ jQuery(document).ready(function () {
 				return validDate;
 			} 
 			else if ( rubricExists == false ) {
+					alert('wowowo');
 					return rubricExists;
 				}
 				else {
@@ -684,10 +685,12 @@ jQuery(document).ready(function () {
 		$("input").removeClass('empty-input');
 		$("textarea").removeClass('empty-input');		
 		$("input").removeClass('invalid-points');
+		$("input").removeClass('invalid-order');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
 		var pointsValid = true;
+		var orderValid = true;
 		
 		// go through each textarea item in the form to check for values
 		$("#form-edit").find("textarea").each(function(){
@@ -709,8 +712,17 @@ jQuery(document).ready(function () {
 		$("#form-edit").find(".value-points").each(function(){
 			var points = $(this).val();
 			if ( isNaN(points) || points.indexOf('.') != -1 ) {
-				pointsValid = false;
 	     		$(this).addClass('invalid-points');
+				pointsValid = false;
+			}
+		});
+		
+		// go through each order input and verify they are integers
+		$("#form-edit").find(".order").each(function(){
+			var order = $(this).val();
+			if ( isNaN(order) || order.indexOf('.') != -1 ) {
+	     		$(this).addClass('invalid-order');
+	     		orderValid = false;
 			}
 		});
 				
@@ -723,9 +735,13 @@ jQuery(document).ready(function () {
 				$("#submit-form-edit").after('<span id="submit-warning" class="invalid-points">Radio Criteria Points must be an Integer (-n...-1, 0, 1...n)</span>');	
 				return false;
 			}
-			else {
-				$("#form-edit").attr("action", "rubric-edit-save.php").submit();
-			}
+			else if ( orderValid == false ) {
+					$("#submit-form-edit").after('<span id="submit-warning" class="invalid-order">Order of any Rubric object must be an Integer (-n...-1, 0, 1...n)</span>');
+					return false;
+				}
+				else {
+					$("#form-edit").attr("action", "rubric-edit-save.php").submit();
+				}
 		
 	});
 	
@@ -736,10 +752,12 @@ jQuery(document).ready(function () {
 		$("input").removeClass('empty-input');
 		$("textarea").removeClass('empty-input');
 		$("input").removeClass('invalid-points');
+		$("input").removeClass('invalid-order');
 		$("#submit-warning").remove();
 		
 		var validInput = true;
 		var pointsValid = true;
+		var orderValid = true;
 		
 		// go through each textarea item in the form to check for values
 		$("#form-edit").find("textarea").each(function(){
@@ -766,6 +784,24 @@ jQuery(document).ready(function () {
 			}
 		});
 		
+		// go through each order input and verify they are integers
+		$("#form-edit").find(".order").each(function(){
+			var order = $(this).val();
+			if ( isNaN(order) || order.indexOf('.') != -1 ) {
+	     		$(this).addClass('invalid-order');
+	     		orderValid = false;
+			}
+		});
+		
+		// go through each value-order input and verify they are integers
+		$("#form-edit").find(".value-order").each(function(){
+			var order = $(this).val();
+			if ( isNaN(order) || order.indexOf('.') != -1 ) {
+	     		$(this).addClass('invalid-order');
+	     		orderValid = false;
+			}
+		});
+		
 		// show warning if validInput == false, else submit
 		if ( validInput == false ) {
 			$("#submit-form-new").after('<span id="submit-warning">Fields in red should not be blank!</span>');
@@ -775,9 +811,13 @@ jQuery(document).ready(function () {
 				$("#submit-form-new").after('<span id="submit-warning" class="invalid-points">Radio Criteria Points must be an Integer (-n...-1, 0, 1...n)</span>');	
 				return false;
 			}
-			else {
-				$("#form-edit").attr("action", "rubric-new-save.php").submit();
-			}
+			else if ( orderValid == false ) {
+					$("#submit-form-new").after('<span id="submit-warning" class="invalid-order">Order of any Rubric object must be an Integer (-n...-1, 0, 1...n)</span>');
+					return false;
+				}
+				else {
+					$("#form-edit").attr("action", "rubric-new-save.php").submit();
+				}
 		
 	});
 

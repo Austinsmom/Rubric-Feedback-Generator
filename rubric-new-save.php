@@ -24,11 +24,11 @@ while( list( $field, $value ) = each ($createArray)) {
 	// save new rubric first
 	if ( $field == 'form-title' ) {
 		// get rubric title
-		$rubricTitle = $value;	 	
+		$rubricTitle = addslashes($value);	 	
 	}
 	else if ( $field == 'form-description' ) {
 			// get rubric description
-			$rubricDescription = $value;
+			$rubricDescription = addslashes($value);
 		 }
 }
 
@@ -45,7 +45,7 @@ while( list( $field, $value ) = each( $postArray )) {
 		if ( strpos($field, 'title') !== false ) {
 			// saves new rubric title
 			$type = "title";
-			$content = $value;
+			$content = addslashes($value);
 			$tempID = substr($field,10);
 			
 			//go through array again and search for fields new-order-tempID & new-live-tempID
@@ -71,7 +71,7 @@ while( list( $field, $value ) = each( $postArray )) {
 		else if ( strpos($field, 'plaintext') !== false ) {
 				// saves new rubric plaintext
 				$type = "plaintext";
-				$content = $value;
+				$content = addslashes($value);
 				$tempID = substr($field,14);
 				
 				//go through array again and search for fields new-order-tempID & new-live-tempID
@@ -97,7 +97,7 @@ while( list( $field, $value ) = each( $postArray )) {
 			else if ( strpos($field, 'textbox') !== false ) {
 					// saves new rubric textbox
 					$type = "textbox";
-					$content = $value;
+					$content = addslashes($value);
 					$tempID = substr($field,12);
 					
 					//go through array again and search for fields new-order-tempID & new-live-tempID
@@ -123,7 +123,7 @@ while( list( $field, $value ) = each( $postArray )) {
 				else if ( strpos($field, 'radio') !== false ) {
 						// saves new rubric radio
 						$type = "radio";
-						$radioContent = $value;
+						$radioContent = addslashes($value);
 						$tempID = substr($field,10);
 						
 						//go through array again and search for fields new-order-tempID & new-live-tempID
@@ -156,7 +156,7 @@ while( list( $field, $value ) = each( $postArray )) {
 									
 								// first get label content of value
 								if ( strpos($checkOptionField, $contentField) !== false ){
-									$content = $checkOptionValue;
+									$content = addslashes($checkOptionValue);
 									
 									// get $tempValueID
 									$tempValueIDPos = strpos($checkOptionField, "valueLabel-") + 11;
@@ -196,7 +196,8 @@ while( list( $field, $value ) = each( $postArray )) {
 		else if ( strpos($field, 'content') !== false ) {
 				// saves criteria content
 	 			$rubricCriteriaID = substr($field,8);
-	 			mysql_query("UPDATE rubric_criteria SET criteria_content = '$value' WHERE criteria_id = '$rubricCriteriaID'");
+	 			$criteriaContent = addslashes($value);
+	 			mysql_query("UPDATE rubric_criteria SET criteria_content = '$criteriaContent' WHERE criteria_id = '$rubricCriteriaID'");
 			} 
 			else if ( strpos($field, 'live') !== false ) {
 					// sets is_live
@@ -211,7 +212,8 @@ while( list( $field, $value ) = each( $postArray )) {
 					else if ( strpos($field, 'valueLabel') !== false ) {
 							// saves radio value content
 				 			$valueID = substr($field,11);
-				 			mysql_query("UPDATE rubric_criteria_option SET option_content = '$value' WHERE option_id = '$valueID'");
+				 			$valueContent = addslashes($field);
+				 			mysql_query("UPDATE rubric_criteria_option SET option_content = '$valueContent' WHERE option_id = '$valueID'");
 						} 
 						else if ( strpos($field, 'valuePoints') !== false ) {
 								// saves radio value points

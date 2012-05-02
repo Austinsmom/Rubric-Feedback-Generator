@@ -15,7 +15,7 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php'); 
 
 $classID = $_POST['class-id'];
-$classTitle = $_POST['class-title'];
+$classTitle = stripslashes($_POST['class-title']);
 
 ?>
 
@@ -55,7 +55,7 @@ $classTitle = $_POST['class-title'];
 					while ( $rubricRow = mysql_fetch_array($rubricRecords)) {
 						/* go through each class record and print a list to choose from */
 						$rubricID = $rubricRow['rubric_id'];
-						$rubricTitle = $rubricRow['rubric_title'];
+						$rubricTitle = stripslashes($rubricRow['rubric_title']);
 					
 						echo '<option value="' . $rubricID . '">' . $rubricTitle . '</option>';
 					}

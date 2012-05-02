@@ -12,8 +12,6 @@ require('includes/header.php'); ?>
 
 <body id="register">
 
-
 	<p>Your new account has been created. <a href="index.php">Click here to log in.</a></p>
-
 
 <?php require('includes/footer.php'); ?>

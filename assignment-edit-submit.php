@@ -14,9 +14,9 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php'); 
 
 $assignmentID = $_POST['assignment-id'];
-$assignmentTitle = $_POST['assignment-title'];
+$assignmentTitle = addslashes($_POST['assignment-title']);
 $assignmentDueDate = $_POST['assignment-duedate'];
-$assignmentDescription = $_POST['assignment-description'];
+$assignmentDescription = addslashes($_POST['assignment-description']);
 $assignmentRubric = $_POST['assignment-rubric'];
 
 // update this assignment in the database

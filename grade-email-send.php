@@ -16,11 +16,11 @@ require('includes/header.php');
 
 $emailTo = $_POST['email-to'];
 $emailFrom = $_POST['email-from'];
-$assignment = $_POST['email-assignment'];
-$emailSubject = stripSlashes($_POST['email-subject']);
+$assignment = stripslashes($_POST['email-assignment']);
+$emailSubject = stripslashes($_POST['email-subject']);
 $gradeID = $_POST['grade-id'];
-$userNicename = $_POST['email-nicename'];
-$emailContent = stripSlashes(gradeEmailContent($gradeID, $userNicename, $assignment));
+$userNicename = stripslashes($_POST['email-nicename']);
+$emailContent = gradeEmailContent($gradeID, $userNicename, $assignment);
 ?>
 
 <body id="grade-email-send">

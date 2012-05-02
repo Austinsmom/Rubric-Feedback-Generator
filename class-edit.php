@@ -32,21 +32,21 @@ require('includes/header.php');
 		
 			while ( $row = mysql_fetch_array($result)) {
 				
-				$title = $row['class_title'];
-				$meetingTime = $row['class_meetingtime'];
-				$notes = $row['class_notes'];
+				$title = stripslashes($row['class_title']);
+				$meetingTime = stripslashes($row['class_meetingtime']);
+				$notes = stripslashes($row['class_notes']);
 				
 		?>
 				<form id="form-class-edit" name="form-class-edit" method="post">
 					
 					<p>
 						<label for="class-title">Class Title:</label>
-						<input type="text" name="class-title" id="class-title" class="text" value="<?php echo $title; ?>" />
+						<input type="text" name="class-title" id="class-title" class="text" value="<?php echo htmlspecialchars($title); ?>" />
 					</p>
 					
 					<p>
 						<label for="class-time">Meeting Time:</label>
-						<input type="text" name="class-time" id="class-time" class="text" value="<?php echo $meetingTime; ?>" />
+						<input type="text" name="class-time" id="class-time" class="text" value="<?php echo htmlspecialchars($meetingTime); ?>" />
 					</p>
 					
 					<p>

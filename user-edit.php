@@ -34,7 +34,7 @@ else {
 	
 	while ( $userRow = mysql_fetch_array($userRecords)) {
 		// get user info
-		$nicename = $userRow['user_nicename'];
+		$nicename = stripslashes($userRow['user_nicename']);
 		$email = $userRow['user_email']; ?>
 
 		  <form id="form-user-edit" method="post">
@@ -50,7 +50,7 @@ else {
 			
 			<p>
 				<label for="nicename">Display Name:</label>
-				<input class="text" type="text" name="nicename" id="nicename" value="<?php echo $nicename; ?>" />
+				<input class="text" type="text" name="nicename" id="nicename" value="<?php echo htmlspecialchars($nicename); ?>" />
 			</p>
 				
 			<p>

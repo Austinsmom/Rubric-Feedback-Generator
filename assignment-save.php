@@ -15,8 +15,8 @@ if(!isset($_COOKIE["user"])){
 require('includes/header.php'); 
 
 $author = $username;
-$title = $_POST['assignment-title'];
-$description = $_POST['assignment-description'];
+$title = addslashes($_POST['assignment-title']);
+$description = addslashes($_POST['assignment-description']);
 $class = $_POST['assignment-class'];
 $dueDate = $_POST['assignment-duedate'];
 $rubric = $_POST['assignment-rubric'];

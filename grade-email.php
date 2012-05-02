@@ -46,7 +46,7 @@ $assignmentQuery = mysql_query("SELECT * FROM rubric_assignment WHERE assignment
 $assignmentCount = mysql_num_rows($assignmentQuery);					
 if ($assignmentCount == 1 ) {
 	while ( $assignmentRow = mysql_fetch_array($assignmentQuery) ) {
-		$assignmentTitle = $assignmentRow['assignment_title'];
+		$assignmentTitle = stripslashes($assignmentRow['assignment_title']);
 		$classID = $assignmentRow['assignment_class_id'];
 		
 		// get class title for this class
@@ -54,7 +54,7 @@ if ($assignmentCount == 1 ) {
 		$classCount = mysql_num_rows($classQuery);					
 		if ($classCount == 1 ) {
 			while ( $classRow = mysql_fetch_array($classQuery) ) {
-				$classTitle = $classRow['class_title'];
+				$classTitle = stripslashes($classRow['class_title']);
 			}
 		}
 		else {
@@ -90,7 +90,7 @@ $emailSubject = '[' . $classTitle . '] Assignment grade and feedback for ' . $as
 			<div id="email-content">
 
 				<?php 
-					$emailContent = gradeEmailContent($gradeID, $userNicename, $assignmentTitle);
+					$emailContent = gradeEmailContent($gradeID, addslashes($userNicename), addslashes($assignmentTitle));
 					echo $emailContent;
 				?>
 				
@@ -99,9 +99,9 @@ $emailSubject = '[' . $classTitle . '] Assignment grade and feedback for ' . $as
 			
 		<input type="hidden" name="email-to" value="<?php echo $student; ?>" />
 		<input type="hidden" name="email-from" value="<?php echo $userEmail; ?>" />
-		<input type="hidden" name="email-nicename" value="<?php echo $userNicename; ?>" />
-		<input type="hidden" name="email-assignment" value="<?php echo $assignmentTitle; ?>" />
-		<input type="hidden" name="email-subject" value="<?php echo $emailSubject; ?>" />
+		<input type="hidden" name="email-nicename" value="<?php echo addslashes($userNicename); ?>" />
+		<input type="hidden" name="email-assignment" value="<?php echo addslashes($assignmentTitle); ?>" />
+		<input type="hidden" name="email-subject" value="<?php echo addslashes($emailSubject); ?>" />
 		<input type="hidden" name="grade-id" value="<?php echo $gradeID; ?>" />
 		
 		<input type="submit" value="Send Email" id="send-email" />

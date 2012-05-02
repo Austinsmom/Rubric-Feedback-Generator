@@ -36,7 +36,7 @@ while( list( $field, $value ) = each( $postArray )) {
 				
 			// first get label content of value
 			if ( strpos($field, $contentField) !== false ){
-				$content = $value;
+				$content = addslashes($value);
 				
 				// get $tempValueID
 				$tempValueIDPos = strpos($field, "valueLabel-") + 11;
@@ -70,7 +70,7 @@ while( list( $field, $value ) = each( $postArray )) {
 		else if ( strpos($field, 'title') !== false ) {
 				// saves new rubric title
 				$type = "title";
-				$content = $value;
+				$content = addslashes($value);
 				$tempID = substr($field,10);
 				
 				//go through array again and search for fields new-order-tempID & new-live-tempID
@@ -96,7 +96,7 @@ while( list( $field, $value ) = each( $postArray )) {
 			else if ( strpos($field, 'plaintext') !== false ) {
 					// saves new rubric plaintext
 					$type = "plaintext";
-					$content = $value;
+					$content = addslashes($value);
 					$tempID = substr($field,14);
 					
 					//go through array again and search for fields new-order-tempID & new-live-tempID
@@ -122,7 +122,7 @@ while( list( $field, $value ) = each( $postArray )) {
 				else if ( strpos($field, 'textbox') !== false ) {
 						// saves new rubric textbox
 						$type = "textbox";
-						$content = $value;
+						$content = addslashes($value);
 						$tempID = substr($field,12);
 						
 						//go through array again and search for fields new-order-tempID & new-live-tempID
@@ -148,7 +148,7 @@ while( list( $field, $value ) = each( $postArray )) {
 					else if ( strpos($field, 'radio') !== false ) {
 							// saves new rubric radio
 							$type = "radio";
-							$radioContent = $value;
+							$radioContent = addslashes($value);
 							$tempID = substr($field,10);
 							
 							//go through array again and search for fields new-order-tempID & new-live-tempID
@@ -181,7 +181,7 @@ while( list( $field, $value ) = each( $postArray )) {
 										
 									// first get label content of value
 									if ( strpos($checkOptionField, $contentField) !== false ){
-										$content = $checkOptionValue;
+										$content = addslashes($checkOptionValue);
 										
 										// get $tempValueID
 										$tempValueIDPos = strpos($checkOptionField, "valueLabel-") + 11;
@@ -215,12 +215,12 @@ while( list( $field, $value ) = each( $postArray )) {
 	}
 	else if ( $field == 'form-title' ) {
 			// saves rubric title
-			$rubricTitle = $value;
+			$rubricTitle = addslashes($value);
 			mysql_query("UPDATE rubric_form SET rubric_title = '$rubricTitle' WHERE rubric_id = '$rubricID'");	 	
 		}
 		else if ( $field == 'form-description' ) {
 				// saves rubric description
-				$rubricDescription = $value;
+				$rubricDescription = addslashes($value);
 				mysql_query("UPDATE rubric_form SET rubric_description = '$rubricDescription' WHERE rubric_id = '$rubricID'");	 	
 			}
 			else if ( strpos($field, 'order') !== false ) {
@@ -231,7 +231,8 @@ while( list( $field, $value ) = each( $postArray )) {
 				else if ( strpos($field, 'content') !== false ) {
 						// saves criteria content
 			 			$rubricCriteriaID = substr($field,8);
-			 			mysql_query("UPDATE rubric_criteria SET criteria_content = '$value' WHERE criteria_id = '$rubricCriteriaID'");
+			 			$criteriaContent = addslashes($value);
+			 			mysql_query("UPDATE rubric_criteria SET criteria_content = '$criteriaContent' WHERE criteria_id = '$rubricCriteriaID'");
 					} 
 					else if ( strpos($field, 'live') !== false ) {
 							// sets is_live
@@ -246,7 +247,8 @@ while( list( $field, $value ) = each( $postArray )) {
 							else if ( strpos($field, 'valueLabel') !== false ) {
 									// saves radio value content
 						 			$valueID = substr($field,11);
-						 			mysql_query("UPDATE rubric_criteria_option SET option_content = '$value' WHERE option_id = '$valueID'");
+						 			$valueContent = addslashes($value);
+						 			mysql_query("UPDATE rubric_criteria_option SET option_content = '$valueContent' WHERE option_id = '$valueID'");
 								} 
 								else if ( strpos($field, 'valuePoints') !== false ) {
 										// saves radio value points

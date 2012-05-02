@@ -26,7 +26,7 @@ require('includes/header.php');
 		$result = mysql_query($sql);
 	
 while ( $row = mysql_fetch_array($result)) {
-		$title = $row['rubric_title'];
+		$title = stripslashes($row['rubric_title']);
 
 ?>
 		
@@ -56,7 +56,7 @@ while ( $row = mysql_fetch_array($result)) {
 							while ( $row = mysql_fetch_array($result)) {
 								/* go through each class record and print a list to choose from */
 								$id = $row['assignment_id'];
-								$title = $row['assignment_title'];
+								$title = stripslashes($row['assignment_title']);
 							
 								echo '<option value="' . $id . '">' . $title . '</option>';
 							}

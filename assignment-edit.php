@@ -22,10 +22,10 @@ require('includes/header.php');
 		<h2>Edit Assignment:<br />
 	
 	<?php
-		$assignmentTitle = $_POST['assignment-title'];
-		$classTitle = $_POST['class-title'];
+		$assignmentTitle = stripslashes($_POST['assignment-title']);
+		$classTitle = stripslashes($_POST['class-title']);
 
-		echo stripSlashes($assignmentTitle) . ' <em>for ' . stripSlashes($classTitle) . '</em>'; ?></h2>
+		echo $assignmentTitle . ' <em>for ' . $classTitle . '</em>'; ?></h2>
 		
 	</div>
 	
@@ -37,8 +37,8 @@ require('includes/header.php');
 		if ($count != 0) { 
 			// get assignment info and repopulate form to edit it
 			while ( $assignmentRow = mysql_fetch_array($assignmentRecords)) {
-				$title = $assignmentRow['assignment_title'];
-				$description = $assignmentRow['assignment_description'];
+				$title = stripslashes($assignmentRow['assignment_title']);
+				$description = stripslashes($assignmentRow['assignment_description']);
 				$date = $assignmentRow['assignment_duedate'];
 				$rubric = $assignmentRow['assignment_rubric_id'];
 		?>
@@ -46,12 +46,12 @@ require('includes/header.php');
 					
 					<p>
 						<label for="assignment-title">Title:</label>
-						<input type="text" name="assignment-title" id="assignment-title" class="text" value="<?php echo $title; ?>" />
+						<input type="text" name="assignment-title" id="assignment-title" class="text" value="<?php echo htmlspecialchars($title); ?>" />
 					</p>
 					
 					<p>
 						<label for="assignment-description">Description:</label>
-						<input type="text" name="assignment-description" id="assignment-description" class="text" value="<?php echo $description; ?>" />
+						<input type="text" name="assignment-description" id="assignment-description" class="text" value="<?php echo htmlspecialchars($description); ?>" />
 					</p>
 				
 					<p>
@@ -80,7 +80,7 @@ require('includes/header.php');
 									echo '<select name="assignment-rubric">';
 									while ( $rubricRow = mysql_fetch_array($rubricRecord)) {
 										$rubricID = $rubricRow['rubric_id'];
-										$rubricTitle = $rubricRow['rubric_title'];
+										$rubricTitle = stripslashes($rubricRow['rubric_title']);
 										
 										if ( $rubric == $rubricID ){
 											echo '<option value="' . $rubricID . '" selected>' . $rubricTitle . '</option>';

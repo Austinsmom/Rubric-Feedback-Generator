@@ -36,11 +36,13 @@ while( list( $field, $value ) = each( $gradeArray )) {
 	 	
 	 	if ( $gradedRowsCount == 1 ) {
 	 		// if radio was already graded, update in database
-	 		mysql_query("UPDATE rubric_grade_answer SET answer_value = '$value' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND answer_is_comment = '0' AND answer_is_textbox = '0'");	
+	 		$answerValue = addslashes($value);
+	 		mysql_query("UPDATE rubric_grade_answer SET answer_value = '$answerValue' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND answer_is_comment = '0' AND answer_is_textbox = '0'");	
 	 	}
 	 	else if ( $gradedRowsCount == 0 ) {
-	 			// if radio was added after first grade made, add to database 	
-	 			mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '0','0')") or die('There was an error saving: ' . mysql_error());
+	 			// if radio was added after first grade made, add to database
+	 			$answerValue = addslashes($value);	
+	 			mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$answerValue', '0','0')") or die('There was an error saving: ' . mysql_error());
 	 		}
 	 		else { /* do nothing */ }
 	} 
@@ -53,11 +55,13 @@ while( list( $field, $value ) = each( $gradeArray )) {
 	 	
 	 		if ( $gradedRowsCount == 1 ) {
 	 			// if comment was already added, update in database
-		 		mysql_query("UPDATE rubric_grade_answer SET answer_value = '$value' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND answer_is_comment = '1' AND answer_is_textbox = '0'");
+	 			$answerValue = addslashes($value);
+		 		mysql_query("UPDATE rubric_grade_answer SET answer_value = '$answerValue' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND answer_is_comment = '1' AND answer_is_textbox = '0'");
 		 	}
 		 	else if ( $gradedRowsCount == 0 ) {
 		 			// if comment was added after first grade made, add to database
-		 			mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '1','0')") or die('There was an error saving: ' . mysql_error());
+		 			$answerValue = addslashes($value);
+		 			mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$answerValue', '1','0')") or die('There was an error saving: ' . mysql_error());
 		 		}
 		 		else { /* do nothing */ }
 		} 
@@ -70,11 +74,13 @@ while( list( $field, $value ) = each( $gradeArray )) {
 
 				if ( $gradedRowsCount == 1 ) {
 			 		// if textbox was already added, update in database
-			 		mysql_query("UPDATE rubric_grade_answer SET answer_value = '$value' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND answer_is_comment = '0' AND answer_is_textbox = '1'");
+			 		$answerValue = addslashes($value);
+			 		mysql_query("UPDATE rubric_grade_answer SET answer_value = '$answerValue' WHERE answer_grade_id = '$gradeID' AND answer_criteria_id = '$gradeCriteriaID' AND answer_is_comment = '0' AND answer_is_textbox = '1'");
 			 	}
 			 	else if ( $gradedRowsCount == 0 ) {
 			 			// if textbox was added after first grade made, add to database
-			 			mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$value', '0', '1')") or die('There was an error saving: ' . mysql_error());
+			 			$answerValue = addslashes($value);
+			 			mysql_query("INSERT INTO rubric_grade_answer (answer_grade_id, answer_criteria_id, answer_value, answer_is_comment, answer_is_textbox) VALUES ('$gradeID', '$gradeCriteriaID', '$answerValue', '0', '1')") or die('There was an error saving: ' . mysql_error());
 			 		}
 			 		else { /* do nothing */ }
 			} 
