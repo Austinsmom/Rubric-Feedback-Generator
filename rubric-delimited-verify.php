@@ -47,11 +47,11 @@ $delimitedTextItems = explode( '
 		
 		<p>Once you've finished generating your form, enter the title and description and save. You can go back and make changes and/or fixes to this rubric later on from the User Admin page.</p>
 		
-		<input id="form-rubric-content" type="hidden" value="<?php echo $delimitedText; ?>" name="finalDelimitedText" />
+		<input id="form-rubric-content" type="hidden" value="<?php echo htmlspecialchars($delimitedText); ?>" name="finalDelimitedText" />
 		
 		<p>
 			<label for="form-title">Rubric Title:</label> 
-			<input id="form-rubric-title" type="text" name="form-title" />
+			<input id="form-rubric-title" type="text" class="text" name="form-title" />
 		</p>
 		
 		<p>

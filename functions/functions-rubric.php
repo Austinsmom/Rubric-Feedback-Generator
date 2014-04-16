@@ -129,7 +129,7 @@ function generateCriteriaRadio($itemArray, $itemCount) {
 function generateCriteriaTextbox($itemArray, $itemCount) {
 	echo '<fieldset class="textbox fieldset-' . $itemCount . '">';
 	echo '<label for="item-'. $itemCount . '">' . $itemArray[2] . '</label>';
-	echo '<input type="text" name="item-' . $itemCount . '" />';
+	echo '<input type="text" class="text" name="item-' . $itemCount . '" />';
 	echo '</fieldset>';
 }
 

@@ -23,7 +23,7 @@ require('includes/header.php'); ?>
 		<h2>Import Rubric</h2>
 	</div>
 
-	<p>In the following form, paste the tab-delimited content needed to generate your rubric content.</p>
+	<p>In the following form, paste the tab-delimited content needed to generate your rubric content. <a href=".delimited.txt">Click here for an example.</a></p>
 	
 	<form id="form-delimited" name="form-delimited" method="post">
 		

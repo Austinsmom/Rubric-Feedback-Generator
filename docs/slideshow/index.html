@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<title>Rubric-Feedback Generator</title>
+	<!-- this slideshow was created using my (Jenn Schiffer's) SimpleSlides framework 
+	 get it on GitHub: https://github.com/jennschiffer/SimpleSlides -->
+
+	<style type="text/css">
+	/* 	The following CSS is necessary for making this a presentation and not a blob of nonsense. 
+		Change it at your own risk. I suggest adding "custom" css at the end.
+	*/
+		* { box-sizing: border-box; }
+		html { margin: 0; padding: 0; }
+		body { font-size: 1em; }
+		.slide { position:absolute; top:0; left:0; height:100%; width:100%; padding:20px; }
+		.navigation { position:absolute; bottom:10px; z-index:1000; cursor: pointer; }
+			#next { right: 10px; }
+			#previous { left: 10px; }
+		#counter { position:absolute; top:10px; right:10px; display: inline-block; }
+		
+	/*	Custom CSS to make the presentation pretty. */
+		body { font-family: Helvetica, Arial, sans-serif; font-size: 1.5em; }
+		code { font-family: Monaco, monospace; }
+		img { border: 1px solid #ddd; max-width: 100%; }
+		#counter { opacity: .1; }
+		.slide { padding: 50px; }
+		.slide h1, .slide h3 { background: #efefef; border: 1px solid #ddd; padding: 20px; margin-top: 0; font-size: 2em; }
+		.slide ul li { margin: 5px 0; }
+		.slide ul p { font-weight: bolder; }
+		.center { text-align: center; }
+		.left { float: left; margin: 0 50px 20px; }
+		.right { float: right; margin: 0 50px 20px; }
+	</style>
+	
+	<!-- Use html5shim so that HTML5 elements work in old browsers - keep in <header> -->
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	
+</head>
+<body>	
+
+	<!-- 	Give each slide an id="#" where # is the number order of the slide. 
+			Don't skip numbers, and stay in order! 									-->
+	
+	
+	<div class="slide" id="1">
+		
+		<h1>Rubric-Feedback Generator</h1>
+	    
+	    <h2>A Course Management System Module, With a Focus on Assessment</h2>
+	    
+	    <p>
+	    	Jenn Schiffer<br />
+	    	Advisor: Dr. Emily Hill
+	    </p>
+	    
+	    <p>
+	    	Master of Science Project<br />
+	    	Computer Science Department<br />
+	    	Montclair State University
+	    </p>
+	    
+	    <p>
+	    	May 2nd, 2012
+	    </p>
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="2">
+		
+	    <h3>The Idea</h3>
+	    
+	    <p>
+	    	<blockquote><em>"Assessment's a four-letter word. No matter how hard I try, I cannot escape it. Help me."</em><br />
+	    	- local university student, Jenn Schiffer</blockquote>
+	    </p>
+	    
+	    <ul>	    	
+	    	<li>Education</li>
+	    	<li>Freelancer Decisions</li>
+	    	<li>Project Management
+	    		<ul>
+	    			<li>Initial Ideas</li>
+	    			<li>Designs &amp; Prototypes</li>
+	    			<li>Drafts &amp; Final Product</li>
+	    		</ul>
+	    	</li>
+	    </ul>
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="3">
+		
+	    <h3>"Analog" Assessment</h3>
+	    
+	    <ul>	
+	    	<li>Paper rubrics</li>
+	    	<li>Vocal critique</li>
+	    </ul>
+	    
+	   	
+	   	<h3 style="margin-top: 40px;">"Digital" Assessment</h3>
+
+	    <ul>	
+	    	<li>Online rubrics</li>
+	    	<li>Course management systems</li>
+	    </ul>	   
+	    
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="4">
+		
+	    <h3>Problem</h3>
+	    
+	    <ul>
+	 		<li>No template for assessment</li>
+	    	<li>Data storage and dissemination is not guaranteed</li>
+	    	<li>Data is not very useful</li>
+	    	<li>Paper is passé</li>
+	    	<li>Digital solutions are constraining</li>
+	    </ul>
+	  
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="5">
+	
+		<h3>Problem</h3>
+		
+		<p class="center"><img src="images/blackboard.png" /></p>
+	
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="6">
+		
+	    <h3>Solution</h3>
+	    
+	    <p>Develop a Web-based course management system module with a focus on assessment.</p>
+	    
+	    <ul>
+	    	<li>Can integrate with CS Department's Teaching Information System</li>
+	    	<li>Accessible on multiple device inputs/outputs</li>
+	    	<li>Rubric-centric</li>
+	    	<li>Modular components</li>
+	    </ul>
+	    
+	    <p>That's why I developed the <strong>Rubric-Feedback Generator</strong></p>
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="7">
+		
+	    <h3>Introducing Rubric-Feedback Generator</h3>
+	    
+		<p>A Web-based, rubric-centric, course management system module.</p>
+		
+		<ul>
+			<p>Built with:</p>
+			
+			<li>Apache server</li>
+			<li>MySQL database</li>
+			<li>PHP</li>
+			<li>HTML</li>
+			<li>CSS</li>
+			<li>JavaScript (jQuery)</li>
+		</ul>
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="8">
+		
+	    <h3>Important Parts of this application</h3>
+	    
+	    <ul>
+	    	<p>The person using it (course instructor)</p>
+	    	
+	    	<li>User has Classes</li>
+	    	<li>A Class has Assignments</li>
+	    	<li>An Assignment has Grades</li>
+	    </ul>
+	    
+	    <ul>
+	    	<p>The purpose of using it (assessment)</p>
+	    	
+	    	<li>User has Rubrics</li>
+	    	<li>An Assignment created with a Rubric</li>
+	    	<li>A Grade is created with a Rubric of the Assignment</li>
+	    </ul>
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="9">
+		
+	    <h3>Components of Rubric-Feedback Generator</h3>
+	    
+	    <ul>
+	    	<li>User - one role, "instructor"</li>
+	    	<li>Class - section of a course</li>
+	    	<li>Assignment - project, homework, exam given to a Class</li>
+	    	<li>Rubric - form used to assess the performance of an individual's completed Assignment</li>
+	    	<li>Grade - collection of data gathered from completion of a Rubric</li>
+	    </ul>
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="10">
+		
+		<h3>Users</h3>
+			
+		<p class="center"><img src="images/table-user.png"></p>	
+			
+		</ul>
+		
+	</div>
+	
+	
+	
+		
+	<div class="slide" id="11">
+		
+		<h3>Classes</h3>
+		
+		<p>A User has 0 or more classes.<br />
+		A Class belongs to only 1 User.</p>
+		
+		<p class="center"><img src="images/table-class.png"></p>	
+		
+	</div>
+	
+	
+	
+		
+	<div class="slide" id="12">
+		
+		<h3>Assignments</h3>
+		
+		<p>A Class has 0 or more Assignments.<br />
+		An Assignment belongs to only 1 Class.</p>
+		
+		<p class="center"><img src="images/table-assignment.png"></p>	
+		
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="13">
+		
+	    <h3>Rubrics, aka "The Hard Part"</h3>
+	    
+	    <p>A User has 0 or more Rubrics.<br />
+	    A Rubric belongs to only 1 User.<br />
+	    An Assignment has only 1 Rubric.<br />
+	    A Rubric can be used by 0 or more Assignments.</p>
+	    	    	
+	    
+		<p class="center"><img src="images/table-rubric.png"></p>	
+	    	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="14">
+	
+		<h3>Rubrics and their parts</h3>
+		
+		<img class="right" src="images/example-rubric.png" />
+		
+		<ul>
+			<li>Title</li>
+			<li>Plaintext</li>
+			<li>Criteria
+				<ul>
+					<li>Textbox</li>
+					<li>Radio</li>
+				</ul>
+			</li>
+		</ul>
+				
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="15">
+	
+		<h3>Rubrics - Criteria</h3>
+		
+		<p>A Rubric has 0 or more Criteria.<br />
+		A Criteria belongs to only 1 Rubric.		
+		</p>
+		
+		<img class="right" src="images/table-criteria.png" />
+		
+		<ul>
+			<li>Textbox - textbox fieldset for text values</li>
+			<li>Radio - radio fieldset with multiple options
+				<ul>
+					<li>Options - have a text label and integer point values</li>
+					<li>Comments - textarea for further instructor comments</li>
+				</ul>
+			</li>
+		</ul>
+		
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="16">
+	
+		<h3>Rubrics - Criteria - Options</h3>
+		
+		<p>Criteria with type "Radio" has 0 or more Options.<br />
+		An Option belongs to only 1 Criteria with type "Radio."</p>
+		
+		<p class="center"><img src="images/table-criteria-option.png" /></p>
+	
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="17">
+		
+		<h3>Rubrics - an example, diagrammed</h3>
+		
+		<p class="center"><img src="images/diagram-rubric.png"></p>	
+		
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="18">
+	
+		<h3>Grades, aka "The Other Hard Part"</h3>
+		
+		<p>An Assignment has 0 or more Grades.<br />
+	    A Grade belongs to 1 Assignment.</p>
+	    	    	
+	    
+		<p class="center"><img src="images/table-grade.png"></p>	
+	
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="19">
+	
+		<h3>Grades - Answers from Rubrics</h3>
+		
+		<p>Grades are the collection of values, or Answers, from a completed Rubric.</p>
+		
+		<ul>
+			<li>Values of Textbox Criteria</li>
+			<li>Values of Radio Criteria</li>
+			<li>Values of Radio Criteria comments</li>
+		</ul>
+	
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="20">
+	
+		<h3>Grades - Answers/Values from Rubrics</h3>
+		
+		<p>A Grade has 0 or more Grade-Answers.
+		A Grade-Answer belongs to only one Grade.
+		</p>
+		
+		<p class="center"><img src="images/table-grade-answer.png" /></p>	
+		
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="21">
+	
+		<h3>Grades - Disemmination</h3>
+		
+		<ul>
+			<li>View List of Grades</li>
+			<li>Email Grades to students</li>
+		</ul>
+	
+	</div>	
+	
+	
+	
+	
+	<div class="slide" id="22">
+	
+		<h3>Emailing Grades</h3>
+		
+		<p>In Rubric-Feedback Generator, the User can email Grades</p>
+		
+		<ul>
+			<li>Individually</li>
+			<li>In a batch</li>
+		</ul>
+	
+	</div>	
+	
+	
+	
+	
+	<div class="slide" id="23">
+	
+		<h3>Emailing Grades</h3>
+		
+		<p>The email of a Grade is a printout of the Rubric used to create the Grade, along with the values given by the User when creating the Grade.</p>
+				
+		<p class="center"><img src="images/email.png" /></p>
+	
+	</div>	
+	
+	
+	
+	
+	<div class="slide" id="24">
+	
+		<h3>Miscellaneous</h3>
+		
+		<ul>
+			<li>Classes, Assignments, Rubrics, and Grades can be edited and deleted, <em>with caution</em>.</li>
+			<li>Cross-browser tested.</li>
+			<li>Screen-size responsive.</li>
+		</ul>
+		
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="25">
+		
+	    <h3>Demo</h3>
+	    
+	    <a href="http://masters.jennschiffer.com" target="_blank">http://masters.jennschiffer.com</a>
+	    
+	</div>
+	
+	
+	
+	
+	<div class="slide" id="26">
+	
+		<h3>The Future</h3>
+		
+		<ul>
+			<li>User Testing this Summer</li>
+			<li>Integration with TIS</li>
+			<li>User Roles</li>
+			<li>Import/Export Data</li>
+			<li><em>Analytics</em></li>
+			<li>UX</li>
+			<li>and more...</li>
+		</ul>
+		
+		<h3>Source code</h3>
+		
+		<a href="https://github.com/jennschiffer/Rubric-Feedback-Generator">https://github.com/jennschiffer/Rubric-Feedback-Generator</a>
+	
+	</div>
+	
+
+	
+	<!-- navigation arrows for slides -->
+	<div class="navigation" id="previous"> &larr; </div>
+	<div class="navigation" id="next"> &rarr; </div>
+	
+	<!-- slide counter space - don't put anything in these div tags. the jQuery script below populates it automagically -->
+	<div id="counter"></div>
+	
+	
+	<!-- jQuery - required for slides to work -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+								   
+			// Initially hide all slides
+			$(".slide").hide();
+					
+			// The last slide's ID should be the number of slides
+			var lastSlideID = $(".slide").length;
+			
+			// The first slide is always the first slide! So let's make visible and set the counter
+			var firstSlideID = 1;
+			$("#"+firstSlideID).show().addClass("current");
+			$("#counter").text(firstSlideID + " / " + lastSlideID);
+			
+			// If you click on "next" arrow, call the nextSlide function
+			$("#next").click(nextSlide);
+			
+			// If you click on "previous" arrow, call the previousSlide function
+			$("#previous").click(previousSlide);
+			
+			// adding keyboard shortcuts for changing slides
+			$(document).keydown(function(e){
+				if (e.which == 39) { 
+					// right key pressed => next slide
+					nextSlide();
+					return false;
+				}
+				else if (e.which == 37) {
+						// left key pressed => previous slide
+						previousSlide();
+						return false;
+					}
+			});
+			
+			function nextSlide() {
+				// Get the current slide's ID so we know where we are
+				var currentSlideID = $(".current").attr('id');
+				
+				// Get the next slide's ID
+				if ( currentSlideID != lastSlideID ) {
+					var nextSlideID = parseInt(currentSlideID) + 1;
+				}
+				else {
+					// This must be the last slide, so go back to slide one.
+					var nextSlideID = firstSlideID;
+				}
+				
+				$("#" + currentSlideID).fadeOut().removeClass("current");
+				$("#" + nextSlideID).fadeIn().addClass("current");
+				$("#counter").text(nextSlideID + " / " + lastSlideID);
+			}
+			
+			function previousSlide() {
+				// Get the current slide's ID so we know where we are
+				var currentSlideID = $(".current").attr('id');
+				
+				// Get the previous slide's ID
+				if ( currentSlideID != firstSlideID ) {
+					var nextSlideID = parseInt(currentSlideID) - 1;
+				}
+				else {
+					// This must be the first slide, so go back to the last slide.
+					var nextSlideID = lastSlideID;
+				}
+				
+				$("#" + currentSlideID).fadeOut().removeClass("current");
+				$("#" + nextSlideID).fadeIn().addClass("current");
+				$("#counter").text(nextSlideID + " / " + lastSlideID);
+			}
+							   
+		});	
+	</script>
+
+</body>
+</html>

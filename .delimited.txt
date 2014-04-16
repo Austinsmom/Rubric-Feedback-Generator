@@ -1,0 +1,17 @@
+Format of delimited Rubric:
+===========================
+
+title	content
+plaintext	content
+criteria	textbox	label
+criteria	radio	label	option1label	option1points	option2label	option2points
+
+
+Example:
+============================
+
+title	Project #1 Grade
+plaintext	This is your first project. It's worth 20 points.
+criteria	radio	Print "hello world"	Excellent	20	Poor	0
+plaintext	Next week you need to work with a partner, who will be assigned to you
+criteria	textbox	Your partner for your next assignment

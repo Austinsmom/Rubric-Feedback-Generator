@@ -243,7 +243,7 @@ function getGradedRadioEmail($id, $grade) {
 							$answerLabel = stripslashes($answerValueRow['option_content']);
 							$answerPoints = $answerValueRow['option_points'];
 							
-							$radioEmail .= ' ' . $answerLabel . ', [' . $answerPoints . ' points]';
+							$radioEmail .= ' ' . $answerLabel . ' [' . $answerPoints . ' points]';
 						}
 					}					
 				}
